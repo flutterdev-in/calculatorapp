@@ -2,6 +2,7 @@ import 'package:calculator_04/ac_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:function_tree/function_tree.dart';
+import 'package:intl/intl.dart';
 
 class ResultW extends StatelessWidget {
   ResultW({Key? key}) : super(key: key);
@@ -55,7 +56,9 @@ class Resultfunctios {
   String finalMainResult(String nValue) {
     if (nValue.isNotEmpty) {
       String newNvalue = modifications(nValue);
-      String finalResult = tryChatches(newNvalue).toStringAsFixed(2);
+      num finalResult0 = tryChatches(newNvalue);
+      print(finalResult0);
+      String finalResult = indianStyle(finalResult0);
       return finalResult;
     } else {
       return "0";
@@ -106,6 +109,75 @@ class Resultfunctios {
           return 0;
         }
       }
+    }
+  }
+
+  String indianStyle(num finalResultValue) {
+    String tenPowerInUnicode(String power) {
+      String tenPowerInUnicode = '';
+      List<String> unicodes = [
+        "\u2070",
+        "\u00B9",
+        "\u00B2",
+        "\u00B3",
+        "\u2074",
+        "\u2075",
+        "\u2076",
+        "\u2077",
+        "\u2078",
+        "\u2079"
+      ]; // from 0-9
+      List<String> eachDigit = power.toString().split('');
+
+      for (String i in eachDigit) {
+        int digit = int.parse(i);
+        tenPowerInUnicode = tenPowerInUnicode + unicodes[digit];
+      }
+      return tenPowerInUnicode;
+    }
+
+    String forPositive(num finalResult) {
+      if (finalResult.toString().contains("e+")) {
+        String power = finalResult.toString().split("+").last;
+        String finalString =
+            finalResult.toString().split("e+").first.substring(0, 3) +
+                " x10" +
+                tenPowerInUnicode(power);
+        return finalString;
+      } else {
+        if (finalResult < 1000000000) {
+          String beforeDot = finalResult.toString().split(".").first;
+          String afterDot = finalResult.toString().split(".").last;
+          num beforeDotNum = int.parse(beforeDot);
+          NumberFormat indFormat = NumberFormat.currency(locale: 'HI');
+          String finalString = indFormat.format(beforeDotNum);
+          finalString = finalString.replaceAll("INR", "");
+          finalString = finalString.split('.').first;
+          return finalString;
+        } else if (finalResult >= 1000000000 && finalResult < 100000000000) {
+          num croreValue = finalResult / 10000000;
+          String finalString = croreValue.toStringAsFixed(2) + " x10\u2077";
+          return finalString;
+        } else {
+          String first7 = finalResult.toString().substring(0, 5);
+
+          first7 = (int.parse(first7) / 1000).toStringAsFixed(2);
+
+          int after7length =
+              finalResult.toString().split(".").first.substring(1).length - 1;
+
+          String finalString =
+              first7 + " x10" + tenPowerInUnicode(after7length.toString());
+          return finalString;
+        }
+      }
+    }
+
+    if (finalResultValue < 0) {
+      num converttoPositive = -1 * finalResultValue;
+      return "-" + forPositive(converttoPositive);
+    } else {
+      return forPositive(finalResultValue);
     }
   }
 
