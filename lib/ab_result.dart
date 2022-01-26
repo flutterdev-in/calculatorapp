@@ -9,11 +9,12 @@ class ResultW extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size md = MediaQuery.of(context).size;
     Resultfunctios rf = Resultfunctios();
     return Container(
       width: double.infinity,
       color: Colors.green,
-      height: Get.height / 8,
+      height: md.height / 8,
       child: Column(
         children: [
           Row(
@@ -61,6 +62,7 @@ class Resultfunctios {
     }
   }
 
+  // Final sub result
   String finalSubResult(String nValue) {
     if (nValue.contains("\n")) {
       List<String> splitNvalue = nValue.split("\n");
@@ -83,6 +85,7 @@ class Resultfunctios {
     // "+-" will automatically interpret() so no need to write extra coding for this
     if (modifiedValue.contains("%")) {
       modifiedValue = replacePercentage(modifiedValue);
+      modifiedValue = modifiedValue.replaceAll("+*", '*');
     }
 
     return modifiedValue;

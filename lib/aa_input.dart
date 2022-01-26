@@ -1,4 +1,3 @@
-
 import 'package:calculator_04/ac_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,9 +9,10 @@ class InputW extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ButtonsController b = Get.put(ButtonsController());
+    Size md = MediaQuery.of(context).size;
 
     return Container(
-      height: Get.height / 4,
+      height: md.height / 4,
       child: Obx(() {
         b.tc!.text = b.n.value;
         if (b.p.value > b.n.value.length) {

@@ -8,9 +8,10 @@ class ButtonsW extends StatelessWidget {
   ButtonsController b = Get.put(ButtonsController());
   @override
   Widget build(BuildContext context) {
+    Size md = MediaQuery.of(context).size;
     return Container(
       color: Colors.white,
-      height: Get.height * 3 / 5 - 50,
+      height: md.height * 3 / 5 - 50,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,7 +118,6 @@ class ButtonsController extends GetxController {
           n.value = n.value.substring(0, n.value.length - 1);
           p.value--;
         } else {
-          
           pftx = n.value.substring(0, p.value - 1);
           sftx = n.value.substring(p.value);
           n.value = pftx + sftx;
@@ -318,7 +318,19 @@ class ButtonsController extends GetxController {
 
     String checkString = l[l.length - 2];
 
-    ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "\n"].forEach((v) {
+    [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      ".",
+    ].forEach((v) {
       checkString = checkString.replaceAll(v, '');
     });
     if (checkString.isEmpty) {
@@ -326,7 +338,7 @@ class ButtonsController extends GetxController {
     } else if (checkString.isNotEmpty) {
       String nearerString = checkString.substring(checkString.length - 1);
       int count = 0;
-      if (["+", "-"].contains(nearerString)) {
+      if (["+", "-", "\n"].contains(nearerString)) {
       } else {
         notValid = true;
       }
