@@ -69,14 +69,18 @@ class Resultfunctios {
   String finalSubResult(String nValue) {
     if (nValue.contains("\n")) {
       List<String> splitNvalue = nValue.split("\n");
-      String newLastNvalue = modifications(splitNvalue.last);
-      if (newLastNvalue == "") {
-        newLastNvalue =
-            modifications(splitNvalue.elementAt(splitNvalue.length - 2));
+      if (splitNvalue.length < 3 && splitNvalue.last == "") {
+        return "";
+      } else {
+        String newLastNvalue = modifications(splitNvalue.last);
+        if (newLastNvalue == "") {
+          newLastNvalue =
+              modifications(splitNvalue.elementAt(splitNvalue.length - 2));
+        }
+        num finalResult0 = tryChatches(newLastNvalue);
+        String finalResult = indianStyle(finalResult0);
+        return finalResult;
       }
-      num finalResult0 = tryChatches(newLastNvalue);
-      String finalResult = indianStyle(finalResult0);
-      return finalResult;
     } else {
       return "";
     }

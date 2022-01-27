@@ -12,67 +12,68 @@ class ButtonsW extends StatelessWidget {
     return Container(
       color: Colors.white,
       height: md.height * 3 / 5 - 50,
-      child: Column(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [r0(), r1(), r2(), r3(), r4(), r5()],
+        children: [
+          firstLeft(),
+          secondLeft(),
+          thirdLeft(),
+          rigthColumn(),
+        ],
       ),
     );
   }
 
-  Widget r0() {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      // b.operation("()", MdiIcons.percentOutline),
-      b.bracket(),
-      SizedBox(
-        width: 250,
-      )
+  Widget rigthColumn() {
+    return Column(
+      children: [
+        Expanded(child: b.operation("/", MdiIcons.slashForward), flex: 1),
+        Expanded(child: b.operation("*", MdiIcons.close), flex: 1),
+        Expanded(child: b.operation("-", MdiIcons.minus), flex: 1),
+        Expanded(child: b.operation("+", MdiIcons.plus), flex: 1),
+        Expanded(child: b.operation("\n", MdiIcons.playlistPlus), flex: 2),
+      ],
+    );
+  }
+
+  Widget leftGrossColumn() {
+    return Column(children: [
+      firstLeft(),
+      secondLeft(),
+      thirdLeft(),
     ]);
   }
 
-  Widget r1() {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      // b.operation("()", MdiIcons.percentOutline),
-      b.clear(),
-      b.operation("%", MdiIcons.percentOutline),
-      b.backspace(),
-      b.operation("/", MdiIcons.slashForward),
+  Widget firstLeft() {
+    return Column(children: [
+      Expanded(child: b.clear(), flex: 6),
+      Expanded(child: b.number("7"), flex: 4),
+      Expanded(child: b.number("4"), flex: 4),
+      Expanded(child: b.number("1"), flex: 4),
+      Expanded(child: b.number("00"), flex: 4),
     ]);
   }
 
-  Widget r2() {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      b.number("7"),
-      b.number("8"),
-      b.number("9"),
-      b.operation("*", MdiIcons.close),
+  Widget secondLeft() {
+    return Column(children: [
+      Expanded(child: b.dummy(), flex: 3),
+      Expanded(child: b.operation("%", MdiIcons.percentOutline), flex: 3),
+      Expanded(child: b.number("8"), flex: 4),
+      Expanded(child: b.number("5"), flex: 4),
+      Expanded(child: b.number("2"), flex: 4),
+      Expanded(child: b.number("0"), flex: 4),
     ]);
   }
 
-  Widget r3() {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      b.number("4"),
-      b.number("5"),
-      b.number("6"),
-      b.operation("-", MdiIcons.minus),
-    ]);
-  }
-
-  Widget r4() {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      b.number("1"),
-      b.number("2"),
-      b.number("3"),
-      b.operation("+", MdiIcons.plus),
-    ]);
-  }
-
-  Widget r5() {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      b.number("00"),
-      b.number("0"),
-      b.operation(".", MdiIcons.circleSmall),
-      b.operation("\n", MdiIcons.playlistPlus),
+  Widget thirdLeft() {
+    return Column(children: [
+      Expanded(child: b.clear(), flex: 3),
+      Expanded(child: b.bracket(), flex: 3),
+      Expanded(child: b.number("9"), flex: 4),
+      Expanded(child: b.number("6"), flex: 4),
+      Expanded(child: b.number("3"), flex: 4),
+      Expanded(child: b.operation(".", MdiIcons.circleSmall), flex: 4),
     ]);
   }
 }
@@ -91,6 +92,18 @@ class ButtonsController extends GetxController {
   void onInit() {
     tc = TextEditingController();
     super.onInit();
+  }
+
+  Widget dummy() {
+    return GFButton(
+      onPressed: () {},
+      child: const Text(
+        "=",
+        textScaleFactor: 1.4,
+      ),
+      size: GFSize.LARGE,
+      type: GFButtonType.outline2x,
+    );
   }
 
   Widget clear() {
