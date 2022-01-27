@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:function_tree/function_tree.dart';
 import 'package:intl/intl.dart';
+import 'package:num_utilities/num_utilities.dart';
 
 class ResultW extends StatelessWidget {
   ResultW({Key? key}) : super(key: key);
@@ -113,6 +114,8 @@ class Resultfunctios {
   }
 
   String indianStyle(num finalResultValue) {
+    //
+    // convert powers to unicodes
     String tenPowerInUnicode(String power) {
       String tenPowerInUnicode = '';
       List<String> unicodes = [
@@ -137,12 +140,29 @@ class Resultfunctios {
     }
 
     String forPositive(num finalResult) {
-      if (finalResult.toString().contains("e+")) {
+      if (finalResult.toString().contains("nfinity")) {
+        return finalResult.toString();
+      } else if (finalResult.toString().contains("e+")) {
+        print(finalResult.toString());
         String power = finalResult.toString().split("+").last;
-        String finalString =
-            finalResult.toString().split("e+").first.substring(0, 3) +
-                " x10" +
-                tenPowerInUnicode(power);
+        String first = "";
+        try {
+          first = num.parse(
+                  finalResult.toString().split("e+").first.substring(0, 5))
+              .roundToPrecision(2)
+              .toString();
+        } catch (e) {
+          try {
+            first = num.parse(
+                    finalResult.toString().split("e+").first.substring(0, 4))
+                .roundToPrecision(1)
+                .toString();
+          } catch (e) {
+            first = finalResult.toString().split("e+").first;
+          }
+        }
+
+        String finalString = first + " x10" + tenPowerInUnicode(power);
         return finalString;
       } else {
         if (finalResult < 1000000000) {
@@ -156,12 +176,13 @@ class Resultfunctios {
           return finalString;
         } else if (finalResult >= 1000000000 && finalResult < 100000000000) {
           num croreValue = finalResult / 10000000;
-          String finalString = croreValue.toStringAsFixed(2) + " x10\u2077";
+          String finalString =
+              croreValue.roundToPrecision(2).toString() + " x10\u2077";
           return finalString;
         } else {
           String first7 = finalResult.toString().substring(0, 5);
 
-          first7 = (int.parse(first7) / 1000).toStringAsFixed(2);
+          first7 = (int.parse(first7) / 1000).roundToPrecision(2).toString();
 
           int after7length =
               finalResult.toString().split(".").first.substring(1).length - 1;

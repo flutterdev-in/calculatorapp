@@ -39,6 +39,7 @@ dependencies:
   material_design_icons_flutter: ^5.0.6595
   getwidget:
   function_tree: ^0.8.12
+  num_utilities: ^1.0.2+1
 
 dev_dependencies:
   flutter_test:
