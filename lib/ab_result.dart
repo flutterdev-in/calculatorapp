@@ -167,13 +167,14 @@ class Resultfunctios {
       } else {
         if (finalResult < 1000000000) {
           String beforeDot = finalResult.toString().split(".").first;
-          String afterDot = finalResult.toString().split(".").last;
+          String afterDot =
+              finalResult.roundToPrecision(2).toString().split(".").last;
           num beforeDotNum = int.parse(beforeDot);
           NumberFormat indFormat = NumberFormat.currency(locale: 'HI');
-          String finalString = indFormat.format(beforeDotNum);
-          finalString = finalString.replaceAll("INR", "");
-          finalString = finalString.split('.').first;
-          return finalString;
+          beforeDot = indFormat.format(beforeDotNum);
+          beforeDot = beforeDot.replaceAll("INR", "");
+          beforeDot = beforeDot.split('.').first;
+          return beforeDot + "." + afterDot;
         } else if (finalResult >= 1000000000 && finalResult < 100000000000) {
           num croreValue = finalResult / 10000000;
           String finalString =
