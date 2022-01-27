@@ -58,7 +58,6 @@ class Resultfunctios {
     if (nValue.isNotEmpty) {
       String newNvalue = modifications(nValue);
       num finalResult0 = tryChatches(newNvalue);
-      print(finalResult0);
       String finalResult = indianStyle(finalResult0);
       return finalResult;
     } else {
@@ -75,7 +74,8 @@ class Resultfunctios {
         newLastNvalue =
             modifications(splitNvalue.elementAt(splitNvalue.length - 2));
       }
-      String finalResult = tryChatches(newLastNvalue).toStringAsFixed(2);
+      num finalResult0 = tryChatches(newLastNvalue);
+      String finalResult = indianStyle(finalResult0);
       return finalResult;
     } else {
       return "";
@@ -85,6 +85,7 @@ class Resultfunctios {
   String modifications(String nValue) {
     String modifiedValue = nValue.replaceAll("\n", '+');
     modifiedValue = modifiedValue.replaceAll("*-", '*(-1)*');
+    modifiedValue = modifiedValue.replaceAll("+-", '-');
     // modifiedValue = modifiedValue.replaceAll("++", '+');
     // "+-" will automatically interpret() so no need to write extra coding for this
     if (modifiedValue.contains("%")) {
