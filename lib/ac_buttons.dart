@@ -1,3 +1,6 @@
+import 'package:calculator_04/buttons/brackets.dart';
+import 'package:calculator_04/buttons/percentage.dart';
+import 'package:calculator_04/buttons/power.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
@@ -29,9 +32,21 @@ class ButtonsW extends StatelessWidget {
     return Column(
       children: [
         Expanded(child: b.operation("/", MdiIcons.slashForward), flex: 1),
+        SizedBox(
+          height: 3,
+        ),
         Expanded(child: b.operation("*", MdiIcons.close), flex: 1),
+        SizedBox(
+          height: 3,
+        ),
         Expanded(child: b.operation("-", MdiIcons.minus), flex: 1),
+        SizedBox(
+          height: 3,
+        ),
         Expanded(child: b.operation("+", MdiIcons.plus), flex: 1),
+        SizedBox(
+          height: 3,
+        ),
         Expanded(child: b.operation("\n", MdiIcons.playlistPlus), flex: 2),
       ],
     );
@@ -47,10 +62,26 @@ class ButtonsW extends StatelessWidget {
 
   Widget firstLeft() {
     return Column(children: [
-      Expanded(child: b.clear(), flex: 6),
+      Expanded(child: b.clear(), flex: 3),
+      SizedBox(
+        height: 3,
+      ),
+      Expanded(child: Power(), flex: 3),
+      SizedBox(
+        height: 3,
+      ),
       Expanded(child: b.number("7"), flex: 4),
+      SizedBox(
+        height: 3,
+      ),
       Expanded(child: b.number("4"), flex: 4),
+      SizedBox(
+        height: 3,
+      ),
       Expanded(child: b.number("1"), flex: 4),
+      SizedBox(
+        height: 3,
+      ),
       Expanded(child: b.number("00"), flex: 4),
     ]);
   }
@@ -58,21 +89,51 @@ class ButtonsW extends StatelessWidget {
   Widget secondLeft() {
     return Column(children: [
       Expanded(child: b.dummy(), flex: 3),
-      Expanded(child: b.operation("%", MdiIcons.percentOutline), flex: 3),
+      SizedBox(
+        height: 3,
+      ),
+      Expanded(child: Percentage(), flex: 3),
+      SizedBox(
+        height: 3,
+      ),
       Expanded(child: b.number("8"), flex: 4),
+      SizedBox(
+        height: 3,
+      ),
       Expanded(child: b.number("5"), flex: 4),
+      SizedBox(
+        height: 3,
+      ),
       Expanded(child: b.number("2"), flex: 4),
+      SizedBox(
+        height: 3,
+      ),
       Expanded(child: b.number("0"), flex: 4),
     ]);
   }
 
   Widget thirdLeft() {
     return Column(children: [
-      Expanded(child: b.clear(), flex: 3),
-      Expanded(child: b.bracket(), flex: 3),
+      Expanded(child: b.backspace(), flex: 3),
+      SizedBox(
+        height: 3,
+      ),
+      Expanded(child: Brackets(), flex: 3),
+      SizedBox(
+        height: 3,
+      ),
       Expanded(child: b.number("9"), flex: 4),
+      SizedBox(
+        height: 3,
+      ),
       Expanded(child: b.number("6"), flex: 4),
+      SizedBox(
+        height: 3,
+      ),
       Expanded(child: b.number("3"), flex: 4),
+      SizedBox(
+        height: 3,
+      ),
       Expanded(child: b.operation(".", MdiIcons.circleSmall), flex: 4),
     ]);
   }
@@ -99,10 +160,12 @@ class ButtonsController extends GetxController {
       onPressed: () {},
       child: const Text(
         "=",
-        textScaleFactor: 1.4,
+        textScaleFactor: 2,
+        style: TextStyle(color: Colors.black),
       ),
       size: GFSize.LARGE,
       type: GFButtonType.outline2x,
+      // padding: const EdgeInsets.symmetric(horizontal: 0),
     );
   }
 
@@ -115,7 +178,8 @@ class ButtonsController extends GetxController {
       },
       child: const Text(
         "C",
-        textScaleFactor: 1.4,
+        textScaleFactor: 2,
+        style: TextStyle(color: Colors.black),
       ),
       size: GFSize.LARGE,
       type: GFButtonType.outline2x,
@@ -137,7 +201,10 @@ class ButtonsController extends GetxController {
           p.value--;
         }
       },
-      child: Icon(Icons.backspace_outlined),
+      child: Icon(
+        Icons.backspace_outlined,
+        size: 25,
+      ),
       size: GFSize.LARGE,
       type: GFButtonType.outline2x,
     );
@@ -148,6 +215,7 @@ class ButtonsController extends GetxController {
         ? Icon(
             Icons.block,
             color: Colors.red,
+            size: 25,
           )
         : Text("");
   }
@@ -189,10 +257,11 @@ class ButtonsController extends GetxController {
       },
       child: Text(
         digit,
-        textScaleFactor: 1.4,
+        textScaleFactor: 2,
       ),
       size: GFSize.LARGE,
       type: GFButtonType.outline2x,
+      padding: EdgeInsets.all(10),
     );
   }
 
@@ -300,7 +369,67 @@ class ButtonsController extends GetxController {
           p.value++;
         }
       },
-      child: Icon(icon),
+      child: Icon(
+        icon,
+        size: 30,
+      ),
+      size: GFSize.LARGE,
+      type: GFButtonType.outline2x,
+    );
+  }
+
+  void attach(String symbol) {
+    if (n.value.isEmpty || p.value == 0) {
+      n.value = symbol;
+    } else if (p.value >= n.value.length) {
+      n.value = n.value + symbol;
+    } else {
+      pftx = n.value.substring(0, p.value);
+      sftx = n.value.substring(p.value);
+      n.value = pftx + symbol + sftx;
+    }
+    p.value++;
+  }
+
+  Widget percentage() {
+    return GFButton(
+      onPressed: () {
+        attach("%");
+        //// Modifications
+        if (n.value.length == 1) {
+          n.value = "";
+        }
+        // Replace .% to .0%
+        if (n.value.contains(".%")) {
+          n.value = n.value.replaceAll(".%", ".0%");
+          p.value = p.value + 2;
+        }
+        // invalid with left neibours
+        RegExp r1 = RegExp(r'[\+\-\/\*]%'); // + - / *
+        Iterable<String> l1 = r1.allMatches(n.value).map((Match m) {
+          return m.input.substring(m.start, m.end);
+        });
+
+        l1.forEach((matchedString) {
+          n.value = n.value.replaceAll(matchedString, matchedString[0]);
+        });
+
+        // when middle in number
+        RegExp r2 = RegExp(r'\d%\d'); //
+        Iterable<String> l2 = r2.allMatches(n.value).map((Match m) {
+          return m.input.substring(m.start, m.end);
+        });
+
+        for (String matchedString in l2) {
+          n.value = n.value
+              .replaceAll(matchedString, matchedString.replaceAll("&", ''));
+        }
+      },
+      child: const Text(
+        "%",
+        textScaleFactor: 2,
+        style: TextStyle(color: Colors.black),
+      ),
       size: GFSize.LARGE,
       type: GFButtonType.outline2x,
     );
@@ -441,7 +570,8 @@ class ButtonsController extends GetxController {
       },
       child: Text(
         "( )",
-        textScaleFactor: 1.4,
+        textScaleFactor: 2,
+        style: TextStyle(color: Colors.black),
       ),
       size: GFSize.LARGE,
       type: GFButtonType.outline2x,

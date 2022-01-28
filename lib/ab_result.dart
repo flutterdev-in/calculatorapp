@@ -15,7 +15,7 @@ class ResultW extends StatelessWidget {
     Resultfunctios rf = Resultfunctios();
     return Container(
       width: double.infinity,
-      color: Colors.green,
+      color: Colors.black87,
       height: md.height / 8,
       child: Column(
         children: [
@@ -26,6 +26,7 @@ class ResultW extends StatelessWidget {
                 return Text(
                   rf.finalSubResult(b.n.value),
                   textScaleFactor: 2,
+                  style: TextStyle(color: Colors.white),
                 );
               }),
               // Obx(() {
@@ -43,6 +44,7 @@ class ResultW extends StatelessWidget {
                 return Text(
                   rf.finalMainResult(b.n.value),
                   textScaleFactor: 3,
+                  style: TextStyle(color: Colors.white),
                 );
               }),
               alignment: Alignment.bottomRight),
