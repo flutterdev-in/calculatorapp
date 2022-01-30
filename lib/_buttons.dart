@@ -1,6 +1,11 @@
 import 'package:calculator_04/buttons/brackets.dart';
+import 'package:calculator_04/buttons/clear.dart';
+import 'package:calculator_04/buttons/dot.dart';
+import 'package:calculator_04/buttons/numbers.dart';
 import 'package:calculator_04/buttons/percentage.dart';
+import 'package:calculator_04/buttons/plus.dart';
 import 'package:calculator_04/buttons/power.dart';
+import 'package:calculator_04/buttons/zero_zero.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
@@ -35,7 +40,7 @@ class ButtonsW extends StatelessWidget {
         SizedBox(
           height: 3,
         ),
-        Expanded(child: b.operation("*", MdiIcons.close), flex: 1),
+        Expanded(child: b.operation("\u00D7", MdiIcons.close), flex: 1),
         SizedBox(
           height: 3,
         ),
@@ -43,7 +48,7 @@ class ButtonsW extends StatelessWidget {
         SizedBox(
           height: 3,
         ),
-        Expanded(child: b.operation("+", MdiIcons.plus), flex: 1),
+        Expanded(child: Plus(), flex: 1),
         SizedBox(
           height: 3,
         ),
@@ -62,7 +67,7 @@ class ButtonsW extends StatelessWidget {
 
   Widget firstLeft() {
     return Column(children: [
-      Expanded(child: b.clear(), flex: 3),
+      Expanded(child: Clear(), flex: 3),
       SizedBox(
         height: 3,
       ),
@@ -70,19 +75,19 @@ class ButtonsW extends StatelessWidget {
       SizedBox(
         height: 3,
       ),
-      Expanded(child: b.number("7"), flex: 4),
+      Expanded(child: Numbers.select(7), flex: 4),
       SizedBox(
         height: 3,
       ),
-      Expanded(child: b.number("4"), flex: 4),
+      Expanded(child: Numbers.select(4), flex: 4),
       SizedBox(
         height: 3,
       ),
-      Expanded(child: b.number("1"), flex: 4),
+      Expanded(child: Numbers.select(1), flex: 4),
       SizedBox(
         height: 3,
       ),
-      Expanded(child: b.number("00"), flex: 4),
+      Expanded(child: ZeroZero(), flex: 4),
     ]);
   }
 
@@ -96,19 +101,19 @@ class ButtonsW extends StatelessWidget {
       SizedBox(
         height: 3,
       ),
-      Expanded(child: b.number("8"), flex: 4),
+      Expanded(child: Numbers.select(8), flex: 4),
       SizedBox(
         height: 3,
       ),
-      Expanded(child: b.number("5"), flex: 4),
+      Expanded(child: Numbers.select(5), flex: 4),
       SizedBox(
         height: 3,
       ),
-      Expanded(child: b.number("2"), flex: 4),
+      Expanded(child: Numbers.select(4), flex: 4),
       SizedBox(
         height: 3,
       ),
-      Expanded(child: b.number("0"), flex: 4),
+      Expanded(child: Numbers.select(0), flex: 4),
     ]);
   }
 
@@ -122,19 +127,19 @@ class ButtonsW extends StatelessWidget {
       SizedBox(
         height: 3,
       ),
-      Expanded(child: b.number("9"), flex: 4),
+      Expanded(child: Numbers.select(9), flex: 4),
       SizedBox(
         height: 3,
       ),
-      Expanded(child: b.number("6"), flex: 4),
+      Expanded(child: Numbers.select(6), flex: 4),
       SizedBox(
         height: 3,
       ),
-      Expanded(child: b.number("3"), flex: 4),
+      Expanded(child: Numbers.select(3), flex: 4),
       SizedBox(
         height: 3,
       ),
-      Expanded(child: b.operation(".", MdiIcons.circleSmall), flex: 4),
+      Expanded(child: Dot(), flex: 4),
     ]);
   }
 }

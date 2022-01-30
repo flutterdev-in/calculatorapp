@@ -2,6 +2,7 @@ class AddSymbol {
   String add(String symbol, String nValue, int pValue) {
     if (nValue.isEmpty || pValue == 0) {
       nValue = symbol;
+      
     } else if (pValue >= nValue.length) {
       nValue = nValue + symbol;
     } else {

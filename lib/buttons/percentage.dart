@@ -1,4 +1,4 @@
-import 'package:calculator_04/ac_buttons.dart';
+import 'package:calculator_04/_buttons.dart';
 import 'package:calculator_04/buttons/functions/add_symbol.dart';
 import 'package:calculator_04/regex.dart';
 import 'package:flutter/material.dart';
@@ -16,12 +16,12 @@ class Percentage extends StatelessWidget {
       return RegEx().listMatch(pattern, b.n.value);
     }
 
-    for (var matchedString in regex(r'\d\.%\D|.*\.%$')) {
+    for (String matchedString in regex(r'\d\.%\D|.*\.%$')) {
       b.n.value = b.n.value
           .replaceAll(matchedString, matchedString.replaceAll("%", "0%"));
       b.p.value++;
     }
-    for (var matchedString in regex(r'\D%|(\d\.|\d)%\d')) {
+    for (String matchedString in regex(r'\D%|(\d\.|\d)%\d')) {
       b.n.value = b.n.value
           .replaceAll(matchedString, matchedString.replaceAll("%", ""));
       b.p.value--;
