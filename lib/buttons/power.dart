@@ -4,6 +4,7 @@ import 'package:calculator_04/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class Power extends StatelessWidget {
   Power({Key? key}) : super(key: key);
@@ -16,21 +17,20 @@ class Power extends StatelessWidget {
       return RegEx().listMatch(pattern, b.n.value);
     }
 
-    for (var matchedString in regex(r'\d\.pw')) {
-      b.n.value = b.n.value
-          .replaceAll(matchedString, matchedString.replaceAll("pw", "0^"));
+    if (b.n.value.contains(RegExp(r'\d\.pw'))) {
+      b.n.value = b.n.value.replaceAll("pw", "0^");
       b.p.value++;
-    }
-    for (var matchedString in regex(r'[/\*\+\-\(\n]pw')) {
-      b.n.value = b.n.value
-          .replaceAll(matchedString, matchedString.replaceAll("pw", "10^"));
+    } else if (b.n.value.contains(RegExp(r'(^|\n|[/\*\+\-\(])pw'))) {
+      b.n.value = b.n.value.replaceAll("pw", "10^");
       b.p.value = b.p.value + 2;
+    } else if (b.n.value.contains(RegExp(r'\dpw'))) {
+      b.n.value = b.n.value.replaceAll("pw", "^");
+    } else if (b.n.value.contains(")pw")) {
+      b.n.value = b.n.value.replaceAll("pw", "^");
+    } else {
+      b.n.value = b.n.value.replaceAll("pw", "");
+      b.p.value--;
     }
-    for (var matchedString in regex(r'\dpw')) {
-      b.n.value = b.n.value
-          .replaceAll(matchedString, matchedString.replaceAll("pw", "^"));
-    }
-    b.n.value = b.n.value.replaceAll("pw", "");
   }
 
   @override
@@ -39,10 +39,20 @@ class Power extends StatelessWidget {
       onPressed: () {
         onPressed();
       },
-      child: const Text(
-        "^",
-        textScaleFactor: 2,
-        style: TextStyle(color: Colors.black),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            MdiIcons.chevronUp,
+            color: Colors.black,
+            size: 27,
+          ),
+          Text(
+            "10^",
+            textScaleFactor: 1.2,
+            style: TextStyle(color: Colors.black),
+          ),
+        ],
       ),
       size: GFSize.LARGE,
       type: GFButtonType.outline2x,

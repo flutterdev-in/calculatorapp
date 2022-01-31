@@ -16,14 +16,11 @@ class Percentage extends StatelessWidget {
       return RegEx().listMatch(pattern, b.n.value);
     }
 
-    for (String matchedString in regex(r'\d\.%\D|.*\.%$')) {
-      b.n.value = b.n.value
-          .replaceAll(matchedString, matchedString.replaceAll("%", "0%"));
-      b.p.value++;
-    }
-    for (String matchedString in regex(r'\D%|(\d\.|\d)%\d')) {
-      b.n.value = b.n.value
-          .replaceAll(matchedString, matchedString.replaceAll("%", ""));
+    if (b.n.value.contains(RegExp(r'\d\.%\D|.*\.%$'))) {
+      b.n.value = b.n.value.replaceAll("%", "0%");
+      b.p.value--;
+    } else if (b.n.value.contains(RegExp(r'\D%|(\d\.|\d)%\d'))) {
+      b.n.value = b.n.value.replaceAll("%", "");
       b.p.value--;
     }
   }

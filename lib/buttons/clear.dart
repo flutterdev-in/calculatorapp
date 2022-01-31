@@ -1,6 +1,4 @@
 import 'package:calculator_04/_buttons.dart';
-import 'package:calculator_04/buttons/functions/add_symbol.dart';
-import 'package:calculator_04/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';

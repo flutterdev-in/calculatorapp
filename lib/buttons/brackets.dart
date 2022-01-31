@@ -31,7 +31,9 @@ class Brackets extends StatelessWidget {
       return RegEx().listMatch(pattern, b.n.value);
     }
 
-    if (b.n.value.contains('^bk')) {
+    if (b.n.value.contains(RegExp(r'(^|\n)bk'))) {
+      b.n.value = b.n.value.replaceAll("bk", "(");
+    } else if (b.n.value.contains('^bk')) {
       b.n.value = b.n.value.replaceAll("^bk", "\u207D");
       b.p.value--;
     }
@@ -67,30 +69,7 @@ class Brackets extends StatelessWidget {
         b.p.value++;
       }
     }
-    for (String matchedString in regex(r'(^|\n|[/\+\-\u00D7\(\)\.\d]+)bk')) {
-      if (!matchedString.contains('(')) {
-        if (matchedString.contains(RegExp(r'\dbk'))) {
-          b.n.value = b.n.value.replaceAll("bk", "\u00D7(");
-          b.p.value = b.p.value + 2;
-        } else if (matchedString.contains(".bk")) {
-          b.n.value = b.n.value.replaceAll("bk", "0\u00D7(");
-          b.p.value = b.p.value + 3;
-        } else {
-          b.n.value = b.n.value.replaceAll("bk", "(");
-        }
-      } else {
-        int openBra = ocb(matchedString, '(', ')')[0];
-        int closedBra = ocb(matchedString, '(', ')')[1];
-        if (matchedString.contains("(bk")) {
-          b.n.value = b.n.value.replaceAll("bk", "(");
-        } else if (closedBra < openBra) {
-          b.n.value = b.n.value.replaceAll("bk", ")");
-        } else {
-          b.n.value = b.n.value.replaceAll("bk", "\u00D7(");
-          b.p.value = b.p.value + 2;
-        }
-      }
-    }
+
     if (b.n.value.contains(RegExp(
         r'[\u2070\u00B9\u00B2\u00B3\u2074\u2075\u2076\u2077\u2078\u2079]bk'))) {
       int openBra = ocb(b.n.value, '(', ')')[0];
@@ -110,6 +89,29 @@ class Brackets extends StatelessWidget {
       } else {
         b.n.value = b.n.value.replaceAll("bk", "\u2070\u00D7(");
         b.p.value = b.p.value + 2;
+      }
+    }
+    if (!b.n.value.contains('(')) {
+      if (b.n.value.contains(RegExp(r'\dbk'))) {
+        b.n.value = b.n.value.replaceAll("bk", "\u00D7(");
+        b.p.value++;
+      } else if (b.n.value.contains(".bk")) {
+        b.n.value = b.n.value.replaceAll("bk", "0\u00D7(");
+        b.p.value = b.p.value + 2;
+      } else {
+        print(b.n.value);
+        b.n.value = b.n.value.replaceAll("bk", "(");
+      }
+    } else {
+      int openBra = ocb(b.n.value, '(', ')')[0];
+      int closedBra = ocb(b.n.value, '(', ')')[1];
+      if (b.n.value.contains("(bk")) {
+        b.n.value = b.n.value.replaceAll("bk", "(");
+      } else if (closedBra < openBra) {
+        b.n.value = b.n.value.replaceAll("bk", ")");
+      } else {
+        b.n.value = b.n.value.replaceAll("bk", "\u00D7(");
+        b.p.value++;
       }
     }
     if (b.n.value.contains('bk')) {

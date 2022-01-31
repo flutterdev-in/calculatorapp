@@ -17,7 +17,8 @@ class BackSpace extends StatelessWidget {
           b.n.value = b.n.value.substring(0, b.n.value.length - 1);
           b.p.value--;
         } else {
-          b.n.value = b.n.value.substring(0, b.p.value - 1) + b.n.value.substring(b.p.value);
+          b.n.value = b.n.value.substring(0, b.p.value - 1) +
+              b.n.value.substring(b.p.value);
           b.p.value--;
         }
       },

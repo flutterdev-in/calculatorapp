@@ -15,9 +15,12 @@ class InputW extends StatelessWidget {
       height: md.height / 4,
       child: Obx(() {
         b.tc!.text = b.n.value;
-        if (b.p.value > b.n.value.length) {
+        if (b.p.value < 0) {
+          b.p.value = 0;
+        } else if (b.p.value > b.n.value.length) {
           b.p.value = b.n.value.length;
         }
+
         b.tc!.selection =
             TextSelection.fromPosition(TextPosition(offset: b.p.value));
 
@@ -36,13 +39,7 @@ class InputW extends StatelessWidget {
               autofocus: true,
               showCursor: true,
               controller: b.tc,
-              // enableInteractiveSelection: false,
-              // selectionControls: FlutterSelectionControls(toolBarItems: [
-              //   ToolBarItem(
-              //       item: Icon(Icons.cut), itemControl: ToolBarItemControl.cut),
-              // ]),
               onTap: () {
-                b.isTapped.value = true;
                 int selection = b.tc!.selection.base.offset;
                 if (selection < b.n.value.length) {
                   b.p.value = selection;

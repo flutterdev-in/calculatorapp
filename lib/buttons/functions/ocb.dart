@@ -1,13 +1,12 @@
 class OCB {
   List<int> ocb(String toSplit, String openBra, String closedBra) {
-    String leftString = toSplit.split("bk").first;
     int openBra = 0;
     int closedBra = 0;
-    for (String i in leftString.split('')) {
-      if (i == "\u207D") {
+    for (String i in toSplit.split('')) {
+      if (i == openBra) {
         openBra++;
       }
-      if (i == "\u207E") {
+      if (i == closedBra) {
         closedBra++;
       }
     }
