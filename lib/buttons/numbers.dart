@@ -33,8 +33,8 @@ class Numbers extends StatelessWidget {
 
     String powerNum = numberUcodes[number];
 
-    if (b.n.value.contains(RegExp(r'(^|\n|[/\u00D7\+\-\(\.\d\%])nm($|.*)'))) {
-      if (b.n.value.contains("%nm")) {
+    if (b.n.value.contains(RegExp(r'(^|\n|[/\u00D7\+\-\(\)\.\d\%])nm($|.*)'))) {
+      if (b.n.value.contains(RegExp(r'[%\)]nm'))) {
         b.n.value = b.n.value.replaceAll("nm", "\u00D7$number");
         b.p.value++;
       } else {
@@ -48,6 +48,9 @@ class Numbers extends StatelessWidget {
       List<int> ocb = OCB().ocb(b.n.value, "\u207D", "\u207E");
       if (ocb[1] != 0 && ocb[1] == ocb[0]) {
         b.n.value = b.n.value.replaceAll("nm", "\u00D7$number");
+        b.p.value++;
+      } else if (b.n.value.contains("\u207Enm")) {
+        b.n.value = b.n.value.replaceAll("nm", "\u02E3$powerNum");
         b.p.value++;
       } else {
         b.n.value = b.n.value.replaceAll("nm", powerNum);

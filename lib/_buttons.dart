@@ -4,6 +4,7 @@ import 'package:calculator_04/buttons/clear.dart';
 import 'package:calculator_04/buttons/divided.dart';
 import 'package:calculator_04/buttons/dot.dart';
 import 'package:calculator_04/buttons/enter.dart';
+import 'package:calculator_04/buttons/eualto.dart';
 import 'package:calculator_04/buttons/minus.dart';
 import 'package:calculator_04/buttons/multiply.dart';
 import 'package:calculator_04/buttons/numbers.dart';
@@ -97,7 +98,7 @@ class ButtonsW extends StatelessWidget {
 
   Widget secondLeft() {
     return Column(children: [
-      Expanded(child: b.dummy(), flex: 3),
+      Expanded(child: Equalto(), flex: 3),
       SizedBox(
         height: 3,
       ),

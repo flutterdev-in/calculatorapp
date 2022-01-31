@@ -17,7 +17,7 @@ class Minus extends StatelessWidget {
       return RegEx().listMatch(pattern, b.n.value);
     }
 
-    if (b.n.value.contains(RegExp(r'(^|\n|\d|\)|%)ms'))) {
+    if (b.n.value.contains(RegExp(r'(^|\n|\d|\(|\)|%)ms'))) {
       b.n.value = b.n.value.replaceAll("ms", "-");
     } else if (b.n.value.contains(".ms")) {
       b.n.value = b.n.value.replaceAll("ms", "0-");

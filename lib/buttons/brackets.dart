@@ -92,14 +92,13 @@ class Brackets extends StatelessWidget {
       }
     }
     if (!b.n.value.contains('(')) {
-      if (b.n.value.contains(RegExp(r'\dbk'))) {
+      if (b.n.value.contains(RegExp(r'[\d%]bk'))) {
         b.n.value = b.n.value.replaceAll("bk", "\u00D7(");
         b.p.value++;
       } else if (b.n.value.contains(".bk")) {
         b.n.value = b.n.value.replaceAll("bk", "0\u00D7(");
         b.p.value = b.p.value + 2;
       } else {
-        print(b.n.value);
         b.n.value = b.n.value.replaceAll("bk", "(");
       }
     } else {

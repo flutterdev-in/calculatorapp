@@ -1,4 +1,7 @@
 import 'package:calculator_04/_buttons.dart';
+import 'package:calculator_04/result/final_result.dart';
+import 'package:calculator_04/result/modifications/_modifications.dart';
+import 'package:calculator_04/result/parts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:function_tree/function_tree.dart';
@@ -17,38 +20,41 @@ class ResultW extends StatelessWidget {
       width: double.infinity,
       color: Colors.black87,
       height: md.height / 8,
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Obx(() {
-                return Text(
-                  rf.finalSubResult(b.n.value),
-                  textScaleFactor: 2,
-                  style: TextStyle(color: Colors.white),
-                );
-              }),
-              // Obx(() {
-              //   return b.isModified.value
-              //       ? Icon(
-              //           Icons.block,
-              //           color: Colors.red,
-              //         )
-              //       : Text("");
-              // }),
-            ],
-          ),
-          Align(
-              child: Obx(() {
-                return Text(
-                  rf.finalMainResult(b.n.value),
-                  textScaleFactor: 3,
-                  style: TextStyle(color: Colors.white),
-                );
-              }),
-              alignment: Alignment.bottomRight),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(2, 2, 2, 2),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Obx(() {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    FR().lastLineResult(b.n.value),
+                    // FR().lastLineResult(b.n.value),
+                    textScaleFactor: 2,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    FR().subResult(b.n.value),
+                    // FR().lastLineResult(b.n.value),
+                    textScaleFactor: 2,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
+              );
+            }),
+            Align(
+                child: Obx(() {
+                  return Text(
+                    FR().finalMainResult(b.n.value),
+                    textScaleFactor: 3,
+                    style: TextStyle(color: Colors.white),
+                  );
+                }),
+                alignment: Alignment.bottomRight),
+          ],
+        ),
       ),
     );
   }
@@ -58,7 +64,7 @@ class Resultfunctios {
   // Final result
   String finalMainResult(String nValue) {
     if (nValue.isNotEmpty) {
-      String newNvalue = modifications(nValue);
+      String newNvalue = Modifications().modifications(nValue);
       num finalResult0 = tryChatches(newNvalue);
       String finalResult = indianStyle(finalResult0);
       return finalResult;

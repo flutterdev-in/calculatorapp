@@ -1,8 +1,9 @@
 class AddSymbol {
   String add(String symbol, String nValue, int pValue) {
-    if (nValue.isEmpty || pValue == 0) {
+    if (nValue.isEmpty && pValue == 0) {
       nValue = symbol;
-      
+    } else if (nValue.isNotEmpty && pValue == 0) {
+      nValue = symbol + nValue;
     } else if (pValue >= nValue.length) {
       nValue = nValue + symbol;
     } else {

@@ -17,37 +17,28 @@ class Enter extends StatelessWidget {
       return RegEx().listMatch(pattern, b.n.value);
     }
 
-    String prefixN = '';
-    if (b.n.value.contains("\n")) {
-      for (String match in regex(r'\n[^\n]*et')) {
-        prefixN = match;
-      }
-    } else {
-      prefixN = b.n.value.split('et').first + "et";
-    }
-
-    if (prefixN.contains(RegExp(r'(^|\n|\(|\u207D|\^)et'))) {
+    if (b.n.value.contains(RegExp(r'(^|\n|\(|\u207D|\^)et'))) {
       b.n.value = b.n.value.replaceAll("et", "");
       b.p.value--;
-    } else if (!prefixN.contains("(") && !prefixN.contains("\u207D")) {
-      if (prefixN.contains(RegExp(r'[\d%]et'))) {
+    } else if (!b.n.value.contains("(") && !b.n.value.contains("\u207D")) {
+      if (b.n.value.contains(RegExp(r'[\d%]et'))) {
         b.n.value = b.n.value.replaceAll("et", "\n");
-      } else if (prefixN.contains(".et")) {
+      } else if (b.n.value.contains(".et")) {
         b.n.value = b.n.value.replaceAll("et", "0\n");
         b.p.value++;
-      } else if (prefixN.contains(RegExp(
+      } else if (b.n.value.contains(RegExp(
           r'[\u2070\u00B9\u00B2\u00B3\u2074\u2075\u2076\u2077\u2078\u2079]et'))) {
         b.n.value = b.n.value.replaceAll("et", "\n");
-      } else if (prefixN.contains("\u22C5et")) {
+      } else if (b.n.value.contains("\u22C5et")) {
         b.n.value = b.n.value.replaceAll("et", "\u2070\n");
         b.p.value++;
       } else {
         b.n.value = b.n.value.replaceAll("et", "");
         b.p.value--;
       }
-    } else if (prefixN.contains("(") && !prefixN.contains("\u207D")) {
+    } else if (b.n.value.contains("(") && !b.n.value.contains("\u207D")) {
       int difference = 0;
-      for (String i in prefixN.split('')) {
+      for (String i in b.n.value.split('')) {
         if (i == "(") {
           difference++;
         } else if (i == ")") {
@@ -55,7 +46,7 @@ class Enter extends StatelessWidget {
         }
       }
       if (difference == 0) {
-        if (prefixN.contains(RegExp(r'[\d%]et'))) {
+        if (b.n.value.contains(RegExp(r'[\d%]et'))) {
           b.n.value = b.n.value.replaceAll("et", "\n");
         } else if (b.n.value.contains(".et")) {
           b.n.value = b.n.value.replaceAll("et", "0\n");
@@ -66,7 +57,7 @@ class Enter extends StatelessWidget {
         }
       } else if (difference > 0) {
         String closedBrasToAdd = ")" * difference;
-        if (prefixN.contains(RegExp(r'[\d%]et'))) {
+        if (b.n.value.contains(RegExp(r'[\d%]et'))) {
           b.n.value = b.n.value.replaceAll("et", closedBrasToAdd + "\n");
           b.p.value = b.p.value + closedBrasToAdd.length;
         } else if (b.n.value.contains(".et")) {
@@ -77,9 +68,9 @@ class Enter extends StatelessWidget {
           b.p.value--;
         }
       }
-    } else if (!prefixN.contains("(") && prefixN.contains("\u207D")) {
+    } else if (!b.n.value.contains("(") && b.n.value.contains("\u207D")) {
       int difference = 0;
-      for (String i in prefixN.split('')) {
+      for (String i in b.n.value.split('')) {
         if (i == "\u207D") {
           difference++;
         } else if (i == "\u207E") {
@@ -87,7 +78,7 @@ class Enter extends StatelessWidget {
         }
       }
       if (difference == 0) {
-        if (prefixN.contains(RegExp(r'[\d%]et'))) {
+        if (b.n.value.contains(RegExp(r'[\d%]et'))) {
           b.n.value = b.n.value.replaceAll("et", "\n");
         } else if (b.n.value.contains(".et")) {
           b.n.value = b.n.value.replaceAll("et", "0\n");
@@ -98,7 +89,7 @@ class Enter extends StatelessWidget {
         }
       } else if (difference > 0) {
         String closedBrasToAdd = "\u207E" * difference;
-        if (prefixN.contains(RegExp(
+        if (b.n.value.contains(RegExp(
             r'[\u2070\u00B9\u00B2\u00B3\u2074\u2075\u2076\u2077\u2078\u2079]et'))) {
           b.n.value = b.n.value.replaceAll("et", closedBrasToAdd + "\n");
           b.p.value = b.p.value + closedBrasToAdd.length;
