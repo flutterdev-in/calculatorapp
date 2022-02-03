@@ -1,13 +1,14 @@
 import 'package:calculator_04/_buttons.dart';
+import 'package:calculator_04/buttons/customButton/gfbutton.dart';
 import 'package:calculator_04/buttons/functions/add_symbol.dart';
-import 'package:calculator_04/regex.dart';
+import 'package:calculator_04/useful/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
-
+import 'package:calculator_04/input/controller.dart';
 class Percentage extends StatelessWidget {
   Percentage({Key? key}) : super(key: key);
-  final ButtonsController b = Get.put(ButtonsController());
+  final MainController b = Get.put(MainController());
 
   void onPressed() {
     b.n.value = AddSymbol().add("%", b.n.value, b.p.value);
@@ -27,17 +28,12 @@ class Percentage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GFButton(
-      onPressed: () {
-        onPressed();
-      },
-      child: const Text(
-        "%",
-        textScaleFactor: 2,
-        style: TextStyle(color: Colors.black),
-      ),
-      size: GFSize.LARGE,
-      type: GFButtonType.outline2x,
+    return GFButtonC.all(
+      ontap: () => onPressed(),
+      isIcon: false,
+      text: "%",
+      textColour: Colors.green,
+      textScaleFactor: 2.9,
     );
   }
 }

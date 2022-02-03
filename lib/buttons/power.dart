@@ -1,14 +1,15 @@
 import 'package:calculator_04/_buttons.dart';
+import 'package:calculator_04/buttons/customButton/gfbutton.dart';
 import 'package:calculator_04/buttons/functions/add_symbol.dart';
-import 'package:calculator_04/regex.dart';
+import 'package:calculator_04/useful/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
+import 'package:calculator_04/input/controller.dart';
 class Power extends StatelessWidget {
   Power({Key? key}) : super(key: key);
-  final ButtonsController b = Get.put(ButtonsController());
+  final MainController b = Get.put(MainController());
 
   void onPressed() {
     b.n.value = AddSymbol().add("pw", b.n.value, b.p.value);
@@ -35,27 +36,25 @@ class Power extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GFButton(
-      onPressed: () {
-        onPressed();
-      },
+    double mw = MediaQuery.of(context).size.width;
+    return GFButtonC.all(
+      ontap: () => onPressed(),
+      wantChild: true,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
             MdiIcons.chevronUp,
-            color: Colors.black,
-            size: 27,
+            color: Colors.green,
+            size: 28,
           ),
           Text(
             "10^",
-            textScaleFactor: 1.2,
-            style: TextStyle(color: Colors.black),
+            textScaleFactor: 1.5,
+            style: TextStyle(color: Colors.green),
           ),
         ],
       ),
-      size: GFSize.LARGE,
-      type: GFButtonType.outline2x,
     );
   }
 }

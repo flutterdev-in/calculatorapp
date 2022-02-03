@@ -1,4 +1,4 @@
-import 'package:calculator_04/regex.dart';
+import 'package:calculator_04/useful/regex.dart';
 
 class ModifyPercent {
   String handlePercent(String value) {
@@ -20,14 +20,12 @@ class ModifyPercent {
           matchedString, matchedString.replaceAll("%", "/100"));
     }
 
-    for (String matchedString
-        in regex(r'(\d+(\.\d+)?)' + r'\*' + r'(\d+(\.\d+)?)%', mdValue)) {
+    for (String matchedString in regex(r'\*' + r'(\d+(\.\d+)?)%', mdValue)) {
       mdValue = mdValue.replaceAll(
           matchedString, matchedString.replaceAll("%", "/100"));
     }
 
-    for (String matchedString
-        in regex(r'(\d+(\.\d+)?)/(\d+(\.\d+)?)%', mdValue)) {
+    for (String matchedString in regex(r'/' + r'(\d+(\.\d+)?)%', mdValue)) {
       mdValue = mdValue.replaceAll(
           matchedString, matchedString.replaceAll("%", "*100"));
     }
@@ -45,43 +43,6 @@ class ModifyPercent {
       String beforePlus = matchedString.split("-").first;
       String afterPlus = matchedString.split("-").last.replaceAll("%", "");
       String mdString = beforePlus + "-" + "($beforePlus*$afterPlus/100)";
-      mdValue = mdValue.replaceAll(matchedString, mdString);
-    }
-    for (String matchedString in regex(
-        r'^' + r'(/|\d|\.|\*|(\([^\(\)]+\)))+' + r'[\+\-]' + r'(\d+(\.\d+)?)%',
-        mdValue)) {
-      String startString =
-          matchedString.split(RegExp(r'[\+\-](\d+(\.\d+)?)%')).first;
-
-      String rightString =
-          matchedString.replaceAll(startString, "").replaceAll("%", "");
-      String middleSign = rightString.substring(0, 1);
-      String percentageString = rightString.substring(1);
-      String mdString =
-          startString + middleSign + "(($startString)*$percentageString/100)";
-      mdValue = mdValue.replaceAll(matchedString, mdString);
-    }
-
-    for (String matchedString in regex(
-        r'[\+\-]' +
-            r'(/|\d|\.|\*|(\([^\(\)]+\)))+' +
-            r'[\+\-]' +
-            r'(\d+(\.\d+)?)%',
-        mdValue)) {
-      String startSign = matchedString.substring(0, 1);
-      String startString = matchedString
-          .split(RegExp(r'[\+\-](\d+(\.\d+)?)%'))
-          .first
-          .substring(1);
-      String rightString = matchedString
-          .replaceAll(startSign + startString, "")
-          .replaceAll("%", "");
-      String middleSign = rightString.substring(0, 1);
-      String percentageString = rightString.substring(1);
-      String mdString = startSign +
-          startString +
-          middleSign +
-          "(($startString)*$percentageString/100)";
       mdValue = mdValue.replaceAll(matchedString, mdString);
     }
 
@@ -121,7 +82,44 @@ class ModifyPercent {
         mdValue = mdValue.replaceAll(oldReplace, newReplace);
       }
     }
-    print(mdValue);
     return mdValue;
   }
+  // for (String matchedString in regex(
+  //     r'^' + r'(/|\d|\.|\*|(\([^\(\)]+\)))+' + r'[\+\-]' + r'(\d+(\.\d+)?)%',
+  //     mdValue)) {
+  //   String startString =
+  //       matchedString.split(RegExp(r'[\+\-](\d+(\.\d+)?)%')).first;
+
+  //   String rightString =
+  //       matchedString.replaceAll(startString, "").replaceAll("%", "");
+  //   String middleSign = rightString.substring(0, 1);
+  //   String percentageString = rightString.substring(1);
+  //   String mdString =
+  //       startString + middleSign + "(($startString)*$percentageString/100)";
+  //   mdValue = mdValue.replaceAll(matchedString, mdString);
+  // }
+
+  // for (String matchedString in regex(
+  //     r'[\+\-]' +
+  //         r'(/|\d|\.|\*|(\([^\(\)]+\)))+' +
+  //         r'[\+\-]' +
+  //         r'(\d+(\.\d+)?)%',
+  //     mdValue)) {
+  //   String startSign = matchedString.substring(0, 1);
+  //   String startString = matchedString
+  //       .split(RegExp(r'[\+\-](\d+(\.\d+)?)%'))
+  //       .first
+  //       .substring(1);
+  //   String rightString = matchedString
+  //       .replaceAll(startSign + startString, "")
+  //       .replaceAll("%", "");
+  //   String middleSign = rightString.substring(0, 1);
+  //   String percentageString = rightString.substring(1);
+  //   String mdString = startSign +
+  //       startString +
+  //       middleSign +
+  //       "(($startString)*$percentageString/100)";
+  //   mdValue = mdValue.replaceAll(matchedString, mdString);
+  // }
+
 }

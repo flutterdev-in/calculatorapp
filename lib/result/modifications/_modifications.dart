@@ -15,8 +15,11 @@ class Modifications {
         .replaceAll("+-", '-')
         .replaceAll("+*", '*')
         .replaceAll("+/", '/');
+
     modifiedValue = ModifyPowers().handlePowers(modifiedValue);
+
     modifiedValue = ModifyPercent().handlePercent(modifiedValue);
+    
 
     return modifiedValue;
   }

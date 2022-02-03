@@ -1,4 +1,4 @@
-import 'package:calculator_04/regex.dart';
+import 'package:calculator_04/useful/regex.dart';
 import 'package:calculator_04/result/indian_style.dart';
 import 'package:calculator_04/result/modifications/_modifications.dart';
 import 'package:calculator_04/result/try_catch.dart';
@@ -10,11 +10,14 @@ class FR {
       return "";
     } else if (!nValue.contains("\n")) {
       String newNvalue = Modifications().modifications(nValue);
+
       num finalResult0 = TryCatches().tc(newNvalue);
+
       if (finalResult0 == 0.000001) {
         return "invalid";
       } else {
         String finalResult = IndianStyle().indianStyle(finalResult0);
+
         return finalResult;
       }
     } else if (nValue.contains("\n")) {

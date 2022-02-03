@@ -1,14 +1,16 @@
 import 'package:calculator_04/_buttons.dart';
+import 'package:calculator_04/buttons/customButton/gfbutton.dart';
 import 'package:calculator_04/buttons/functions/add_symbol.dart';
 import 'package:calculator_04/buttons/functions/ocb.dart';
-import 'package:calculator_04/regex.dart';
+import 'package:calculator_04/useful/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
-
+import 'package:calculator_04/input/controller.dart';
 class Numbers extends StatelessWidget {
   Numbers({Key? key}) : super(key: key);
-  final ButtonsController b = Get.put(ButtonsController());
+  final MainController b = Get.put(MainController());
+
   late int number;
   Numbers.select(this.number);
   List<String> numberUcodes = [
@@ -63,17 +65,10 @@ class Numbers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GFButton(
-      onPressed: () {
-        onPressed();
-      },
-      child: Text(
-        number.toString(),
-        textScaleFactor: 2,
-        style: TextStyle(color: Colors.black),
-      ),
-      size: GFSize.LARGE,
-      type: GFButtonType.outline2x,
+    return GFButtonC.all(
+      ontap: () => onPressed(),
+      isIcon: false,
+      text: number.toString(),
     );
   }
 }

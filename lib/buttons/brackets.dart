@@ -1,13 +1,15 @@
 import 'package:calculator_04/_buttons.dart';
+import 'package:calculator_04/buttons/customButton/gfbutton.dart';
 import 'package:calculator_04/buttons/functions/add_symbol.dart';
-import 'package:calculator_04/regex.dart';
+import 'package:calculator_04/useful/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:calculator_04/input/controller.dart';
 
 class Brackets extends StatelessWidget {
   Brackets({Key? key}) : super(key: key);
-  final ButtonsController b = Get.put(ButtonsController());
+  final MainController b = Get.put(MainController());
 
   List<int> ocb(String toSplit, String openBra, String closedBra) {
     String leftString = toSplit.split("bk").first;
@@ -101,13 +103,21 @@ class Brackets extends StatelessWidget {
       } else {
         b.n.value = b.n.value.replaceAll("bk", "(");
       }
-    } else {
+    } else if (b.n.value.contains('(')) {
       int openBra = ocb(b.n.value, '(', ')')[0];
       int closedBra = ocb(b.n.value, '(', ')')[1];
-      if (b.n.value.contains("(bk")) {
+      if (b.n.value.contains(RegExp(r'[\(\+\-\u00D7/]bk'))) {
         b.n.value = b.n.value.replaceAll("bk", "(");
+      } else if (closedBra == openBra && b.n.value.contains(")bk")) {
+        b.n.value = b.n.value.replaceAll("bk", "\u00D7(");
+        b.p.value++;
       } else if (closedBra < openBra) {
-        b.n.value = b.n.value.replaceAll("bk", ")");
+        if (b.n.value.contains(".bk")) {
+          b.n.value = b.n.value.replaceAll("bk", "0)");
+          b.p.value++;
+        } else {
+          b.n.value = b.n.value.replaceAll("bk", ")");
+        }
       } else {
         b.n.value = b.n.value.replaceAll("bk", "\u00D7(");
         b.p.value++;
@@ -121,17 +131,13 @@ class Brackets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GFButton(
-      onPressed: () {
-        onPressed();
-      },
-      child: const Text(
-        "( )",
-        textScaleFactor: 2,
-        style: TextStyle(color: Colors.black),
-      ),
-      size: GFSize.LARGE,
-      type: GFButtonType.outline2x,
+    return GFButtonC.all(
+      ontap: () => onPressed(),
+      iconData: Icons.backspace_outlined,
+      isIcon: false,
+      text: "( )",
+      textScaleFactor: 2.5,
+      textColour: Colors.green,
     );
   }
 }

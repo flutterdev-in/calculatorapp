@@ -4,23 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:calculator_04/input/controller.dart';
-
-class Clear extends StatelessWidget {
-  Clear({Key? key}) : super(key: key);
+class Dummy extends StatelessWidget {
+  Dummy({Key? key}) : super(key: key);
   final MainController b = Get.put(MainController());
-  void onPressed() {
-    b.n.value = "";
-    b.p.value = 0;
-  }
 
   @override
   Widget build(BuildContext context) {
     return GFButtonC.all(
-      ontap: () => onPressed(),
-      isIcon: false,
-      text: "C",
-      textScaleFactor: 2.5,
-      textColour: Colors.red.shade600,
+      ontap: () => null,
+      iconData: null,
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:calculator_04/regex.dart';
+import 'package:calculator_04/useful/regex.dart';
 
 class ModifyPowers {
   Map map = {

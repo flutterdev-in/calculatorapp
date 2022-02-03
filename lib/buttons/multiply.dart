@@ -1,14 +1,17 @@
 import 'package:calculator_04/_buttons.dart';
+import 'package:calculator_04/buttons/customButton/gfbutton.dart';
 import 'package:calculator_04/buttons/functions/add_symbol.dart';
 import 'package:calculator_04/buttons/functions/ocb.dart';
-import 'package:calculator_04/regex.dart';
+import 'package:calculator_04/useful/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:calculator_04/input/controller.dart';
 
 class Multiply extends StatelessWidget {
   Multiply({Key? key}) : super(key: key);
-  final ButtonsController b = Get.put(ButtonsController());
+  final MainController b = Get.put(MainController());
 
   void onPressed() {
     b.n.value = AddSymbol().add("mt", b.n.value, b.p.value);
@@ -17,7 +20,7 @@ class Multiply extends StatelessWidget {
       return RegEx().listMatch(pattern, b.n.value);
     }
 
-    if (b.n.value.contains(RegExp(r'(^|\n|\d|\)|%)mt'))) {
+    if (b.n.value.contains(RegExp(r'(\n|\d|\)|%)mt'))) {
       b.n.value = b.n.value.replaceAll("mt", "\u00D7");
     } else if (b.n.value.contains(".mt")) {
       b.n.value = b.n.value.replaceAll("mt", "0\u00D7");
@@ -52,17 +55,11 @@ class Multiply extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GFButton(
-      onPressed: () {
-        onPressed();
-      },
-      child: const Text(
-        "x",
-        textScaleFactor: 2,
-        style: TextStyle(color: Colors.black),
-      ),
-      size: GFSize.LARGE,
-      type: GFButtonType.outline2x,
+    return GFButtonC.all(
+      ontap: () => onPressed(),
+      iconData: MdiIcons.windowClose,
+      iconColor: Colors.green,
+      iconSize: 40,
     );
   }
 }
