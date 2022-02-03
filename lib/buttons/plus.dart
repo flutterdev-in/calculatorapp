@@ -59,6 +59,7 @@ class Plus extends StatelessWidget {
       text: "+",
       textColour: Colors.green,
       textScaleFactor: 4,
+      // padding: 0.3,
     );
   }
 }

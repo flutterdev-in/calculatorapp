@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:calculator_04/input/controller.dart';
+
 class Percentage extends StatelessWidget {
   Percentage({Key? key}) : super(key: key);
   final MainController b = Get.put(MainController());
@@ -33,7 +34,7 @@ class Percentage extends StatelessWidget {
       isIcon: false,
       text: "%",
       textColour: Colors.green,
-      textScaleFactor: 2.9,
+      textScaleFactor: 2.6,
     );
   }
 }

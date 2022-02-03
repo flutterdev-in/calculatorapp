@@ -11,9 +11,8 @@ class MainController extends GetxController {
     rtc = RichTextController(
       onMatch: (List<String> matches) {},
       patternMatchMap: {
-        // RegExp(r"[^\n]+$"): TextStyle(fontSize: 23),
         RegExp(r"[/\+\-\u00D7\(\)%]"): TextStyle(color: Colors.green),
-        RegExp(r"[^\d\./\+\-\u00D7\(\)%]"): TextStyle(color: Colors.red),
+        RegExp(r"[^\d\./\+\-\u00D7\(\)%]"): TextStyle(color: Colors.blue),
       },
     );
 

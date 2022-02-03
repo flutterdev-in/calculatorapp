@@ -63,6 +63,7 @@ class Minus extends StatelessWidget {
       iconData: MdiIcons.minus,
       iconColor: Colors.green,
       iconSize: 40,
+      // padding: 0.3,
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:calculator_04/input/controller.dart';
+
 class Equalto extends StatelessWidget {
   Equalto({Key? key}) : super(key: key);
   final MainController b = Get.put(MainController());
@@ -48,7 +49,7 @@ class Equalto extends StatelessWidget {
       child: GFButtonC.all(
         ontap: () => onPressed(),
         iconData: MdiIcons.equal,
-        iconColor: Colors.teal,
+        iconColor: Colors.brown,
       ),
     );
   }

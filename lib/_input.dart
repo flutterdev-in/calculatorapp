@@ -1,3 +1,4 @@
+import 'package:auto_size_text_field/auto_size_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:calculator_04/input/controller.dart';
@@ -40,6 +41,7 @@ class InputW extends StatelessWidget {
               keyboardType: TextInputType.multiline,
               textAlignVertical: TextAlignVertical.top,
               maxLines: null,
+              // wrapWords: false,
               decoration: InputDecoration(
                 focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.white70)),
@@ -48,7 +50,7 @@ class InputW extends StatelessWidget {
               readOnly: true,
               autofocus: true,
               showCursor: true,
-              cursorColor: Colors.green,
+              cursorColor: Colors.purple,
               controller: b.rtc,
             ),
           ),

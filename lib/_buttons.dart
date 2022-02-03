@@ -1,11 +1,8 @@
-import 'dart:async';
-
 import 'package:calculator_04/buttons/backspace.dart';
 import 'package:calculator_04/buttons/brackets.dart';
 import 'package:calculator_04/buttons/clear.dart';
 import 'package:calculator_04/buttons/divided.dart';
 import 'package:calculator_04/buttons/dot.dart';
-import 'package:calculator_04/buttons/dummy.dart';
 import 'package:calculator_04/buttons/enter.dart';
 import 'package:calculator_04/buttons/equalto.dart';
 import 'package:calculator_04/buttons/minus.dart';
@@ -15,35 +12,157 @@ import 'package:calculator_04/buttons/percentage.dart';
 import 'package:calculator_04/buttons/plus.dart';
 import 'package:calculator_04/buttons/power.dart';
 import 'package:calculator_04/buttons/zero_zero.dart';
+import 'package:calculator_04/history/history_box.dart';
+import 'package:calculator_04/history/history_button.dart';
+import 'package:calculator_04/history/history_rx.dart';
+import 'package:calculator_04/history/history_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rich_text_controller/rich_text_controller.dart';
 import 'package:calculator_04/input/controller.dart';
+
 class ButtonsW extends StatelessWidget {
   ButtonsW({Key? key}) : super(key: key);
   MainController b = Get.put(MainController());
+  final HistoryController hc = Get.put(HistoryController());
+  HistoryBox hb = HistoryBox();
+
   @override
   Widget build(BuildContext context) {
+    List hl = hb.listHistory();
     Size md = MediaQuery.of(context).size;
+    double mw = MediaQuery.of(context).size.width;
     return Container(
       height: md.height * 3 / 5 - 50,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        // crossAxisAlignment: CrossAxisAlignment.baseline,
-        children: [
-          firstLeft(),
-          secondLeft(),
-          thirdLeft(),
-          rigthColumn(),
-        ],
-      ),
+      child: Obx(() {
+        if (!hc.isHistoryOpen.value) {
+          return calcWhole();
+        } else {
+          return withHistory();
+        }
+      }),
+    );
+  }
+
+  Widget withHistory() {
+    return Row(
+      children: [
+        Expanded(
+          flex: 3,
+          child: HistoryWidget(),
+        ),
+        Expanded(child: fixedButtons(), flex: 1),
+      ],
+    );
+  }
+
+  Widget calcWhole() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        firstLeft(),
+        secondLeft(),
+        thirdLeft(),
+        rigthColumn(),
+      ],
+    );
+  }
+
+  Widget rxButtons() {
+    return Column(
+      children: [
+        Expanded(child: firstRow(), flex: 3),
+        Expanded(child: secondRow(), flex: 3),
+        Expanded(child: thirdRow(), flex: 4),
+        Expanded(child: forthRow(), flex: 4),
+        Expanded(child: fifthRow(), flex: 4),
+        Expanded(child: sixthRow(), flex: 4),
+      ],
+    );
+  }
+
+  Widget fixedButtons() {
+    return Column(
+      children: [
+        Expanded(child: HistoryButton(), flex: 3),
+        Expanded(child: BackSpace(), flex: 3),
+        Expanded(child: Equalto(), flex: 4),
+        Expanded(child: Clear(), flex: 4),
+        Expanded(child: Plus(), flex: 4),
+        Expanded(child: Enter(), flex: 4),
+      ],
+    );
+  }
+
+  Widget firstRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Clear(),
+        Equalto(),
+        BackSpace(),
+      ],
+    );
+  }
+
+  Widget secondRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Power(),
+        Percentage(),
+        Brackets(),
+      ],
+    );
+  }
+
+  Widget thirdRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Numbers.select(7),
+        Numbers.select(8),
+        Numbers.select(9),
+      ],
+    );
+  }
+
+  Widget forthRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Numbers.select(4),
+        Numbers.select(5),
+        Numbers.select(6),
+      ],
+    );
+  }
+
+  Widget fifthRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Numbers.select(1),
+        Numbers.select(2),
+        Numbers.select(3),
+      ],
+    );
+  }
+
+  Widget sixthRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ZeroZero(),
+        Numbers.select(0),
+        Dot(),
+      ],
     );
   }
 
   Widget rigthColumn() {
     return Column(
       children: [
-        Expanded(child: Dummy(), flex: 3),
+        Expanded(child: HistoryButton(), flex: 3),
         Expanded(child: Divided(), flex: 3),
         Expanded(child: Multiply(), flex: 4),
         Expanded(child: Minus(), flex: 4),

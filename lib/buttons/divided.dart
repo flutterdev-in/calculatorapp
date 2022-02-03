@@ -59,6 +59,7 @@ class Divided extends StatelessWidget {
       isIcon: false,
       text: "/",
       textColour: Colors.green,
+      // padding: 0.3,
     );
   }
 }

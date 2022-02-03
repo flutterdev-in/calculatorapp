@@ -114,9 +114,10 @@ class Enter extends StatelessWidget {
   Widget build(BuildContext context) {
     return GFButtonC.all(
       ontap: () => onPressed(),
-      buttonColor: Colors.teal.shade900,
+      buttonColor: Colors.green.shade900,
       iconData: MdiIcons.playlistPlus,
       iconSize: 40,
+      // padding: 0.3,
     );
   }
 }

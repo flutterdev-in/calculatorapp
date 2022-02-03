@@ -1,9 +1,7 @@
-
 import 'package:calculator_04/buttons/customButton/gfbutton.dart';
 import 'package:calculator_04/input/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 
 class BackSpace extends StatelessWidget {
   BackSpace({Key? key}) : super(key: key);
@@ -21,12 +19,18 @@ class BackSpace extends StatelessWidget {
     }
   }
 
+  void onLongPressed() {
+    b.n.value = "";
+    b.p.value = 0;
+  }
+
   @override
   Widget build(BuildContext context) {
     return GFButtonC.all(
       ontap: () => onPressed(),
+      onLongPress: () => onLongPressed(),
       iconData: Icons.backspace_outlined,
-      iconColor: Colors.teal,
+      iconColor: Colors.brown,
     );
   }
 }
