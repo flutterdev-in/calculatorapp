@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:calculator_04/input/controller.dart';
+
 class Plus extends StatelessWidget {
   Plus({Key? key}) : super(key: key);
   final MainController b = Get.put(MainController());
@@ -18,7 +19,7 @@ class Plus extends StatelessWidget {
       return RegEx().listMatch(pattern, b.n.value);
     }
 
-    if (b.n.value.contains(RegExp(r'(^|\n|\d|\)|%)ps'))) {
+    if (b.n.value.contains(RegExp(r'(\n|\d|\)|%)ps'))) {
       b.n.value = b.n.value.replaceAll("ps", "+");
     } else if (b.n.value.contains(".ps")) {
       b.n.value = b.n.value.replaceAll("ps", "0+");

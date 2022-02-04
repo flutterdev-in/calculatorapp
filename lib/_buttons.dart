@@ -14,6 +14,7 @@ import 'package:calculator_04/buttons/power.dart';
 import 'package:calculator_04/buttons/zero_zero.dart';
 import 'package:calculator_04/history/history_box.dart';
 import 'package:calculator_04/history/history_button.dart';
+import 'package:calculator_04/history/history_clean_button.dart';
 import 'package:calculator_04/history/history_rx.dart';
 import 'package:calculator_04/history/history_widget.dart';
 import 'package:flutter/material.dart';
@@ -34,10 +35,13 @@ class ButtonsW extends StatelessWidget {
     return Container(
       height: md.height * 3 / 5 - 50,
       child: Obx(() {
-        if (!hc.isHistoryOpen.value) {
-          return calcWhole();
-        } else {
+        // if (hc.isHistoryOpen.value && hc.isHistoryEmpty.value) {
+        //   return emptyHistory();
+        // }
+        if (hc.isHistoryOpen.value) {
           return withHistory();
+        } else {
+          return calcWhole();
         }
       }),
     );
@@ -48,7 +52,19 @@ class ButtonsW extends StatelessWidget {
       children: [
         Expanded(
           flex: 3,
-          child: HistoryWidget(),
+          child: Container(child: HistoryWidget(), color: Colors.white10),
+        ),
+        Expanded(child: fixedButtons(), flex: 1),
+      ],
+    );
+  }
+
+  Widget emptyHistory() {
+    return Row(
+      children: [
+        Expanded(
+          flex: 3,
+          child: Container(color: Colors.white10),
         ),
         Expanded(child: fixedButtons(), flex: 1),
       ],
@@ -86,7 +102,7 @@ class ButtonsW extends StatelessWidget {
         Expanded(child: HistoryButton(), flex: 3),
         Expanded(child: BackSpace(), flex: 3),
         Expanded(child: Equalto(), flex: 4),
-        Expanded(child: Clear(), flex: 4),
+        Expanded(child: HistoryCleanButton(), flex: 4),
         Expanded(child: Plus(), flex: 4),
         Expanded(child: Enter(), flex: 4),
       ],

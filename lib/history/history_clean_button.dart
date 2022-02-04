@@ -7,19 +7,23 @@ import 'package:calculator_04/input/controller.dart';
 import 'package:hive/hive.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-class HistoryButton extends StatelessWidget {
-  HistoryButton({Key? key}) : super(key: key);
+class HistoryCleanButton extends StatelessWidget {
+  HistoryCleanButton({Key? key}) : super(key: key);
   final MainController b = Get.put(MainController());
-  final HistoryController hrx = Get.put(HistoryController());
+  final HistoryController hc = Get.put(HistoryController());
   void onPressed() async {
-    hrx.isHistoryOpen.value = !hrx.isHistoryOpen.value;
+    await Hive.box("history").clear();
+    await Duration(milliseconds: 700);
+    hc.isHistoryEmpty.value = true;
+    await Duration(milliseconds: 700);
+    hc.isHistoryEmpty.value = false;
   }
 
   @override
   Widget build(BuildContext context) {
     return GFButtonC.all(
       ontap: () => onPressed(),
-      iconData: MdiIcons.history,
+      iconData: MdiIcons.deleteCircleOutline,
       iconColor: Colors.brown,
     );
   }

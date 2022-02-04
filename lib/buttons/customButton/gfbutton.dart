@@ -61,7 +61,7 @@ class GFButtonC extends StatelessWidget {
                           ),
                   ),
           ),
-          highlightColor: Colors.purple.shade800,
+          highlightColor: Colors.pink.shade900,
           splashColor: Colors.pink.shade900,
           radius: 60,
         ),

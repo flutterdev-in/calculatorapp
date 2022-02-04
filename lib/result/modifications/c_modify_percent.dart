@@ -15,17 +15,18 @@ class ModifyPercent {
       return RegEx().listMatch(pattern, mdValue);
     }
 
-    for (String matchedString in regex(r'^' + r'(\d+(\.\d+)?)%', mdValue)) {
+    for (String matchedString
+        in regex(r'[^|(^\()]'  r'(\d+(\.\d+)?)%', mdValue)) {
       mdValue = mdValue.replaceAll(
           matchedString, matchedString.replaceAll("%", "/100"));
     }
 
-    for (String matchedString in regex(r'\*' + r'(\d+(\.\d+)?)%', mdValue)) {
+    for (String matchedString in regex(r'\*'  r'(\d+(\.\d+)?)%', mdValue)) {
       mdValue = mdValue.replaceAll(
           matchedString, matchedString.replaceAll("%", "/100"));
     }
 
-    for (String matchedString in regex(r'/' + r'(\d+(\.\d+)?)%', mdValue)) {
+    for (String matchedString in regex(r'/'  r'(\d+(\.\d+)?)%', mdValue)) {
       mdValue = mdValue.replaceAll(
           matchedString, matchedString.replaceAll("%", "*100"));
     }
