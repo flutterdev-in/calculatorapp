@@ -44,13 +44,11 @@ class Equalto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GFButtonC.all(
+      ontap: () => onPressed(),
       onDoubleTap: () => doubleTap(),
-      child: GFButtonC.all(
-        ontap: () => onPressed(),
-        iconData: MdiIcons.equal,
-        iconColor: Colors.brown,
-      ),
+      iconData: MdiIcons.equal,
+      iconColor: Colors.brown,
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:calculator_04/result/try_catch.dart';
 
 class FR {
   String finalMainResult(String nValue) {
+    
     // return subResult(nValue) + lastLineResult(nValue);
     if (nValue.isEmpty) {
       return "";

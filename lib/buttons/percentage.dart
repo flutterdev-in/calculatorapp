@@ -12,18 +12,26 @@ class Percentage extends StatelessWidget {
   final MainController b = Get.put(MainController());
 
   void onPressed() {
-    b.n.value = AddSymbol().add("%", b.n.value, b.p.value);
+    b.n.value = AddSymbol().add("pt", b.n.value, b.p.value);
     b.p.value++;
     Iterable<String> regex(String pattern) {
       return RegEx().listMatch(pattern, b.n.value);
     }
 
-    if (b.n.value.contains(RegExp(r'\d\.%\D|.*\.%$'))) {
-      b.n.value = b.n.value.replaceAll("%", "0%");
+    if (b.n.value.contains(RegExp(r'\d\.pt\D|.*\.pt$'))) {
+      b.n.value = b.n.value.replaceAll("pt", "0%");
+      b.p.value++;
+    } else if (b.n.value.contains(RegExp(r'\)pt|%pt|\Dpt|(\d\.|\d)pt\d'))) {
+      b.n.value = b.n.value.replaceAll("pt", "");
       b.p.value--;
-    } else if (b.n.value.contains(RegExp(r'\D%|(\d\.|\d)%\d'))) {
-      b.n.value = b.n.value.replaceAll("%", "");
+    } else if (b.n.value.contains(RegExp(r'\n[\-\+\()]*\d+(\.\d*)?pt'))) {
+      b.n.value = b.n.value.replaceAll("pt", "");
       b.p.value--;
+    } else if (b.n.value.contains(RegExp(r'\(\d+(\.\d*)?pt'))) {
+      b.n.value = b.n.value.replaceAll("pt", "");
+      b.p.value--;
+    } else {
+      b.n.value = b.n.value.replaceAll("pt", "%");
     }
   }
 

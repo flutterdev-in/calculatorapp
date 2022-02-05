@@ -4,7 +4,9 @@ import 'package:getwidget/getwidget.dart';
 class GFButtonC extends StatelessWidget {
   GFButtonC({Key? key}) : super(key: key);
   void Function()? ontap;
+  void Function()? onDoubleTap;
   void Function()? onLongPress;
+
   bool isIcon = true;
   String? text;
   double textScaleFactor = 3;
@@ -19,6 +21,7 @@ class GFButtonC extends StatelessWidget {
 
   GFButtonC.all({
     this.ontap,
+    this.onDoubleTap,
     this.onLongPress,
     this.iconData,
     this.iconColor = Colors.white,
@@ -43,6 +46,7 @@ class GFButtonC extends StatelessWidget {
         child: InkWell(
           onTap: ontap,
           onLongPress: onLongPress,
+          onDoubleTap: onDoubleTap,
           child: Ink(
             width: (mw - 20) / 4,
             child: wantChild

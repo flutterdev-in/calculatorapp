@@ -20,7 +20,10 @@ class Multiply extends StatelessWidget {
       return RegEx().listMatch(pattern, b.n.value);
     }
 
-    if (b.n.value.contains(RegExp(r'(\n|\d|\)|%)mt'))) {
+    if (b.n.value.contains(RegExp(r'(^|\n)mt'))) {
+      b.n.value = b.n.value.replaceAll("dv", "");
+      // b.p.value--;
+    } else if (b.n.value.contains(RegExp(r'(\d|\)|%)mt'))) {
       b.n.value = b.n.value.replaceAll("mt", "\u00D7");
     } else if (b.n.value.contains(".mt")) {
       b.n.value = b.n.value.replaceAll("mt", "0\u00D7");

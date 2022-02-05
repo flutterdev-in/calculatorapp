@@ -19,7 +19,7 @@ class Modifications {
     modifiedValue = ModifyPowers().handlePowers(modifiedValue);
 
     modifiedValue = ModifyPercent().handlePercent(modifiedValue);
-    
+   
 
     return modifiedValue;
   }
