@@ -5,6 +5,7 @@ class Modifications {
   //
   String modifications(String nValue) {
     String modifiedValue = nValue
+        // .replaceAll(" ", '')
         .replaceAll("\u00D7", '*')
         .replaceAll("\n+", '+')
         .replaceAll("\n-", '-')
@@ -19,7 +20,6 @@ class Modifications {
     modifiedValue = ModifyPowers().handlePowers(modifiedValue);
 
     modifiedValue = ModifyPercent().handlePercent(modifiedValue);
-   
 
     return modifiedValue;
   }

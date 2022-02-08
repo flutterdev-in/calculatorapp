@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:calculator_04/input/controller.dart';
+import 'package:calculator_04/controller/controller.dart';
+
 class Power extends StatelessWidget {
   Power({Key? key}) : super(key: key);
   final MainController b = Get.put(MainController());
@@ -21,7 +22,7 @@ class Power extends StatelessWidget {
     if (b.n.value.contains(RegExp(r'\d\.pw'))) {
       b.n.value = b.n.value.replaceAll("pw", "0^");
       b.p.value++;
-    } else if (b.n.value.contains(RegExp(r'(^|\n|[/\*\+\-\(])pw'))) {
+    } else if (b.n.value.contains(RegExp(r'(^|\n|[/\u00D7\+\-\(])pw'))) {
       b.n.value = b.n.value.replaceAll("pw", "10^");
       b.p.value = b.p.value + 2;
     } else if (b.n.value.contains(RegExp(r'\dpw'))) {

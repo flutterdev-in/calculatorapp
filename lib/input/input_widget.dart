@@ -1,7 +1,7 @@
 import 'package:auto_size_text_field/auto_size_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:calculator_04/input/controller.dart';
+import 'package:calculator_04/controller/controller.dart';
 
 class InputW extends StatelessWidget {
   InputW({Key? key}) : super(key: key);
@@ -12,6 +12,7 @@ class InputW extends StatelessWidget {
     Size md = MediaQuery.of(context).size;
 
     return Container(
+      padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
       height: md.height / 4,
       child: Obx(() {
         // b.tc!.text = b.n.value;

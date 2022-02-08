@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "812106502967",
+    "project_id": "aicalculator",
+    "storage_bucket": "aicalculator.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812106502967:android:bcb2ac0a5a8e75fbd180b2",
+        "android_client_info": {
+          "package_name": "com.aicalculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812106502967-4n1bkee684r9c9gsn7ml70ill2unrkk7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aicalculator",
+            "certificate_hash": "f15663d0988ce1914eb4aa465d140407ee2ba95f"
+          }
+        },
+        {
+          "client_id": "812106502967-5qcoisngksu2n5ucrj6ti48q8trj0j8b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwKYbxhwefXVeFlUweX7vmVVNKmbGThnc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812106502967-5qcoisngksu2n5ucrj6ti48q8trj0j8b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

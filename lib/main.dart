@@ -1,16 +1,20 @@
-import 'package:calculator_04/_input.dart';
+import 'package:calculator_04/-input_with_ad.dart';
+import 'package:calculator_04/ads/banner_ad_widget.dart';
+import 'package:calculator_04/input/input_widget.dart';
 import 'package:calculator_04/_result.dart';
 import 'package:calculator_04/_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:calculator_04/ads/banner_ad_widget.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
   await Hive.initFlutter();
-
   await Hive.openBox("history");
+  await Hive.openBox("settings");
 
   runApp(const MyApp());
 }
@@ -43,7 +47,9 @@ class MyHomePage extends StatelessWidget {
             padding: const EdgeInsets.all(6.0),
             child: Column(
               children: [
-                InputW(),
+                // BannerAdW(),
+                InputWithAdWidget(),
+                // InputW(),
                 ResultW(),
                 ButtonsW(),
               ],

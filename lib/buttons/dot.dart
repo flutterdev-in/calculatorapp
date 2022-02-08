@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:calculator_04/input/controller.dart';
+import 'package:calculator_04/controller/controller.dart';
+
 class Dot extends StatelessWidget {
   Dot({Key? key}) : super(key: key);
   final MainController b = Get.put(MainController());
@@ -19,7 +20,10 @@ class Dot extends StatelessWidget {
       return RegEx().listMatch(pattern, b.n.value);
     }
 
-    if (b.n.value.contains(RegExp(r'\ddt'))) {
+    if (b.n.value.contains(RegExp(r'\.\d*dt'))) {
+      b.n.value = b.n.value.replaceAll("dt", "");
+      b.p.value--;
+    } else if (b.n.value.contains(RegExp(r'\ddt'))) {
       b.n.value = b.n.value.replaceAll("dt", ".");
     } else if (b.n.value.contains(RegExp(r'(^|\n|[/\-\+\(\u00D7])dt'))) {
       b.n.value = b.n.value.replaceAll("dt", "0.");

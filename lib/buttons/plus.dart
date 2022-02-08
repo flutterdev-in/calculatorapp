@@ -6,7 +6,7 @@ import 'package:calculator_04/useful/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:calculator_04/input/controller.dart';
+import 'package:calculator_04/controller/controller.dart';
 
 class Plus extends StatelessWidget {
   Plus({Key? key}) : super(key: key);

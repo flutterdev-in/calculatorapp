@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:calculator_04/input/controller.dart';
+import 'package:calculator_04/controller/controller.dart';
 
 class Enter extends StatelessWidget {
   Enter({Key? key}) : super(key: key);

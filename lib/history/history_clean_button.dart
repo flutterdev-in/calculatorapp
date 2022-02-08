@@ -3,7 +3,7 @@ import 'package:calculator_04/history/history_rx.dart';
 import 'package:calculator_04/history/history_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:calculator_04/input/controller.dart';
+import 'package:calculator_04/controller/controller.dart';
 import 'package:hive/hive.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
