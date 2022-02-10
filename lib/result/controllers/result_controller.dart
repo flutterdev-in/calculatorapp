@@ -8,15 +8,12 @@ import 'package:function_tree/function_tree.dart';
 
 class ResultController extends GetxController {
   MainController b = Get.put(MainController());
-  Rx<num> ar = 0.0.obs;
-
   Rx<String> gr = "0.00".obs;
   Rx<String> sr = "".obs;
   Rx<String> llr = "".obs;
-  Rx<String?> nf = "23".obs;
-
-  Rx<int> precision = 2.obs;
-  Rx<int> digitLength = 9.obs;
+  Rx<String?> nf = "33".obs;
+  Rx<int> precision = 0.obs;
+  Rx<int> digitLength = 11.obs;
 
   void allResults(String nValue) {
     grossResult(nValue);
@@ -35,7 +32,22 @@ class ResultController extends GetxController {
         sr.value = resultString(finalResult0);
       }
     } else {
-      sr.value = "  ";
+      sr.value = "";
+    }
+  }
+
+  String llrValueifEnter(String nValue) {
+    List<String> splitNvalue = nValue.split("\n");
+    if (splitNvalue.length < 3 && splitNvalue.last == "") {
+      return "";
+    } else {
+      String newLastNvalue = Modifications().modifications(splitNvalue.last);
+      num finalResult0 = TryCatches().tc(newLastNvalue);
+      if (finalResult0 == 0.1921465) {
+        return "";
+      } else {
+        return resultString(finalResult0);
+      }
     }
   }
 
@@ -43,33 +55,36 @@ class ResultController extends GetxController {
     if (nValue.contains("\n")) {
       List<String> splitNvalue = nValue.split("\n");
       if (splitNvalue.length < 3 && splitNvalue.last == "") {
-        llr.value = "  ";
+        llr.value = "";
       } else {
         String newLastNvalue = Modifications().modifications(splitNvalue.last);
         num finalResult0 = TryCatches().tc(newLastNvalue);
         if (finalResult0 == 0.1921465) {
-          llr.value = "  ";
+          llr.value = "";
         } else {
           llr.value = resultString(finalResult0);
         }
       }
     } else {
-      llr.value = "  ";
+      llr.value = "";
     }
   }
 
   void grossResult(String nValue) {
+    String nValue0 = "";
     if (nValue.contains("\n")) {
-      gr.value = sr.value + llr.value;
+      nValue0 = sr.value.replaceAll(",", "") + "\n" + nValue.split("\n").last;
     } else {
-      String newLastNvalue = Modifications().modifications(nValue);
-      num resultNum = TryCatches().tc(newLastNvalue);
+      nValue0 = nValue;
+    }
 
-      if (resultNum == 0.1921465) {
-        gr.value = "  ";
-      } else {
-        gr.value = resultString(resultNum);
-      }
+    String newLastNvalue = Modifications().modifications(nValue0);
+    num resultNum = TryCatches().tc(newLastNvalue);
+
+    if (resultNum == 0.1921465) {
+      gr.value = "";
+    } else {
+      gr.value = resultString(resultNum);
     }
   }
 
@@ -98,7 +113,11 @@ class ResultController extends GetxController {
         digit = length - 3;
       }
     }
+
     num arv = resultNum / ("10^$digit").interpret();
+    if (precision.value < 2) {
+      precision.value = 2;
+    }
     arv = arv.roundToPrecision(precision.value);
     return arv.toString() + " \u00D710" + tenPowerInUnicode(digit.toString());
   }
