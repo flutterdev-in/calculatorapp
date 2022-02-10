@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:calculator_04/controller/controller.dart';
+import 'package:calculator_04/controller/main_controller.dart';
 
 class Minus extends StatelessWidget {
   Minus({Key? key}) : super(key: key);

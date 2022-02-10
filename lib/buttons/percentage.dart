@@ -5,7 +5,7 @@ import 'package:calculator_04/useful/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:calculator_04/controller/controller.dart';
+import 'package:calculator_04/controller/main_controller.dart';
 
 class Percentage extends StatelessWidget {
   Percentage({Key? key}) : super(key: key);

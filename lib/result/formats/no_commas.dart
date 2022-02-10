@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart';
 import 'package:num_utilities/src/num_utilities.dart';
 
-class AmericanStyle {
+class NoCommas {
   String tenPowerInUnicode(String power) {
     String tenPowerInUnicode = '';
     List<String> unicodes = [
@@ -25,33 +25,7 @@ class AmericanStyle {
     return tenPowerInUnicode;
   }
 
-  String commaFormat(num finalResult, String type) {
-    String beforeDot = finalResult.toString().split(".").first;
-    String afterDot = finalResult.toString().split(".").last + "0000";
-    num beforeDotNum = int.parse(beforeDot);
-    if (int.parse(afterDot.substring(0, 3)) >= 995) {
-      afterDot = "00";
-      beforeDotNum = beforeDotNum + 1;
-    } else {
-      afterDot = finalResult.roundToPrecision(2).toString().split(".").last;
-    }
-
-    if (type == "23") {
-      beforeDot = beforeDot.replaceAll("USD", "");
-      beforeDot = beforeDot.split('.').first;
-      return beforeDot + "." + afterDot;
-    } else if (type == "33") {
-      beforeDot = beforeDot.replaceAll("USD", "");
-      beforeDot = beforeDot.split('.').first;
-      return beforeDot + "." + afterDot;
-    } else {
-      return beforeDot + "." + afterDot;
-    }
-  }
-
-  String americanStyle(num finalResultValue, String type) {
-    //
-    // convert powers to unicodes
+  String noComma(num finalResultValue) {
 
     String forPositive(num finalResult) {
       if (finalResult.toString().contains("nfinity")) {
@@ -79,23 +53,21 @@ class AmericanStyle {
         return finalString;
       } else {
         if (finalResult < 1000000000) {
-          return commaFormat(finalResult, type);
-          // String beforeDot = finalResult.toString().split(".").first;
-          // String afterDot = finalResult.toString().split(".").last + "0000";
-          // num beforeDotNum = int.parse(beforeDot);
-          // if (int.parse(afterDot.substring(0, 3)) >= 995) {
-          //   afterDot = "00";
-          //   beforeDotNum = beforeDotNum + 1;
-          // } else {
-          //   afterDot =
-          //       finalResult.roundToPrecision(2).toString().split(".").last;
-          // }
-
+          String beforeDot = finalResult.toString().split(".").first;
+          String afterDot = finalResult.toString().split(".").last + "0000";
+          num beforeDotNum = int.parse(beforeDot);
+          if (int.parse(afterDot.substring(0, 3)) >= 995) {
+            afterDot = "00";
+            beforeDotNum = beforeDotNum + 1;
+          } else {
+            afterDot =
+                finalResult.roundToPrecision(2).toString().split(".").last;
+          }
           // NumberFormat indFormat = NumberFormat.currency(locale: 'en_US');
           // beforeDot = indFormat.format(beforeDotNum);
           // beforeDot = beforeDot.replaceAll("USD", "");
           // beforeDot = beforeDot.split('.').first;
-          // return beforeDot + "." + afterDot;
+          return beforeDot + "." + afterDot;
         } else if (finalResult >= 1000000000 && finalResult < 1000000000000) {
           num croreValue = finalResult / 1000000000;
           String finalString =

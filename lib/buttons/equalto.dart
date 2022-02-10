@@ -1,11 +1,11 @@
 import 'package:calculator_04/_buttons.dart';
 import 'package:calculator_04/buttons/customButton/gfbutton.dart';
-import 'package:calculator_04/result/final_result.dart';
+import 'package:calculator_04/result/resultTypes/final_result.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:calculator_04/controller/controller.dart';
+import 'package:calculator_04/controller/main_controller.dart';
 
 class Equalto extends StatelessWidget {
   Equalto({Key? key}) : super(key: key);

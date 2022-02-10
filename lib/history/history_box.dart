@@ -1,4 +1,4 @@
-import 'package:calculator_04/result/final_result.dart';
+import 'package:calculator_04/result/resultTypes/final_result.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 

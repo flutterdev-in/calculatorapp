@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart';
 import 'package:num_utilities/src/num_utilities.dart';
 
-class AmericanStyle {
+class DF {
   String tenPowerInUnicode(String power) {
     String tenPowerInUnicode = '';
     List<String> unicodes = [
@@ -49,7 +49,7 @@ class AmericanStyle {
     }
   }
 
-  String americanStyle(num finalResultValue, String type) {
+  String digitFormat(num finalResultValue, String type) {
     //
     // convert powers to unicodes
 

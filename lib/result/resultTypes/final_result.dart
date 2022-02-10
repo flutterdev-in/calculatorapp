@@ -1,4 +1,5 @@
 import 'package:calculator_04/result/formats/american_style.dart';
+import 'package:calculator_04/result/formats/no_commas.dart';
 import 'package:calculator_04/useful/regex.dart';
 import 'package:calculator_04/result/formats/indian_style.dart';
 import 'package:calculator_04/result/modifications/_modifications.dart';
@@ -8,7 +9,7 @@ import 'package:hive/hive.dart';
 class FR {
   // Box boxS = Hive.box("settings");
 
-  String finalMainResult(String nValue, {String? numberFormat = "indian"}) {
+  String finalMainResult(String nValue, {String? numberFormat = null}) {
     // return subResult(nValue) + lastLineResult(nValue);
     if (nValue.isEmpty) {
       return "  ";
@@ -17,11 +18,12 @@ class FR {
 
       num finalResult0 = TryCatches().tc(newNvalue);
 
-      if (finalResult0 == 0.000001) {
+      if (finalResult0 == 0.1921465) {
         return "invalid";
+      } else if (numberFormat == "23") {
+        return IndianStyle().indianStyle(finalResult0);
       } else {
-        String finalResult = IndianStyle().indianStyle(finalResult0);
-        return finalResult;
+        return NoCommas().noComma(finalResult0);
       }
     } else if (nValue.contains("\n")) {
       String first = nValue.split(RegExp(r'\n[^\n]*$')).first;
@@ -74,10 +76,6 @@ class FR {
         return "  ";
       } else {
         String newLastNvalue = Modifications().modifications(splitNvalue.last);
-        // if (newLastNvalue == "") {
-        //   newLastNvalue = Modifications()
-        //       .modifications(splitNvalue.elementAt(splitNvalue.length - 2));
-        // }
         num finalResult0 = TryCatches().tc(newLastNvalue);
         if (finalResult0 == 0.000001) {
           return "  ";

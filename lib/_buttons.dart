@@ -19,7 +19,7 @@ import 'package:calculator_04/history/history_rx.dart';
 import 'package:calculator_04/history/history_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:calculator_04/controller/controller.dart';
+import 'package:calculator_04/controller/main_controller.dart';
 
 class ButtonsW extends StatelessWidget {
   ButtonsW({Key? key}) : super(key: key);

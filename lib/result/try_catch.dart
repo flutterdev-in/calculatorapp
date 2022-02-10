@@ -13,7 +13,7 @@ class TryCatches {
         try {
           return kk.interpret();
         } catch (e) {
-          return 0.000001;
+          return 0.1921465;
         }
       }
     }

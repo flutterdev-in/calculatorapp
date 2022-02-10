@@ -3,7 +3,7 @@ import 'package:calculator_04/buttons/customButton/gfbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:calculator_04/controller/controller.dart';
+import 'package:calculator_04/controller/main_controller.dart';
 class Dummy extends StatelessWidget {
   Dummy({Key? key}) : super(key: key);
   final MainController b = Get.put(MainController());

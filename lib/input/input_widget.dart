@@ -1,7 +1,7 @@
 import 'package:auto_size_text_field/auto_size_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:calculator_04/controller/controller.dart';
+import 'package:calculator_04/controller/main_controller.dart';
 
 class InputW extends StatelessWidget {
   InputW({Key? key}) : super(key: key);
