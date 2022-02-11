@@ -19,10 +19,10 @@ class Divided extends StatelessWidget {
       return RegEx().listMatch(pattern, b.n.value);
     }
 
-    if (b.n.value.contains(RegExp(r'(^|\n)dv'))) {
+    if (b.n.value.contains(RegExp(r'(^)dv'))) {
       b.n.value = b.n.value.replaceAll("dv", "");
       b.p.value--;
-    } else if (b.n.value.contains(RegExp(r'(\d|\)|%)dv'))) {
+    } else if (b.n.value.contains(RegExp(r'(\d|\)|%|\n)dv'))) {
       b.n.value = b.n.value.replaceAll("dv", "/");
     } else if (b.n.value.contains(".dv")) {
       b.n.value = b.n.value.replaceAll("dv", "0/");

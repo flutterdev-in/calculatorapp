@@ -1,6 +1,8 @@
 import 'package:calculator_04/buttons/backspace.dart';
 import 'package:calculator_04/buttons/brackets.dart';
 import 'package:calculator_04/buttons/clear.dart';
+import 'package:calculator_04/buttons/comma.dart';
+import 'package:calculator_04/buttons/digit_length.dart';
 import 'package:calculator_04/buttons/divided.dart';
 import 'package:calculator_04/buttons/dot.dart';
 import 'package:calculator_04/buttons/enter.dart';
@@ -11,6 +13,7 @@ import 'package:calculator_04/buttons/numbers.dart';
 import 'package:calculator_04/buttons/percentage.dart';
 import 'package:calculator_04/buttons/plus.dart';
 import 'package:calculator_04/buttons/power.dart';
+import 'package:calculator_04/buttons/precision.dart';
 import 'package:calculator_04/buttons/zero_zero.dart';
 import 'package:calculator_04/history/history_box.dart';
 import 'package:calculator_04/history/history_button.dart';
@@ -101,7 +104,7 @@ class ButtonsW extends StatelessWidget {
       children: [
         Expanded(child: HistoryButton(), flex: 3),
         Expanded(child: BackSpace(), flex: 3),
-        Expanded(child: Equalto(), flex: 4),
+        Expanded(child: PrecisionB(), flex: 4),
         Expanded(child: HistoryCleanButton(), flex: 4),
         Expanded(child: Plus(), flex: 4),
         Expanded(child: Enter(), flex: 4),
@@ -114,7 +117,7 @@ class ButtonsW extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Clear(),
-        Equalto(),
+        PrecisionB(),
         BackSpace(),
       ],
     );
@@ -209,7 +212,7 @@ class ButtonsW extends StatelessWidget {
 
   Widget secondLeft() {
     return Column(children: [
-      Expanded(child: Equalto(), flex: 3),
+      Expanded(child: PrecisionB(), flex: 3),
       Expanded(child: Percentage(), flex: 3),
       Expanded(child: Numbers.select(8), flex: 4),
       Expanded(child: Numbers.select(5), flex: 4),

@@ -21,6 +21,8 @@ class HistoryButton extends StatelessWidget {
       ontap: () => onPressed(),
       iconData: MdiIcons.history,
       iconColor: Colors.brown,
+      iconSize: 25,
+      // buttonColor: Colors.white12,
     );
   }
 }

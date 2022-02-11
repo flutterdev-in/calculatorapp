@@ -1,16 +1,17 @@
-import 'package:calculator_04/_buttons.dart';
 import 'package:calculator_04/buttons/customButton/gfbutton.dart';
 import 'package:calculator_04/buttons/functions/add_symbol.dart';
+import 'package:calculator_04/result/controllers/result_controller.dart';
+import 'package:calculator_04/result/final_result.dart';
 import 'package:calculator_04/useful/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:calculator_04/controller/main_controller.dart';
 
 class Enter extends StatelessWidget {
   Enter({Key? key}) : super(key: key);
   final MainController b = Get.put(MainController());
+  final ResultController r = Get.put(ResultController());
 
   void onPressed() {
     b.n.value = AddSymbol().add("et", b.n.value, b.p.value);
@@ -20,6 +21,10 @@ class Enter extends StatelessWidget {
     }
 
     if (b.n.value.contains(RegExp(r'(^|\n|\(|\u207D|\^)et'))) {
+      b.n.value = b.n.value.replaceAll("et", "");
+      b.p.value--;
+    } else if (b.n.value
+        .contains(RegExp(r'\n(\u00D7|/|\d+(\.\d*)?%)[^\n]*et'))) {
       b.n.value = b.n.value.replaceAll("et", "");
       b.p.value--;
     } else if (b.n.value.contains("(") && !b.n.value.contains("\u207D")) {
@@ -110,14 +115,69 @@ class Enter extends StatelessWidget {
     }
   }
 
+  void onLongPressed() {
+    b.n.value = r.gr.value.replaceAll(",", "").replaceAll(" ", "");
+    b.p.value = b.n.value.length;
+  }
+
+  void doubleTap() {
+    if (b.n.value.isNotEmpty) {
+      String lastS = b.n.value.split('').last;
+      if (lastS.contains(RegExp(r'[/\n\+\-\u00D7]'))) {
+        b.n.value =
+            b.n.value + r.sr.value.replaceAll(",", "").replaceAll(" ", "");
+        // String subN = b.n.value.replaceAll(RegExp(r'[/\n\+\-\u00D7]$'), "");
+        // String subS =  r.grossResult(subN) FR().finalMainResult(subN);
+        // subS = subS.replaceAll(",", "");
+        // if (subS.contains("x10")) {
+        //   subS = subS
+        //       .replaceAll("x", "\u00D7")
+        //       .replaceAll(",", "")
+        //       .replaceAll(" ", "");
+        // }
+        // b.n.value = b.n.value + subS;
+        b.p.value = b.n.value.length;
+      }
+    }
+  }
+
+  Widget icon() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(18, 5, 0, 0),
+      child: SizedBox(
+        width: 50,
+        height: 50,
+        child: Stack(
+          children: [
+            Icon(
+              MdiIcons.equal,
+              size: 20,
+              color: Colors.white,
+            ),
+            Positioned(
+              right: 19,
+              top: 3,
+              child: Icon(
+                MdiIcons.arrowLeftBottom,
+                size: 38,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GFButtonC.all(
       ontap: () => onPressed(),
+      onDoubleTap: () => doubleTap(),
+      onLongPress: () => onLongPressed(),
       buttonColor: Colors.green.shade900,
-      iconData: MdiIcons.playlistPlus,
-      iconSize: 40,
-      // padding: 0.3,
+      wantChild: true,
+      child: icon(),
     );
   }
 }

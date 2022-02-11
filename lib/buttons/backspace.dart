@@ -31,6 +31,8 @@ class BackSpace extends StatelessWidget {
       onLongPress: () => onLongPressed(),
       iconData: Icons.backspace_outlined,
       iconColor: Colors.brown,
+      iconSize: 24,
+      // buttonColor: Colors.white12,
     );
   }
 }

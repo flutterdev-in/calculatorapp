@@ -1,5 +1,6 @@
 import 'package:calculator_04/-input_with_ad.dart';
 import 'package:calculator_04/ads/banner_ad_widget.dart';
+import 'package:calculator_04/buttonsContainer/main_container.dart';
 import 'package:calculator_04/input/input_widget.dart';
 import 'package:calculator_04/_result.dart';
 import 'package:calculator_04/_buttons.dart';
@@ -51,7 +52,7 @@ class MyHomePage extends StatelessWidget {
                 InputWithAdWidget(),
                 // InputW(),
                 ResultW(),
-                ButtonsW(),
+                MainContainer(),
               ],
             ),
           ),

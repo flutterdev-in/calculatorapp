@@ -7,6 +7,7 @@ class Modifications {
     String modifiedValue = nValue
         // .replaceAll(" ", '')
         .replaceAll("\u00D7", '*')
+        .replaceAll(RegExp(r'\n[^\d]+$'), '')
         .replaceAll("\n+", '+')
         .replaceAll("\n-", '-')
         .replaceAll("\n*", '*')
@@ -15,7 +16,10 @@ class Modifications {
         .replaceAll("*-", '*(-1)*')
         .replaceAll("+-", '-')
         .replaceAll("+*", '*')
-        .replaceAll("+/", '/');
+        .replaceAll(",", '')
+        .replaceAll("+/", '/')
+        .replaceAll(RegExp(r'\s+'), '')
+        ;
 
     modifiedValue = ModifyPowers().handlePowers(modifiedValue);
 

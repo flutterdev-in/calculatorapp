@@ -50,7 +50,7 @@ class GFButtonC extends StatelessWidget {
           child: Ink(
             width: (mw - 20) / 4,
             child: wantChild
-                ? child
+                ? Center(child: child)
                 : Center(
                     child: isIcon
                         ? Icon(

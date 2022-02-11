@@ -1,11 +1,10 @@
-import 'package:calculator_04/_buttons.dart';
 import 'package:calculator_04/buttons/customButton/gfbutton.dart';
 import 'package:calculator_04/buttons/functions/add_symbol.dart';
 import 'package:calculator_04/buttons/functions/ocb.dart';
 import 'package:calculator_04/useful/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/getwidget.dart';
+
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:calculator_04/controller/main_controller.dart';
 
@@ -20,10 +19,10 @@ class Multiply extends StatelessWidget {
       return RegEx().listMatch(pattern, b.n.value);
     }
 
-    if (b.n.value.contains(RegExp(r'(^|\n)mt'))) {
+    if (b.n.value.contains(RegExp(r'(^)mt'))) {
       b.n.value = b.n.value.replaceAll("dv", "");
       // b.p.value--;
-    } else if (b.n.value.contains(RegExp(r'(\d|\)|%)mt'))) {
+    } else if (b.n.value.contains(RegExp(r'(\d|\)|%|\n)mt'))) {
       b.n.value = b.n.value.replaceAll("mt", "\u00D7");
     } else if (b.n.value.contains(".mt")) {
       b.n.value = b.n.value.replaceAll("mt", "0\u00D7");

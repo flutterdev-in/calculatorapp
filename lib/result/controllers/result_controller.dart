@@ -1,19 +1,30 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:calculator_04/controller/main_controller.dart';
 import 'package:calculator_04/result/modifications/_modifications.dart';
 import 'package:calculator_04/result/try_catch.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
-import 'package:num_utilities/src/num_utilities.dart';
+import 'package:num_utilities/src/num_utilities.dart'; // do not delete, roundToPrecision using this
 import 'package:function_tree/function_tree.dart';
 
 class ResultController extends GetxController {
   MainController b = Get.put(MainController());
-  Rx<String> gr = "0.00".obs;
+  Box bxs = Hive.box("settings");
+  Rx<String> gr = "0".obs;
   Rx<String> sr = "".obs;
   Rx<String> llr = "".obs;
-  Rx<String?> nf = "33".obs;
-  Rx<int> precision = 0.obs;
-  Rx<int> digitLength = 11.obs;
+  Rx<bool> isCommaEnabled = true.obs;
+  Rx<String> nf = "".obs;
+  Rx<int> precision = 2.obs;
+  Rx<int> digitLength = 9.obs;
+
+  @override
+  void onInit() async {
+    await getDefaultsFromBox();
+    super.onInit();
+  }
 
   void allResults(String nValue) {
     grossResult(nValue);
@@ -40,6 +51,8 @@ class ResultController extends GetxController {
     List<String> splitNvalue = nValue.split("\n");
     if (splitNvalue.length < 3 && splitNvalue.last == "") {
       return "";
+    } else if (nValue.contains(RegExp(r'\n(\u00D7|/|\d+(\.\d*)?%)[^\n]*'))) {
+      return "";
     } else {
       String newLastNvalue = Modifications().modifications(splitNvalue.last);
       num finalResult0 = TryCatches().tc(newLastNvalue);
@@ -55,6 +68,8 @@ class ResultController extends GetxController {
     if (nValue.contains("\n")) {
       List<String> splitNvalue = nValue.split("\n");
       if (splitNvalue.length < 3 && splitNvalue.last == "") {
+        llr.value = "";
+      } else if (nValue.contains(RegExp(r'\n(\u00D7|/|\d+(\.\d*)?%)[^\n]*'))) {
         llr.value = "";
       } else {
         String newLastNvalue = Modifications().modifications(splitNvalue.last);
@@ -78,6 +93,9 @@ class ResultController extends GetxController {
       nValue0 = nValue;
     }
 
+    // if (nValue.isEmpty) {
+    //   gr.value = "0";
+    // }
     String newLastNvalue = Modifications().modifications(nValue0);
     num resultNum = TryCatches().tc(newLastNvalue);
 
@@ -170,6 +188,35 @@ class ResultController extends GetxController {
       first = first.substring(0, prsn + 2);
     }
     return first + " \u00D710" + tenPowerInUnicode(last);
+  }
+
+  Future<void> getDefaultsFromBox() async {
+    isCommaEnabled.value = bxs.get("isCommaEnabled", defaultValue: true);
+    precision.value = bxs.get("precision", defaultValue: 2);
+    digitLength.value = bxs.get("digitLength", defaultValue: 9);
+
+    // get nfValue
+    String? nfValue = bxs.get("nfd");
+    if (nfValue == null) {
+      try {
+        await http.get(Uri.parse('http://ip-api.com/json')).then((value) {
+          String countryCode =
+              json.decode(value.body)['countryCode'].toString().toUpperCase();
+          if (countryCode.contains(RegExp(r'IN|PK|NP|BD|LK'))) {
+            nfValue = "23";
+          } else {
+            nfValue = "33";
+          }
+        });
+      } catch (err) {
+        nfValue = "33";
+      }
+      bxs.put("nfd", nfValue);
+    }
+    nf.value = nfValue ?? "33";
+    if (!isCommaEnabled.value) {
+      nf.value = "";
+    }
   }
 }
 

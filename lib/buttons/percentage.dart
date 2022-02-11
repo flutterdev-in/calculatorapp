@@ -24,13 +24,16 @@ class Percentage extends StatelessWidget {
     } else if (b.n.value.contains(RegExp(r'\)pt|%pt|\Dpt|(\d\.|\d)pt\d'))) {
       b.n.value = b.n.value.replaceAll("pt", "");
       b.p.value--;
-    } else if (b.n.value.contains(RegExp(r'\n[\-\+\()]*\d+(\.\d*)?pt'))) {
+    }
+    //  else if (b.n.value.contains(RegExp(r'\n[\-\+\()]*\d+(\.\d*)?pt'))) {
+    //   b.n.value = b.n.value.replaceAll("pt", "");
+    //   b.p.value--;
+    // }
+    else if (b.n.value.contains(RegExp(r'\(\d+(\.\d*)?pt'))) {
       b.n.value = b.n.value.replaceAll("pt", "");
       b.p.value--;
-    } else if (b.n.value.contains(RegExp(r'\(\d+(\.\d*)?pt'))) {
-      b.n.value = b.n.value.replaceAll("pt", "");
-      b.p.value--;
-    } else {
+    }
+    else {
       b.n.value = b.n.value.replaceAll("pt", "%");
     }
   }
