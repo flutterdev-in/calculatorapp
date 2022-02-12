@@ -17,7 +17,7 @@ class ResultW extends StatelessWidget {
     //
     Widget result(String resultType, double factor, Color textColour) {
       if (resultType == "invalid") {
-        return GFLoader(
+        return const GFLoader(
           type: GFLoaderType.square,
           size: GFSize.SMALL,
         );

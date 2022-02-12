@@ -1,6 +1,5 @@
-import 'package:calculator_04/bottomContainer/history_container.dart';
+import 'package:calculator_04/history/history_container.dart';
 import 'package:calculator_04/input/input_stack.dart';
-import 'package:calculator_04/input/input_widget.dart';
 import 'package:calculator_04/_result.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

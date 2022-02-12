@@ -10,7 +10,7 @@ class HistoryBox {
 
   void addItemToHistoryBox(String nValue) {
     DateTime time = DateTime.now();
-    Map map = {"time": time,"nValue": nValue,"srValue":r.sr.value, "grValue": r.gr.value,"precision" :r.precision.value};
+    Map map = {"time": time,"nValue": nValue,"srValue":r.sr.value, "grValue": r.gr.value,"precision" :r.precision.value,"isFav":false,"dummyField":""};
     Hive.box("history").add(map);
   }
 }

@@ -13,10 +13,8 @@ class HistoryCleanButton extends StatelessWidget {
   final HistoryController hc = Get.put(HistoryController());
   void onPressed() async {
     await Hive.box("history").clear();
-    await Duration(milliseconds: 700);
+    await Future.delayed(Duration(milliseconds: 600));
     hc.isHistoryEmpty.value = true;
-    await Duration(milliseconds: 700);
-    hc.isHistoryEmpty.value = false;
   }
 
   @override

@@ -42,11 +42,9 @@ class GFButtonC extends StatelessWidget {
       padding: EdgeInsets.all(padding),
       child: Material(
         color: buttonColor,
-        // type: MaterialType.button,
         child: InkWell(
           onTap: ontap,
           onLongPress: onLongPress,
-          // onDoubleTap: onDoubleTap,
           child: Ink(
             width: (mw - 20) / 4,
             child: wantChild

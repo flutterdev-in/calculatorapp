@@ -25,14 +25,13 @@ class ButtonsW extends StatelessWidget {
   ButtonsW({Key? key}) : super(key: key);
   MainController b = Get.put(MainController());
   final HistoryController hc = Get.put(HistoryController());
-  HistoryBox hb = HistoryBox();
+  final HistoryBox hb = HistoryBox();
 
   @override
   Widget build(BuildContext context) {
-    List hl = hb.listHistory();
     Size md = MediaQuery.of(context).size;
     double mw = MediaQuery.of(context).size.width;
-    return Container(
+    return SizedBox(
       height: md.height * 3 / 5 - 50,
       child: Obx(() {
         // if (hc.isHistoryOpen.value && hc.isHistoryEmpty.value) {

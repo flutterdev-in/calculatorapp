@@ -119,64 +119,46 @@ class Enter extends StatelessWidget {
     b.p.value = b.n.value.length;
   }
 
-  void doubleTap() {
-    if (b.n.value.isNotEmpty) {
-      String lastS = b.n.value.split('').last;
-      if (lastS.contains(RegExp(r'[/\n\+\-\u00D7]'))) {
-        b.n.value =
-            b.n.value + r.sr.value.replaceAll(",", "").replaceAll(" ", "");
-        // String subN = b.n.value.replaceAll(RegExp(r'[/\n\+\-\u00D7]$'), "");
-        // String subS =  r.grossResult(subN) FR().finalMainResult(subN);
-        // subS = subS.replaceAll(",", "");
-        // if (subS.contains("x10")) {
-        //   subS = subS
-        //       .replaceAll("x", "\u00D7")
-        //       .replaceAll(",", "")
-        //       .replaceAll(" ", "");
-        // }
-        // b.n.value = b.n.value + subS;
-        b.p.value = b.n.value.length;
-      }
-    }
-  }
-
-  Widget icon() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(18, 5, 0, 0),
-      child: SizedBox(
-        width: 50,
-        height: 50,
-        child: Stack(
-          children: [
-            Icon(
-              MdiIcons.equal,
-              size: 20,
-              color: Colors.white,
-            ),
-            Positioned(
-              right: 19,
-              top: 3,
-              child: Icon(
-                MdiIcons.arrowLeftBottom,
-                size: 38,
-                color: Colors.white,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return GFButtonC.all(
       ontap: () => onPressed(),
-      onDoubleTap: () => doubleTap(),
       onLongPress: () => onLongPressed(),
+      iconData: MdiIcons.playlistPlus,
       buttonColor: Colors.green.shade900,
-      wantChild: true,
-      child: icon(),
+      iconColor: Colors.white,
+      iconSize: 40,
+      // wantChild: true,
+      // child: icon(),
     );
   }
 }
+
+
+//  Widget icon() {
+//     return Padding(
+//       padding: const EdgeInsets.fromLTRB(18, 5, 0, 0),
+//       child: SizedBox(
+//         width: 50,
+//         height: 50,
+//         child: Stack(
+//           children: [
+//             Icon(
+//               MdiIcons.equal,
+//               size: 20,
+//               color: Colors.white,
+//             ),
+//             Positioned(
+//               right: 19,
+//               top: 3,
+//               child: Icon(
+//                 MdiIcons.arrowLeftBottom,
+//                 size: 38,
+//                 color: Colors.white,
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }

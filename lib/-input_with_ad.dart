@@ -11,14 +11,14 @@ class InputWithAdWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size md = MediaQuery.of(context).size;
-    return Container(
+    return SizedBox(
       height: md.height / 4,
       child: Stack(
         children: [
           InputW(),
           Obx(() {
             if (b.n.value.contains("\n")) {
-              return Text("");
+              return const Text("");
             } else {
               return BannerAdW();
             }

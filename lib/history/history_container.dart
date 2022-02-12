@@ -1,4 +1,4 @@
-import 'package:calculator_04/bottomContainer/main_container.dart';
+import 'package:calculator_04/buttons/_main_container.dart';
 import 'package:calculator_04/buttons/backspace.dart';
 import 'package:calculator_04/buttons/clear.dart';
 import 'package:calculator_04/buttons/enter.dart';
@@ -44,7 +44,15 @@ class ButtonsWd extends StatelessWidget {
       children: [
         Expanded(
           flex: 4,
-          child: Container(child: HistoryWidget(), color: Colors.white10),
+          child: Container(
+              child: Obx(() {
+                if (!hc.isHistoryEmpty.value) {
+                  return HistoryWidget();
+                } else {
+                  return Container();
+                }
+              }),
+              color: Colors.white10),
         ),
         Expanded(child: fixedButtons(), flex: 1),
       ],
@@ -67,11 +75,16 @@ class ButtonsWd extends StatelessWidget {
     return Column(
       children: [
         Expanded(child: HistoryButton(), flex: 3),
-        Expanded(child: BackSpace(), flex: 3),
-        Expanded(child: HistoryCleanButton(), flex: 4),
-        Expanded(child: Clear(), flex: 4),
-        Expanded(child: Plus(), flex: 4),
-        Expanded(child: Enter(), flex: 4),
+        Expanded(child: BackSpace(), flex: 4),
+        Expanded(child: HistoryCleanButton(), flex: 5),
+        Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(0.5),
+              child: Container(
+                color: Colors.white10,
+              ),
+            ),
+            flex: 15),
       ],
     );
   }
