@@ -1,3 +1,4 @@
+import 'package:calculator_04/-input_with_ad.dart';
 import 'package:calculator_04/history/history_container.dart';
 import 'package:calculator_04/input/input_stack.dart';
 import 'package:calculator_04/_result.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'AI Calculator',
-      themeMode: ThemeMode.dark, 
+      themeMode: ThemeMode.dark,
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         /* dark theme settings */
@@ -47,8 +48,8 @@ class MyHomePage extends StatelessWidget {
             child: Column(
               children: [
                 // BannerAdW(),
-                // InputWithAdWidget(),
-                InputStack(),
+                InputWithAdWidget(),
+
                 // InputW(),
                 ResultW(),
                 ButtonsWd(),

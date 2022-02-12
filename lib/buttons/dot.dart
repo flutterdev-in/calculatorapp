@@ -2,6 +2,7 @@ import 'package:calculator_04/_buttons.dart';
 import 'package:calculator_04/buttons/customButton/gfbutton.dart';
 import 'package:calculator_04/buttons/functions/add_symbol.dart';
 import 'package:calculator_04/buttons/functions/ocb.dart';
+import 'package:calculator_04/settings/settings_screens.dart';
 import 'package:calculator_04/useful/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -62,10 +63,28 @@ class Dot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GFButtonC.all(
-      ontap: () => onPressed(),
-      iconData: Icons.circle_rounded,
-      iconSize: 8,
+    return Stack(
+      children: [
+        GFButtonC.all(
+          ontap: () => onPressed(),
+          onLongPress: () => longPress(),
+          iconData: Icons.circle_rounded,
+          iconSize: 8,
+        ),
+        Positioned(
+          child: Icon(
+            MdiIcons.cogOutline,
+            color: Colors.brown,
+            size: 15,
+          ),
+          bottom: 5,
+          right: 5,
+        ),
+      ],
     );
   }
+}
+
+void longPress() {
+  Get.to(SettingsScreen());
 }

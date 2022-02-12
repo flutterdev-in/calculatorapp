@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:calculator_04/result/controllers/result_controller.dart';
 import 'package:calculator_04/controller/main_controller.dart';
+import 'package:calculator_04/settings/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
@@ -9,13 +10,14 @@ class ResultW extends StatelessWidget {
   ResultW({Key? key}) : super(key: key);
   final MainController b = Get.put(MainController());
   final ResultController r = Get.put(ResultController());
+  final SettingsController sc = Get.put(SettingsController());
 
   @override
   Widget build(BuildContext context) {
     Size md = MediaQuery.of(context).size;
 
     //
-    Widget result(String resultType, double factor, Color textColour) {
+    Widget result(String resultType, double fontSize, Color textColour) {
       if (resultType == "invalid") {
         return const GFLoader(
           type: GFLoaderType.square,
@@ -25,8 +27,7 @@ class ResultW extends StatelessWidget {
         return AutoSizeText(
           resultType,
           minFontSize: 1,
-          textScaleFactor: factor,
-          style: TextStyle(color: textColour),
+          style: TextStyle(color: textColour, fontSize: fontSize),
           maxLines: 1,
         );
       }
@@ -49,19 +50,22 @@ class ResultW extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: Align(
-                        child: result(r.llr.value, 2, Colors.orange.shade200),
+                        child: result(r.llr.value, sc.subResultsFontSize.value,
+                            Colors.orange.shade200),
                         alignment: Alignment.topLeft),
                   ),
                   Expanded(
                     flex: 1,
                     child: Align(
-                        child: result(r.sr.value, 2, Colors.orange.shade200),
+                        child: result(r.sr.value, sc.subResultsFontSize.value,
+                            Colors.orange.shade200),
                         alignment: Alignment.topRight),
                   ),
                 ],
               ),
               Align(
-                  child: result(r.gr.value, 2.7, Colors.orange.shade400),
+                  child: result(r.gr.value, sc.grossResultFontSize.value,
+                      Colors.orange.shade300),
                   alignment: Alignment.bottomRight),
             ],
           ),

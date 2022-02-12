@@ -1,3 +1,5 @@
+import 'package:calculator_04/settings/input_settings_controller.dart';
+import 'package:calculator_04/settings/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:calculator_04/controller/main_controller.dart';
@@ -6,6 +8,7 @@ class InputW extends StatelessWidget {
   InputW({Key? key}) : super(key: key);
 
   MainController b = Get.put(MainController());
+  final SettingsController sc = Get.put(SettingsController());
   @override
   Widget build(BuildContext context) {
     Size md = MediaQuery.of(context).size;
@@ -14,7 +17,6 @@ class InputW extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
       height: md.height / 4,
       child: Obx(() {
-        // b.tc!.text = b.n.value;
         b.rtc!.text = b.n.value;
         if (b.p.value < 0) {
           b.p.value = 0;
@@ -41,12 +43,12 @@ class InputW extends StatelessWidget {
               keyboardType: TextInputType.multiline,
               textAlignVertical: TextAlignVertical.top,
               maxLines: null,
-              // wrapWords: false,
               decoration: InputDecoration(
                 focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.white70)),
               ),
-              style: TextStyle(fontSize: 20, color: Colors.white),
+              style:
+                  TextStyle(fontSize: sc.inputFontSize.value, color: Colors.white),
               readOnly: true,
               autofocus: true,
               showCursor: true,

@@ -12,10 +12,10 @@ class PrecisionB extends StatelessWidget {
 
   Widget inkwell(String text,
       {double scalefactor = 1.1, double left = 0, double right = 0}) {
-    if (text == "R-") {
+    if (text == "P-") {
       left = 0.5;
     }
-    if (text == "R+") {
+    if (text == "P+") {
       right = 0.5;
     }
     return Expanded(
@@ -27,9 +27,9 @@ class PrecisionB extends StatelessWidget {
             color: Colors.white10,
             child: InkWell(
               onTap: () {
-                if (text == "R-") {
+                if (text == "P-") {
                   r.precision.value--;
-                } else if (text == "R+") {
+                } else if (text == "P+") {
                   r.precision.value++;
                 } else {
                   r.precision.value = bxs.get("precision");
@@ -57,9 +57,9 @@ class PrecisionB extends StatelessWidget {
   Widget buttonss() {
     return Row(
       children: [
-        inkwell("R-"),
+        inkwell("P-"),
         Obx(() => inkwell(r.precision.value.toString(), scalefactor: 1.3)),
-        inkwell("R+"),
+        inkwell("P+"),
       ],
     );
   }

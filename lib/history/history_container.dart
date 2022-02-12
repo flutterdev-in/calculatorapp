@@ -43,7 +43,7 @@ class ButtonsWd extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          flex: 4,
+          flex: 400,
           child: Container(
               child: Obx(() {
                 if (!hc.isHistoryEmpty.value) {
@@ -54,7 +54,7 @@ class ButtonsWd extends StatelessWidget {
               }),
               color: Colors.white10),
         ),
-        Expanded(child: fixedButtons(), flex: 1),
+        Expanded(child: fixedButtons(), flex: 97),
       ],
     );
   }

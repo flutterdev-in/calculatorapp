@@ -12,7 +12,6 @@ import 'package:http/http.dart' as http;
 class MainController extends GetxController {
   Rx<int> p = 0.obs;
   Rx<String> n = "".obs;
-  Rx<String> nf = "indian".obs;
   RichTextController? rtc;
 
   @override

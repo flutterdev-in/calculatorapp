@@ -1,8 +1,9 @@
 import 'package:calculator_04/ads/banner_ad_widget.dart';
 import 'package:calculator_04/controller/main_controller.dart';
-import 'package:calculator_04/input/input_widget.dart';
+import 'package:calculator_04/input/input_stack.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 
 class InputWithAdWidget extends StatelessWidget {
   InputWithAdWidget({Key? key}) : super(key: key);
@@ -15,14 +16,14 @@ class InputWithAdWidget extends StatelessWidget {
       height: md.height / 4,
       child: Stack(
         children: [
-          InputW(),
+          InputStack(),
           Obx(() {
             if (b.n.value.contains("\n")) {
               return const Text("");
             } else {
               return BannerAdW();
             }
-          })
+          }),
         ],
       ),
     );

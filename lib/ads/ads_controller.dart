@@ -1,15 +1,29 @@
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:hive/hive.dart';
 
 class AdsController extends GetxController {
+  Rx<int> days = 1.obs;
   @override
   void onInit() {
+    loadDate();
     myBannerAd.load();
     super.onInit();
   }
 
+  void loadDate() {
+    Box sbox = Hive.box("settings");
+    String firstdate = sbox.get("firstDate") ?? "null";
+    if (firstdate == "null") {
+      DateTime now = DateTime.now();
+      sbox.put("firstDate", now.toString());
+    }
+     
+  }
+
   final BannerAd myBannerAd = BannerAd(
-    adUnitId: "ca-app-pub-3940256099942544/6300978111",
+    // adUnitId: "ca-app-pub-3940256099942544/6300978111", test AD
+    adUnitId: "ca-app-pub-7599104948188291~4817073212",
     size: AdSize.fullBanner,
     request: const AdRequest(),
     listener: const BannerAdListener(),
