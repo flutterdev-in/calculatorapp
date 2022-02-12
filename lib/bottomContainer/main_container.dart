@@ -47,11 +47,11 @@ class MainContainer extends StatelessWidget {
   Widget firstRow() {
     return Row(
       children: [
-        Expanded(child: Clear(), flex: 1),
-        Expanded(child: PrecisionB(), flex: 1),
-        Expanded(child: Comma(), flex: 1),
-        Expanded(child: BackSpace(), flex: 1),
-        Expanded(child: HistoryButton(), flex: 1),
+        Expanded(child: Clear(), flex: 7),
+        Expanded(child: Comma(), flex: 7),
+        Expanded(child: PrecisionB(), flex: 8),
+        Expanded(child: BackSpace(), flex: 7),
+        Expanded(child: HistoryButton(), flex: 7),
       ],
     );
   }

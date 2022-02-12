@@ -1,4 +1,3 @@
-import 'package:auto_size_text_field/auto_size_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:calculator_04/controller/main_controller.dart';
@@ -47,7 +46,7 @@ class InputW extends StatelessWidget {
                 focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.white70)),
               ),
-              style: TextStyle(fontSize: 22, color: Colors.white),
+              style: TextStyle(fontSize: 20, color: Colors.white),
               readOnly: true,
               autofocus: true,
               showCursor: true,

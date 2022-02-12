@@ -1,7 +1,6 @@
 import 'package:calculator_04/buttons/customButton/gfbutton.dart';
 import 'package:calculator_04/buttons/functions/add_symbol.dart';
 import 'package:calculator_04/result/controllers/result_controller.dart';
-import 'package:calculator_04/result/final_result.dart';
 import 'package:calculator_04/useful/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

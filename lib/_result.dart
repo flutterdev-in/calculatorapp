@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:calculator_04/result/controllers/result_controller.dart';
-import 'package:calculator_04/result/resultTypes/final_result.dart';
 import 'package:calculator_04/controller/main_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +13,8 @@ class ResultW extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size md = MediaQuery.of(context).size;
+
+    //
     Widget result(String resultType, double factor, Color textColour) {
       if (resultType == "invalid") {
         return GFLoader(
@@ -23,6 +24,7 @@ class ResultW extends StatelessWidget {
       } else {
         return AutoSizeText(
           resultType,
+          minFontSize: 1,
           textScaleFactor: factor,
           style: TextStyle(color: textColour),
           maxLines: 1,
@@ -43,20 +45,23 @@ class ResultW extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
-                    child: result(r.sr.value, 2, Colors.yellow.shade200),
-                    width: md.width / 2 - 10,
+                  Expanded(
+                    flex: 1,
+                    child: Align(
+                        child: result(r.llr.value, 2, Colors.orange.shade200),
+                        alignment: Alignment.topLeft),
                   ),
-                  SizedBox(
-                    child: result(r.llr.value, 2, Colors.yellow.shade200),
-                    width: md.width / 2 - 10,
+                  Expanded(
+                    flex: 1,
+                    child: Align(
+                        child: result(r.sr.value, 2, Colors.orange.shade200),
+                        alignment: Alignment.topRight),
                   ),
                 ],
               ),
               Align(
-                  child: result(r.gr.value, 2.7, Colors.yellow.shade600),
+                  child: result(r.gr.value, 2.7, Colors.orange.shade400),
                   alignment: Alignment.bottomRight),
             ],
           ),

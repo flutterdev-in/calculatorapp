@@ -16,6 +16,8 @@ class ResultController extends GetxController {
   Rx<String> sr = "".obs;
   Rx<String> llr = "".obs;
   Rx<String> tableString = "".obs;
+  Rx<String> tsr = "".obs;
+  Rx<String> tgr = "".obs;
   Rx<bool> isCommaEnabled = true.obs;
   Rx<String> nf = "".obs;
   Rx<int> precision = 2.obs;
@@ -31,6 +33,7 @@ class ResultController extends GetxController {
     grossResult(nValue);
     subResult(nValue);
     lastLineResult(nValue);
+    
   }
 
   void subResult(String nValue) {
@@ -49,6 +52,7 @@ class ResultController extends GetxController {
   }
 
   String llrValueifEnter(String nValue) {
+    
     List<String> splitNvalue = nValue.split("\n");
     if (splitNvalue.length < 3 && splitNvalue.last == "") {
       return "";
@@ -60,12 +64,14 @@ class ResultController extends GetxController {
       if (finalResult0 == 0.1921465) {
         return "";
       } else {
+        
         return resultString(finalResult0);
       }
     }
   }
 
   void lastLineResult(String nValue) {
+    
     if (nValue.contains("\n")) {
       List<String> splitNvalue = nValue.split("\n");
       if (splitNvalue.length < 3 && splitNvalue.last == "") {
@@ -79,6 +85,7 @@ class ResultController extends GetxController {
           llr.value = "";
         } else {
           llr.value = resultString(finalResult0);
+          
         }
       }
     } else {
@@ -114,7 +121,6 @@ class ResultController extends GetxController {
       return resultIfE(resultNum);
     } else if (resultNum.abs() < int.parse("1" + "0" * digitLength.value)) {
       String precisionS = roundNum(resultNum);
-
       return numFormat(precisionS);
     } else {
       return manageDigitForLargeNumber(resultNum);
@@ -122,23 +128,27 @@ class ResultController extends GetxController {
   }
 
   String manageDigitForLargeNumber(num resultNum) {
-    int length = resultNum.toString().split(".").first.length;
-    int digit = length - 2;
-    if (nf.value == "23") {
-      digit = length - length % 2 - 1;
-    } else if (nf.value == "33") {
-      digit = length - length % 3;
-      if (length % 3 == 0) {
-        digit = length - 3;
+    String newResultString;
+    if (nf.value == "23" && resultNum < ("10^16").interpret()) {
+      num newResultNum = resultNum / 10000000;
+      String precisionS = roundNum(newResultNum);
+      newResultString = numFormat(precisionS);
+      return newResultString + " \u00D710" + tenPowerInUnicode("7");
+    } else if (nf.value == "33" && resultNum < ("10^21").interpret()) {
+      num newResultNum = resultNum / 1000000000;
+      String precisionS = roundNum(newResultNum);
+      newResultString = numFormat(precisionS);
+      return newResultString + " \u00D710" + tenPowerInUnicode("9");
+    } else {
+      int length = resultNum.toString().split(".").first.length;
+      int digit = length - 2;
+      num arv = resultNum / ("10^$digit").interpret();
+      if (precision.value < 2) {
+        precision.value = 2;
       }
+      arv = arv.roundToPrecision(precision.value);
+      return arv.toString() + " \u00D710" + tenPowerInUnicode(digit.toString());
     }
-
-    num arv = resultNum / ("10^$digit").interpret();
-    if (precision.value < 2) {
-      precision.value = 2;
-    }
-    arv = arv.roundToPrecision(precision.value);
-    return arv.toString() + " \u00D710" + tenPowerInUnicode(digit.toString());
   }
 
   String numFormat(String roundS) {
@@ -153,7 +163,7 @@ class ResultController extends GetxController {
     }
     bfd = bfd.replaceAll(RegExp(r'[^\-\d\.\,]*'), "");
     bfd = bfd.split(".").first;
-    
+
     if (roundS.contains(".")) {
       return bfd + "." + afd;
     } else {
@@ -243,3 +253,25 @@ String tenPowerInUnicode(String power) {
   }
   return tenPowerInUnicode;
 }
+
+
+
+  // String manageDigitForLargeNumber(num resultNum) {
+  //   int length = resultNum.toString().split(".").first.length;
+  //   int digit = length - 2;
+  //   if (nf.value == "23") {
+  //     digit = length - length % 2 - 1;
+  //   } else if (nf.value == "33") {
+  //     digit = length - length % 3;
+  //     if (length % 3 == 0) {
+  //       digit = length - 3;
+  //     }
+  //   }
+
+  //   num arv = resultNum / ("10^$digit").interpret();
+  //   if (precision.value < 2) {
+  //     precision.value = 2;
+  //   }
+  //   arv = arv.roundToPrecision(precision.value);
+  //   return arv.toString() + " \u00D710" + tenPowerInUnicode(digit.toString());
+  // }

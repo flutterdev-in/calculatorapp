@@ -24,11 +24,13 @@ class InputStack extends StatelessWidget {
               if (b.n.value.contains("\n")) {
                 return IconButton(
                     color: Colors.brown,
-                    icon:const Icon(
+                    icon: const Icon(
                       MdiIcons.tableArrowRight,
                     ),
                     onPressed: () {
                       r.tableString.value = b.n.value;
+                      r.tgr.value = r.gr.value;
+                      r.tsr.value = r.sr.value;
                       Get.to(TableResult());
                     });
               } else {

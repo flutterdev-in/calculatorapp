@@ -9,38 +9,63 @@ class PrecisionB extends StatelessWidget {
   PrecisionB({Key? key}) : super(key: key);
   final ResultController r = Get.put(ResultController());
   Box bxs = Hive.box("settings");
-  void onPressed() {
-    r.precision.value++;
-    bxs.put("precision", r.precision.value);
+
+  Widget inkwell(String text,
+      {double scalefactor = 1.1, double left = 0, double right = 0}) {
+    if (text == "R-") {
+      left = 0.5;
+    }
+    if (text == "R+") {
+      right = 0.5;
+    }
+    return Expanded(
+      child: Container(
+        height: double.maxFinite,
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(left, 0.5, right, 0.5),
+          child: Material(
+            color: Colors.white10,
+            child: InkWell(
+              onTap: () {
+                if (text == "R-") {
+                  r.precision.value--;
+                } else if (text == "R+") {
+                  r.precision.value++;
+                } else {
+                  r.precision.value = bxs.get("precision");
+                }
+              },
+              child: Ink(
+                child: Center(
+                  child: Text(
+                    text,
+                    textScaleFactor: scalefactor,
+                    style: TextStyle(color: Colors.brown),
+                  ),
+                ),
+              ),
+              highlightColor: Colors.pink.shade900,
+              splashColor: Colors.pink.shade900,
+              radius: 30,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
-  void longPress() {
-    r.precision.value--;
-    bxs.put("precision", r.precision.value);
-  }
-
-  Widget buttons() {
+  Widget buttonss() {
     return Row(
       children: [
-        Spacer(flex: 10),
-        Icon(MdiIcons.swapHorizontal, color: Colors.brown),
-        Obx(
-          () => Text(" " + r.precision.value.toString(),
-              textScaleFactor: 1.3, style: TextStyle(color: Colors.brown)),
-        ),
-        Spacer(flex: 10),
+        inkwell("R-"),
+        Obx(() => inkwell(r.precision.value.toString(), scalefactor: 1.3)),
+        inkwell("R+"),
       ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return GFButtonC.all(
-      ontap: () => onPressed(),
-      onLongPress: () => longPress(),
-      wantChild: true,
-      child: buttons(),
-      // buttonColor: Colors.white12,
-    );
+    return buttonss();
   }
 }

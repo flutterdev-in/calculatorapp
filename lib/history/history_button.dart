@@ -1,5 +1,5 @@
 import 'package:calculator_04/buttons/customButton/gfbutton.dart';
-import 'package:calculator_04/history/history_rx.dart';
+import 'package:calculator_04/history/history_controller.dart';
 import 'package:calculator_04/history/history_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
