@@ -1,0 +1,43 @@
+import 'package:calculator_04/controller/main_controller.dart';
+import 'package:calculator_04/input/input_widget.dart';
+import 'package:calculator_04/result/controllers/result_controller.dart';
+import 'package:calculator_04/result/resultTable/result_table.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
+class InputStack extends StatelessWidget {
+  InputStack({Key? key}) : super(key: key);
+  final MainController b = Get.put(MainController());
+  final ResultController r = Get.put(ResultController());
+  @override
+  Widget build(BuildContext context) {
+    Size md = MediaQuery.of(context).size;
+    return SizedBox(
+      height: md.height / 4,
+      child: Stack(
+        children: [
+          InputW(),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Obx(() {
+              if (b.n.value.contains("\n")) {
+                return IconButton(
+                    color: Colors.brown,
+                    icon:const Icon(
+                      MdiIcons.tableArrowRight,
+                    ),
+                    onPressed: () {
+                      r.tableString.value = b.n.value;
+                      Get.to(TableResult());
+                    });
+              } else {
+                return const Text("");
+              }
+            }),
+          )
+        ],
+      ),
+    );
+  }
+}

@@ -19,6 +19,15 @@ class BackSpace extends StatelessWidget {
     }
   }
 
+  void doubleTap() {
+    if (b.p.value >= b.n.value.length && b.n.value.contains(RegExp(r'\d+(\.\d*)?$'))) {
+      b.n.value = b.n.value.replaceAll(RegExp(r'\d+(\.\d*)?$'), "");
+      b.p.value = b.n.value.length;
+    } else {
+      onPressed();
+    }
+  }
+
   void onLongPressed() {
     b.n.value = "";
     b.p.value = 0;
@@ -28,6 +37,7 @@ class BackSpace extends StatelessWidget {
   Widget build(BuildContext context) {
     return GFButtonC.all(
       ontap: () => onPressed(),
+      // onDoubleTap: () => doubleTap(),
       onLongPress: () => onLongPressed(),
       iconData: Icons.backspace_outlined,
       iconColor: Colors.brown,

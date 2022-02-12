@@ -15,6 +15,7 @@ class ResultController extends GetxController {
   Rx<String> gr = "0".obs;
   Rx<String> sr = "".obs;
   Rx<String> llr = "".obs;
+  Rx<String> tableString = "".obs;
   Rx<bool> isCommaEnabled = true.obs;
   Rx<String> nf = "".obs;
   Rx<int> precision = 2.obs;
@@ -150,10 +151,9 @@ class ResultController extends GetxController {
       NumberFormat nfm = NumberFormat.currency(locale: "en_US");
       bfd = nfm.format(num.parse(bfd));
     }
-
-    bfd = bfd.replaceAll(RegExp(r'[^\d\.\,]*'), "");
+    bfd = bfd.replaceAll(RegExp(r'[^\-\d\.\,]*'), "");
     bfd = bfd.split(".").first;
-
+    
     if (roundS.contains(".")) {
       return bfd + "." + afd;
     } else {

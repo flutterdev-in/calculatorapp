@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:calculator_04/result/controllers/result_controller.dart';
 import 'package:calculator_04/result/resultTypes/final_result.dart';
 import 'package:calculator_04/controller/main_controller.dart';
@@ -20,10 +21,11 @@ class ResultW extends StatelessWidget {
           size: GFSize.SMALL,
         );
       } else {
-        return Text(
+        return AutoSizeText(
           resultType,
           textScaleFactor: factor,
           style: TextStyle(color: textColour),
+          maxLines: 1,
         );
       }
     }
@@ -43,8 +45,14 @@ class ResultW extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  result(r.llr.value, 2, Colors.yellow.shade200),
-                  result(r.sr.value, 2, Colors.yellow.shade200)
+                  SizedBox(
+                    child: result(r.sr.value, 2, Colors.yellow.shade200),
+                    width: md.width / 2 - 10,
+                  ),
+                  SizedBox(
+                    child: result(r.llr.value, 2, Colors.yellow.shade200),
+                    width: md.width / 2 - 10,
+                  ),
                 ],
               ),
               Align(

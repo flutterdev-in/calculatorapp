@@ -46,7 +46,7 @@ class GFButtonC extends StatelessWidget {
         child: InkWell(
           onTap: ontap,
           onLongPress: onLongPress,
-          onDoubleTap: onDoubleTap,
+          // onDoubleTap: onDoubleTap,
           child: Ink(
             width: (mw - 20) / 4,
             child: wantChild

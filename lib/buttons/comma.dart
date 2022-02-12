@@ -41,22 +41,36 @@ class Comma extends StatelessWidget {
   }
 
   Widget icon() {
-    return SingleChildScrollView(
-      reverse: true,
-      child: Column(
-        children: [
-          Text(
-            ",",
-            textScaleFactor: 4,
-            style: TextStyle(
-                color: r.isCommaEnabled.value ? Colors.yellow : Colors.brown),
+    return Stack(children: [
+      Align(
+        alignment: Alignment.center,
+        child: SingleChildScrollView(
+          reverse: true,
+          child: Column(
+            children: [
+              Text(
+                ",",
+                textScaleFactor: 4,
+                style: TextStyle(
+                    color: r.isCommaEnabled.value
+                        ? Colors.brown
+                        : Colors.pink.shade900),
+              ),
+              SizedBox(
+                height: 6,
+              )
+            ],
           ),
-          SizedBox(
-            height: 6,
-          )
-        ],
+        ),
       ),
-    );
+      Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: Align(
+          child: Icon(MdiIcons.cogOutline, size: 12, color: Colors.transparent),
+          alignment: Alignment.bottomRight,
+        ),
+      ),
+    ]);
   }
 
   @override

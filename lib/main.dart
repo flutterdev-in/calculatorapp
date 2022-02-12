@@ -1,14 +1,11 @@
-import 'package:calculator_04/-input_with_ad.dart';
-import 'package:calculator_04/ads/banner_ad_widget.dart';
-import 'package:calculator_04/buttonsContainer/main_container.dart';
+import 'package:calculator_04/bottomContainer/history_container.dart';
+import 'package:calculator_04/input/input_stack.dart';
 import 'package:calculator_04/input/input_widget.dart';
 import 'package:calculator_04/_result.dart';
-import 'package:calculator_04/_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:calculator_04/ads/banner_ad_widget.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,8 +24,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'AI Calculator',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      themeMode: ThemeMode.dark, 
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        /* dark theme settings */
       ),
       home: const MyHomePage(),
     );
@@ -49,10 +48,11 @@ class MyHomePage extends StatelessWidget {
             child: Column(
               children: [
                 // BannerAdW(),
-                InputWithAdWidget(),
+                // InputWithAdWidget(),
+                InputStack(),
                 // InputW(),
                 ResultW(),
-                MainContainer(),
+                ButtonsWd(),
               ],
             ),
           ),

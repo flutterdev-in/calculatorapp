@@ -17,9 +17,7 @@ class MainController extends GetxController {
 
   @override
   void onInit() {
-    // await openBoxes();
     rtcInit();
-    settingsInit();
     super.onInit();
   }
 
@@ -38,16 +36,4 @@ class MainController extends GetxController {
     );
   }
 
-  void settingsInit() async {
-     
-    try {
-      // IN , PK, NP, BD
-      await http.get(Uri.parse('http://ip-api.com/json')).then((value) {
-
-        print(json.decode(value.body)['countryCode'].toString());
-      });
-    } catch (err) {
-      //handleError
-    }
-  }
 }

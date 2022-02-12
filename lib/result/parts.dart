@@ -2,7 +2,6 @@ class PartN {
   String netN(String nValue) {
     List subL = nValue.split('\n');
     subL.removeLast();
-    print(subL);
     return subL.join();
   }
 

@@ -42,6 +42,7 @@ dependencies:
   num_utilities: ^1.0.2+1
   rich_text_controller: ^1.4.0
   auto_size_text_field: ^1.0.1
+  auto_size_text: ^3.0.0
   get_storage: ^2.0.3
   hive: ^2.0.5
   hive_flutter: ^1.1.0

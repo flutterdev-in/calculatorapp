@@ -23,10 +23,10 @@ class PrecisionB extends StatelessWidget {
     return Row(
       children: [
         Spacer(flex: 10),
-        Icon(MdiIcons.swapHorizontal, color: Colors.white),
+        Icon(MdiIcons.swapHorizontal, color: Colors.brown),
         Obx(
           () => Text(" " + r.precision.value.toString(),
-              textScaleFactor: 1.3, style: TextStyle(color: Colors.yellow)),
+              textScaleFactor: 1.3, style: TextStyle(color: Colors.brown)),
         ),
         Spacer(flex: 10),
       ],
