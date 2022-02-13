@@ -1,5 +1,6 @@
 import 'package:calculator_04/buttons/customButton/gfbutton.dart';
 import 'package:calculator_04/result/controllers/result_controller.dart';
+import 'package:calculator_04/settings/settings_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -21,25 +22,6 @@ class Comma extends StatelessWidget {
     }
   }
 
-  void longPress() {
-    String nfd = boxS.get("nfd") ?? "33";
-    String df = '';
-    if (nfd == "33") {
-      boxS.put("nfd", "23");
-      r.nf.value = "23";
-      df = "dd,dd,ddd.dd";
-    } else if (r.nf.value == "23") {
-      boxS.put("nfd", "33");
-      r.nf.value = "33";
-      df = "ddd,ddd,ddd.dd";
-    }
-    if (df != '') {
-      Get.defaultDialog(
-          title: "Comma seperation has been changed to", middleText: df);
-      // Get.snackbar("Comma seperation has been changed to", df);
-    }
-  }
-
   Widget icon() {
     return Stack(children: [
       Align(
@@ -54,20 +36,13 @@ class Comma extends StatelessWidget {
                 style: TextStyle(
                     color: r.isCommaEnabled.value
                         ? Colors.brown
-                        : Colors.pink.shade900),
+                        : Colors.blueGrey.shade800),
               ),
               SizedBox(
                 height: 6,
               )
             ],
           ),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.all(2.0),
-        child: Align(
-          child: Icon(MdiIcons.cogOutline, size: 12, color: Colors.transparent),
-          alignment: Alignment.bottomRight,
         ),
       ),
     ]);
@@ -77,10 +52,8 @@ class Comma extends StatelessWidget {
   Widget build(BuildContext context) {
     return GFButtonC.all(
       ontap: () => onPressed(),
-      onLongPress: () => longPress(),
       wantChild: true,
       child: Obx(() => icon()),
-      // buttonColor: Colors.white12,
     );
   }
 }

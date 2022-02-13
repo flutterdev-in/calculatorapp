@@ -17,7 +17,7 @@ import 'package:calculator_04/controller/main_controller.dart';
 
 class ButtonsWd extends StatelessWidget {
   ButtonsWd({Key? key}) : super(key: key);
-  MainController b = Get.put(MainController());
+  final MainController b = Get.put(MainController());
   final HistoryController hc = Get.put(HistoryController());
 
   HistoryBox hb = HistoryBox();

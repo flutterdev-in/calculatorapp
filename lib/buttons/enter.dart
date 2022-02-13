@@ -1,6 +1,8 @@
 import 'package:calculator_04/buttons/customButton/gfbutton.dart';
 import 'package:calculator_04/buttons/functions/add_symbol.dart';
+import 'package:calculator_04/history/history_box.dart';
 import 'package:calculator_04/result/controllers/result_controller.dart';
+import 'package:calculator_04/settings/settings_controller.dart';
 import 'package:calculator_04/useful/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,8 +13,9 @@ class Enter extends StatelessWidget {
   Enter({Key? key}) : super(key: key);
   final MainController b = Get.put(MainController());
   final ResultController r = Get.put(ResultController());
+  final SettingsController sc = Get.put(SettingsController());
 
-  void onPressed() {
+  void nextLine() {
     b.n.value = AddSymbol().add("et", b.n.value, b.p.value);
     b.p.value++;
     Iterable<String> regex(String pattern) {
@@ -114,16 +117,21 @@ class Enter extends StatelessWidget {
     }
   }
 
-  void onLongPressed() {
+  void eualto() {
+    HistoryBox hb = HistoryBox();
+    if (!b.n.value.contains(RegExp(r'^[^\d]*$'))) {
+      hb.addItemToHistoryBox(b.n.value);
+    }
+
     b.n.value = r.gr.value.replaceAll(",", "").replaceAll(" ", "");
     b.p.value = b.n.value.length;
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return GFButtonC.all(
-      ontap: () => onPressed(),
-      onLongPress: () => onLongPressed(),
+      ontap: () => sc.isEnterLine.value ? nextLine() : eualto(),
+      onLongPress: () => sc.isEnterLine.value ? eualto() : nextLine(),
       iconData: MdiIcons.playlistPlus,
       buttonColor: Colors.green.shade900,
       iconColor: Colors.white,

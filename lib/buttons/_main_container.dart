@@ -16,6 +16,7 @@ import 'package:calculator_04/buttons/power.dart';
 import 'package:calculator_04/buttons/precision.dart';
 import 'package:calculator_04/buttons/zero_zero.dart';
 import 'package:calculator_04/history/history_button.dart';
+import 'package:calculator_04/buttons/settings.dart';
 import 'package:flutter/material.dart';
 
 class MainContainer extends StatelessWidget {
@@ -47,11 +48,12 @@ class MainContainer extends StatelessWidget {
   Widget firstRow() {
     return Row(
       children: [
-        Expanded(child: Clear(), flex: 7),
-        Expanded(child: Comma(), flex: 7),
-        Expanded(child: PrecisionB(), flex: 8),
-        Expanded(child: BackSpace(), flex: 7),
-        Expanded(child: HistoryButton(), flex: 7),
+        Expanded(child: Clear(), flex: 8),
+        Expanded(child: Settings(), flex: 6),
+        Expanded(child: Comma(), flex: 5),
+        Expanded(child: PrecisionB(), flex: 10),
+        Expanded(child: BackSpace(), flex: 8),
+        Expanded(child: HistoryButton(), flex: 8),
       ],
     );
   }

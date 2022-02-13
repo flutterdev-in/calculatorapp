@@ -63,28 +63,11 @@ class Dot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        GFButtonC.all(
-          ontap: () => onPressed(),
-          onLongPress: () => longPress(),
-          iconData: Icons.circle_rounded,
-          iconSize: 8,
-        ),
-        Positioned(
-          child: Icon(
-            MdiIcons.cogOutline,
-            color: Colors.brown,
-            size: 15,
-          ),
-          bottom: 5,
-          right: 5,
-        ),
-      ],
+    return GFButtonC.all(
+      ontap: () => onPressed(),
+      iconData: Icons.circle_rounded,
+      iconSize: 8,
     );
   }
 }
 
-void longPress() {
-  Get.to(SettingsScreen());
-}

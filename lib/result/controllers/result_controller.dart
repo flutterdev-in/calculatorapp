@@ -33,7 +33,6 @@ class ResultController extends GetxController {
     grossResult(nValue);
     subResult(nValue);
     lastLineResult(nValue);
-    
   }
 
   void subResult(String nValue) {
@@ -52,7 +51,6 @@ class ResultController extends GetxController {
   }
 
   String llrValueifEnter(String nValue) {
-    
     List<String> splitNvalue = nValue.split("\n");
     if (splitNvalue.length < 3 && splitNvalue.last == "") {
       return "";
@@ -64,14 +62,12 @@ class ResultController extends GetxController {
       if (finalResult0 == 0.1921465) {
         return "";
       } else {
-        
         return resultString(finalResult0);
       }
     }
   }
 
   void lastLineResult(String nValue) {
-    
     if (nValue.contains("\n")) {
       List<String> splitNvalue = nValue.split("\n");
       if (splitNvalue.length < 3 && splitNvalue.last == "") {
@@ -85,7 +81,6 @@ class ResultController extends GetxController {
           llr.value = "";
         } else {
           llr.value = resultString(finalResult0);
-          
         }
       }
     } else {
@@ -201,9 +196,22 @@ class ResultController extends GetxController {
   }
 
   Future<void> getDefaultsFromBox() async {
-    isCommaEnabled.value = bxs.get("isCommaEnabled", defaultValue: true);
-    precision.value = bxs.get("precision", defaultValue: 2);
-    digitLength.value = bxs.get("digitLength", defaultValue: 9);
+    bool? _isCommaEnabled = bxs.get("isCommaEnabled");
+    int? _precision = bxs.get("precision");
+    int? _digitLength = bxs.get("digitLength");
+
+    if (_isCommaEnabled == null) {
+      bxs.put("isCommaEnabled", true);
+    }
+    if (_precision == null) {
+      bxs.put("precision", 2);
+    }
+    if (_digitLength == null) {
+      bxs.put("digitLength", 9);
+    }
+    isCommaEnabled.value = bxs.get("isCommaEnabled") ?? true;
+    precision.value = bxs.get("precision") ?? 2;
+    digitLength.value = bxs.get("digitLength") ?? 9;
 
     // get nfValue
     String? nfValue = bxs.get("nfd");

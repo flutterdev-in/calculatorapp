@@ -41,7 +41,7 @@ class ResultW extends StatelessWidget {
         color: Colors.black87,
         height: md.height / 8,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(2, 2, 2, 2),
+          padding: const EdgeInsets.fromLTRB(2, 2, 0, 2),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

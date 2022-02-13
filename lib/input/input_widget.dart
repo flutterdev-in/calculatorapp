@@ -27,7 +27,7 @@ class InputW extends StatelessWidget {
             TextSelection.fromPosition(TextPosition(offset: b.p.value));
 
         return ConstrainedBox(
-          constraints: BoxConstraints(maxHeight: Get.height / 5),
+          constraints: BoxConstraints(maxHeight: md.height / 5),
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             reverse: true,
@@ -47,8 +47,8 @@ class InputW extends StatelessWidget {
                 focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.white70)),
               ),
-              style:
-                  TextStyle(fontSize: sc.inputFontSize.value, color: Colors.white),
+              style: TextStyle(
+                  fontSize: sc.inputFontSize.value, color: Colors.white),
               readOnly: true,
               autofocus: true,
               showCursor: true,

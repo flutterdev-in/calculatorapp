@@ -72,24 +72,18 @@ class TableResult extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(8, 2, 8, 2),
-            child: Expanded(
-              child: Container(
-                color: Colors.white10,
+            child: Container(
+              color: Colors.white10,
+              child: Align(
+                alignment: Alignment.topRight,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: double.infinity,
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: Wrap(
-                        children: [
-                          parseText("Total $lastString = ",
-                              txtColor: Colors.orange.shade200),
-                          parseText(r.tgr.value,
-                              txtColor: Colors.orange.shade400),
-                        ],
-                      ),
-                    ),
+                  child: Wrap(
+                    children: [
+                      parseText("Total $lastString = ",
+                          txtColor: Colors.orange.shade200),
+                      parseText(r.tgr.value, txtColor: Colors.orange.shade400),
+                    ],
                   ),
                 ),
               ),
@@ -157,7 +151,7 @@ class TableResult extends StatelessWidget {
       text: txt,
       textScaleFactor: 1.4,
       softWrap: true,
-      maxLines: 1,
+      // maxLines: 10,
       style: TextStyle(color: Colors.white),
       parse: <MatchText>[
         MatchText(
