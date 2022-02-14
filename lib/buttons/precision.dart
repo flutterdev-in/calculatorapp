@@ -40,7 +40,10 @@ class PrecisionB extends StatelessWidget {
                   child: Text(
                     text,
                     textScaleFactor: scalefactor,
-                    style: TextStyle(color: Colors.brown),
+                    style: TextStyle(
+                      color: Colors.brown,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),

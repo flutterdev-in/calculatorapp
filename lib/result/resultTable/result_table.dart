@@ -24,7 +24,7 @@ class TableResult extends StatelessWidget {
         ),
         body: Container(
           color: Colors.black,
-          child: Column(
+          child: ListView(
             children: [listBuilder(), endResult()],
           ),
         ),
@@ -97,6 +97,7 @@ class TableResult extends StatelessWidget {
   Widget listBuilder() {
     return ListView.builder(
         shrinkWrap: true,
+        physics: ScrollPhysics(),
         itemCount: listStrings.length,
         itemBuilder: (context, index) {
           String rowString = listStrings[index];
@@ -109,7 +110,24 @@ class TableResult extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    flex: 3,
+                    flex: 2,
+                    child: Container(
+                      height: double.infinity,
+                      color: Colors.white12,
+                      child: Align(
+                        child: Text(
+                          (index + 1).toString(),
+                          textScaleFactor: 1.25,
+                        ),
+                        alignment: Alignment.center,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 2,
+                  ),
+                  Expanded(
+                    flex: 10,
                     child: Container(
                       height: double.infinity,
                       color: Colors.white12,
@@ -126,7 +144,7 @@ class TableResult extends StatelessWidget {
                     width: 2,
                   ),
                   Expanded(
-                    flex: 2,
+                    flex: 8,
                     child: Container(
                       height: double.infinity,
                       color: Colors.white12,

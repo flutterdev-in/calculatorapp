@@ -21,8 +21,10 @@ class HistoryCleanButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GFButtonC.all(
       ontap: () => onPressed(),
-      iconData: MdiIcons.deleteCircleOutline,
-      iconColor: Colors.brown,
+      isIcon: false,
+      text: " Clear\n History",
+      textScaleFactor: 1.1,
+      textColour: Colors.brown,
     );
   }
 }

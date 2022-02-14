@@ -15,10 +15,11 @@ class Comma extends StatelessWidget {
     r.isCommaEnabled.value = !r.isCommaEnabled.value;
     boxS.put("isCommaEnabled", r.isCommaEnabled.value);
     String nfd = boxS.get("nfd") ?? "33";
+    String nfd0 = boxS.get("nfd0") ?? "";
     if (r.isCommaEnabled.value) {
       r.nf.value = nfd;
     } else {
-      r.nf.value = "";
+      r.nf.value = nfd0;
     }
   }
 

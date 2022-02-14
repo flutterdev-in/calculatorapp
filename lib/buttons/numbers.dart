@@ -7,9 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:calculator_04/controller/main_controller.dart';
+
 class Numbers extends StatelessWidget {
   Numbers({Key? key}) : super(key: key);
-  final MainController b = Get.put(MainController());
+  final MainController b = Get.find<MainController>();
 
   late int number;
   Numbers.select(this.number);

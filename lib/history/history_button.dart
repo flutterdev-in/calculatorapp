@@ -26,13 +26,14 @@ class HistoryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GFButtonC.all(
-      ontap: () => onPressed(),
-      onLongPress: () => longPress(),
-      iconData: MdiIcons.history,
-      iconColor: Colors.brown,
-      iconSize: 25,
-      // buttonColor: Colors.white12,
-    );
+    return Obx(() => GFButtonC.all(
+          ontap: () => onPressed(),
+          onLongPress: () => longPress(),
+          iconData:
+              hrx.isHistoryOpen.value ? MdiIcons.tableLarge : MdiIcons.history,
+          iconColor: Colors.brown,
+          iconSize: 25,
+          // buttonColor: Colors.white12,
+        ));
   }
 }

@@ -209,6 +209,7 @@ class ResultController extends GetxController {
     if (_digitLength == null) {
       bxs.put("digitLength", 9);
     }
+    bxs.put("nfd0", "");
     isCommaEnabled.value = bxs.get("isCommaEnabled") ?? true;
     precision.value = bxs.get("precision") ?? 2;
     digitLength.value = bxs.get("digitLength") ?? 9;

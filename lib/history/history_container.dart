@@ -75,13 +75,21 @@ class ButtonsWd extends StatelessWidget {
     return Column(
       children: [
         Expanded(child: HistoryButton(), flex: 3),
-        Expanded(child: BackSpace(), flex: 4),
+        Expanded(child: BackSpace(), flex: 5),
         Expanded(child: HistoryCleanButton(), flex: 5),
         Expanded(
             child: Padding(
               padding: const EdgeInsets.all(0.5),
               child: Container(
                 color: Colors.white10,
+                child: Padding(
+                  padding: const EdgeInsets.all(9.0),
+                  child: Text(
+                    "Swipe left or right to delete each item",
+                    textScaleFactor: 1.13,
+                    style: TextStyle(color: Colors.brown),
+                  ),
+                ),
               ),
             ),
             flex: 15),
