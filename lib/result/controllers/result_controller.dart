@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:calculator_04/useful/regex.dart';
 import 'package:http/http.dart' as http;
 import 'package:calculator_04/controller/main_controller.dart';
 import 'package:calculator_04/result/modifications/_modifications.dart';
@@ -22,6 +23,7 @@ class ResultController extends GetxController {
   Rx<String> nf = "".obs;
   Rx<int> precision = 2.obs;
   Rx<int> digitLength = 9.obs;
+  Rx<String> ls = "".obs;
 
   @override
   void onInit() async {
@@ -50,25 +52,10 @@ class ResultController extends GetxController {
     }
   }
 
-  String llrValueifEnter(String nValue) {
-    List<String> splitNvalue = nValue.split("\n");
-    if (splitNvalue.length < 3 && splitNvalue.last == "") {
-      return "";
-    } else if (nValue.contains(RegExp(r'\n(\u00D7|/|\d+(\.\d*)?%)[^\n]*'))) {
-      return "";
-    } else {
-      String newLastNvalue = Modifications().modifications(splitNvalue.last);
-      num finalResult0 = TryCatches().tc(newLastNvalue);
-      if (finalResult0 == 0.1921465) {
-        return "";
-      } else {
-        return resultString(finalResult0);
-      }
-    }
-  }
-
   void lastLineResult(String nValue) {
-    if (nValue.contains("\n")) {
+
+
+   if (nValue.contains("\n")) {
       List<String> splitNvalue = nValue.split("\n");
       if (splitNvalue.length < 3 && splitNvalue.last == "") {
         llr.value = "";

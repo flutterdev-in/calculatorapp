@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:calculator_04/result/controllers/result_controller.dart';
 import 'package:calculator_04/controller/main_controller.dart';
+import 'package:calculator_04/result/modifications/_modifications.dart';
+import 'package:calculator_04/result/try_catch.dart';
 import 'package:calculator_04/settings/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,8 +36,7 @@ class ResultW extends StatelessWidget {
     }
 
     return Obx(() {
-      everAll([r.nf, r.precision, r.digitLength, b.n],
-          (_) => r.allResults(b.n.value));
+      r.allResults(b.n.value);
       return Container(
         width: double.infinity,
         color: Colors.black87,

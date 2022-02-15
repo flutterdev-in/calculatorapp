@@ -42,11 +42,11 @@ class Enter extends StatelessWidget {
       if (difference == 0) {
         if (b.n.value.contains(RegExp(r'[\d%\)]et'))) {
           b.n.value = b.n.value.replaceAll("et", "\n");
-          r.sr.value = r.gr.value;
+          // r.sr.value = r.gr.value;
         } else if (b.n.value.contains(".et")) {
           b.n.value = b.n.value.replaceAll("et", "0\n");
           b.p.value++;
-          r.sr.value = r.gr.value;
+          // r.sr.value = r.gr.value;
         } else {
           b.n.value = b.n.value.replaceAll("et", "");
           b.p.value--;
@@ -56,11 +56,11 @@ class Enter extends StatelessWidget {
         if (b.n.value.contains(RegExp(r'[\d%]et'))) {
           b.n.value = b.n.value.replaceAll("et", closedBrasToAdd + "\n");
           b.p.value = b.p.value + closedBrasToAdd.length;
-          r.sr.value = r.gr.value;
+          // r.sr.value = r.gr.value;
         } else if (b.n.value.contains(".et")) {
           b.n.value = b.n.value.replaceAll("et", closedBrasToAdd + "0\n");
           b.p.value = b.p.value + closedBrasToAdd.length;
-          r.sr.value = r.gr.value;
+          // r.sr.value = r.gr.value;
         } else {
           b.n.value = b.n.value.replaceAll("et", "");
           b.p.value--;
@@ -78,11 +78,11 @@ class Enter extends StatelessWidget {
       if (difference == 0) {
         if (b.n.value.contains(RegExp(r'[\d%]et'))) {
           b.n.value = b.n.value.replaceAll("et", "\n");
-          r.sr.value = r.gr.value;
+          // r.sr.value = r.gr.value;
         } else if (b.n.value.contains(".et")) {
           b.n.value = b.n.value.replaceAll("et", "0\n");
           b.p.value++;
-          r.sr.value = r.gr.value;
+          // r.sr.value = r.gr.value;
         } else {
           b.n.value = b.n.value.replaceAll("et", "");
           b.p.value--;
@@ -93,11 +93,11 @@ class Enter extends StatelessWidget {
             r'[\u2070\u00B9\u00B2\u00B3\u2074\u2075\u2076\u2077\u2078\u2079]et'))) {
           b.n.value = b.n.value.replaceAll("et", closedBrasToAdd + "\n");
           b.p.value = b.p.value + closedBrasToAdd.length;
-          r.sr.value = r.gr.value;
+          // r.sr.value = r.gr.value;
         } else if (b.n.value.contains("\u22C5et")) {
           b.n.value = b.n.value.replaceAll("et", closedBrasToAdd + "\u2070\n");
           b.p.value = b.p.value + closedBrasToAdd.length;
-          r.sr.value = r.gr.value;
+          // r.sr.value = r.gr.value;
         } else {
           b.n.value = b.n.value.replaceAll("et", "");
           b.p.value--;
@@ -106,19 +106,19 @@ class Enter extends StatelessWidget {
     } else if (!b.n.value.contains("(") && !b.n.value.contains("\u207D")) {
       if (b.n.value.contains(RegExp(r'[\d%]et'))) {
         b.n.value = b.n.value.replaceAll("et", "\n");
-        r.sr.value = r.gr.value;
+        // r.sr.value = r.gr.value;
       } else if (b.n.value.contains(".et")) {
         b.n.value = b.n.value.replaceAll("et", "0\n");
         b.p.value++;
-        r.sr.value = r.gr.value;
+        // r.sr.value = r.gr.value;
       } else if (b.n.value.contains(RegExp(
           r'[\u2070\u00B9\u00B2\u00B3\u2074\u2075\u2076\u2077\u2078\u2079]et'))) {
         b.n.value = b.n.value.replaceAll("et", "\n");
-        r.sr.value = r.gr.value;
+        // r.sr.value = r.gr.value;
       } else if (b.n.value.contains("\u22C5et")) {
         b.n.value = b.n.value.replaceAll("et", "\u2070\n");
         b.p.value++;
-        r.sr.value = r.gr.value;
+        // r.sr.value = r.gr.value;
       } else {
         b.n.value = b.n.value.replaceAll("et", "");
         b.p.value--;
