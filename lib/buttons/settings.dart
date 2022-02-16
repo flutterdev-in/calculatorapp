@@ -11,14 +11,14 @@ class Settings extends StatelessWidget {
   Settings({Key? key}) : super(key: key);
   final MainController b = Get.put(MainController());
   final ResultController r = Get.put(ResultController());
-
+  
   @override
   Widget build(BuildContext context) {
     return GFButtonC.all(
       ontap: () => Get.to(
         SettingsScreen(),
         opaque: false,
-        transition: Transition.zoom,
+        transition: Transition.leftToRightWithFade,
       ),
       iconData: MdiIcons.cog,
       iconSize: 20,
