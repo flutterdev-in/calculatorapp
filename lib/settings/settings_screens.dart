@@ -166,8 +166,10 @@ class SettingsScreen extends StatelessWidget {
               InkWell(
                 child: Center(child: Text("  -  ")),
                 onTap: () {
-                  sc.inputFontSize.value--;
-                  sbox.put("inputFontSize", sc.inputFontSize.value);
+                  if (sc.inputFontSize.value > 0) {
+                    sc.inputFontSize.value -= 2;
+                    sbox.put("inputFontSize", sc.inputFontSize.value);
+                  }
                 },
               ),
               Obx(() => Text(sc.inputFontSize.value
@@ -176,8 +178,10 @@ class SettingsScreen extends StatelessWidget {
               InkWell(
                 child: Text("  +  "),
                 onTap: () {
-                  sc.inputFontSize.value++;
-                  sbox.put("inputFontSize", sc.inputFontSize.value);
+                  if (sc.inputFontSize.value < 50) {
+                    sc.inputFontSize.value += 2;
+                    sbox.put("inputFontSize", sc.inputFontSize.value);
+                  }
                 },
               ),
             ],
@@ -236,7 +240,7 @@ class SettingsScreen extends StatelessWidget {
                 child: Center(child: Text("  -  ")),
                 onTap: () {
                   if (sc.grossResultFontSize.value > 0) {
-                    sc.grossResultFontSize.value--;
+                    sc.grossResultFontSize.value -= 2;
                     sbox.put(
                         "grossResultFontSize", sc.grossResultFontSize.value);
                   }
@@ -249,7 +253,7 @@ class SettingsScreen extends StatelessWidget {
                 child: Text("  +  "),
                 onTap: () {
                   if (sc.grossResultFontSize.value < 35) {
-                    sc.grossResultFontSize.value++;
+                    sc.grossResultFontSize.value += 2;
                     sbox.put(
                         "grossResultFontSize", sc.grossResultFontSize.value);
                   }
@@ -275,8 +279,10 @@ class SettingsScreen extends StatelessWidget {
               InkWell(
                 child: Center(child: Text("  -  ")),
                 onTap: () {
-                  sc.subResultsFontSize.value--;
-                  sbox.put("subResultsFontSize", sc.subResultsFontSize.value);
+                  if (sc.subResultsFontSize.value > 0) {
+                    sc.subResultsFontSize.value -= 2;
+                    sbox.put("subResultsFontSize", sc.subResultsFontSize.value);
+                  }
                 },
               ),
               Obx(() => Text(sc.subResultsFontSize.value
@@ -286,7 +292,7 @@ class SettingsScreen extends StatelessWidget {
                 child: Text("  +  "),
                 onTap: () {
                   if (sc.subResultsFontSize.value < 35) {
-                    sc.subResultsFontSize.value++;
+                    sc.subResultsFontSize.value += 2;
                     sbox.put("subResultsFontSize", sc.subResultsFontSize.value);
                   }
                 },

@@ -13,9 +13,8 @@ class InputW extends StatelessWidget {
   Widget build(BuildContext context) {
     Size md = MediaQuery.of(context).size;
 
-    return Container(
-      padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-      height: md.height / 4,
+    return SizedBox(
+      height: double.infinity,
       child: Obx(() {
         b.rtc!.text = b.n.value;
         if (b.p.value < 0) {
@@ -42,6 +41,7 @@ class InputW extends StatelessWidget {
               },
               keyboardType: TextInputType.multiline,
               textAlignVertical: TextAlignVertical.top,
+              // scrollPadding: EdgeInsets.all(1.0),
               maxLines: null,
               decoration: InputDecoration(
                 focusedBorder: UnderlineInputBorder(

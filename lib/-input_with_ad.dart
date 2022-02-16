@@ -19,7 +19,8 @@ class InputWithAdWidget extends StatelessWidget {
           (md.height / 8) -
           44 -
           (sc.bottomPadding.value);
-      return SizedBox(
+      return Container(
+        padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
         height: heightx,
         child: Stack(
           children: [

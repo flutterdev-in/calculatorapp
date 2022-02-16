@@ -5,7 +5,7 @@ class SettingsController extends GetxController {
   Rx<bool> isThemeBlack = true.obs;
   Rx<int> inputFontColor = 0xffb74093.obs;
   Rx<double> inputFontSize = 20.0.obs;
-  Rx<double> grossResultFontSize = 20.0.obs;
+  Rx<double> grossResultFontSize = 22.0.obs;
   Rx<double> subResultsFontSize = 20.0.obs;
   Rx<double> bottomPadding = 15.0.obs;
   Rx<bool> isEnterLine = true.obs;

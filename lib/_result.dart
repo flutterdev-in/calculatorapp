@@ -37,12 +37,12 @@ class ResultW extends StatelessWidget {
 
     return Obx(() {
       r.allResults(b.n.value);
-      return Container(
+      return SizedBox(
         width: double.infinity,
-        color: Colors.black87,
+        // color: Colors.white24,
         height: md.height / 8,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(2, 2, 0, 2),
+          padding: const EdgeInsets.fromLTRB(2, 0, 2, 2),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

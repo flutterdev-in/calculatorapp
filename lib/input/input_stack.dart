@@ -12,34 +12,30 @@ class InputStack extends StatelessWidget {
   final ResultController r = Get.put(ResultController());
   @override
   Widget build(BuildContext context) {
-    Size md = MediaQuery.of(context).size;
-    return SizedBox(
-      height: md.height / 4,
-      child: Stack(
-        children: [
-          InputW(),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Obx(() {
-              if (b.n.value.contains("\n")) {
-                return IconButton(
-                    color: Colors.brown,
-                    icon: const Icon(
-                      MdiIcons.tableArrowRight,
-                    ),
-                    onPressed: () {
-                      r.tableString.value = b.n.value;
-                      r.tgr.value = r.gr.value;
-                      r.tsr.value = r.sr.value;
-                      Get.to(TableResult());
-                    });
-              } else {
-                return const Text("");
-              }
-            }),
-          )
-        ],
-      ),
+    return Stack(
+      children: [
+        InputW(),
+        Align(
+          alignment: Alignment.bottomRight,
+          child: Obx(() {
+            if (b.n.value.contains("\n")) {
+              return IconButton(
+                  color: Colors.brown,
+                  icon: const Icon(
+                    MdiIcons.tableArrowRight,
+                  ),
+                  onPressed: () {
+                    r.tableString.value = b.n.value;
+                    r.tgr.value = r.gr.value;
+                    r.tsr.value = r.sr.value;
+                    Get.to(TableResult());
+                  });
+            } else {
+              return const Text("");
+            }
+          }),
+        )
+      ],
     );
   }
 }
