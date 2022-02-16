@@ -23,7 +23,7 @@ class AdsController extends GetxController {
 
   final BannerAd myBannerAd = BannerAd(
     // adUnitId: "ca-app-pub-3940256099942544/6300978111", test AD
-    adUnitId: "ca-app-pub-7599104948188291~4817073212",
+    adUnitId: "ca-app-pub-7599104948188291/5579668154",
     size: AdSize.fullBanner,
     request: const AdRequest(),
     listener: const BannerAdListener(),

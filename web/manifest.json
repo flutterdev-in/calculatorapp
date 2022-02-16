@@ -1,6 +1,6 @@
 {
-    "name": "calculator_04",
-    "short_name": "calculator_04",
+    "name": "AI Calculator",
+    "short_name": "AI Calculator",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
