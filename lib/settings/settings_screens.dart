@@ -1,5 +1,4 @@
 import 'package:calculator_04/result/controllers/result_controller.dart';
-import 'package:calculator_04/settings/input_settings_controller.dart';
 import 'package:calculator_04/settings/settings_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

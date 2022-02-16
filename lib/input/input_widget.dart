@@ -1,4 +1,3 @@
-import 'package:calculator_04/settings/input_settings_controller.dart';
 import 'package:calculator_04/settings/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -11,6 +11,12 @@ class AdsController extends GetxController {
     super.onInit();
   }
 
+    @override
+    void onClose() {
+      myBannerAd.dispose();
+      super.onClose();
+    }
+
   void loadDate() {
     Box sbox = Hive.box("settings");
     String firstdate = sbox.get("firstDate") ?? "null";
@@ -22,7 +28,7 @@ class AdsController extends GetxController {
   }
 
   final BannerAd myBannerAd = BannerAd(
-    // adUnitId: "ca-app-pub-3940256099942544/6300978111", test AD
+    // adUnitId: "ca-app-pub-3940256099942544/6300978111", // test AD
     adUnitId: "ca-app-pub-7599104948188291/5579668154",
     size: AdSize.fullBanner,
     request: const AdRequest(),
