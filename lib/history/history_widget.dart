@@ -1,3 +1,4 @@
+import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/history/history_box.dart';
 import 'package:calculator_04/controllers/main_controller.dart';
 import 'package:calculator_04/history/history_controller.dart';
@@ -48,27 +49,16 @@ class HistoryWidget extends StatelessWidget {
                     child: Text(time,
                         textScaleFactor: 1.1,
                         style: TextStyle(
-                          color: Colors.brown,
+                          color: Color(sc.actionButtonsColor.value),
                         )),
                   ),
                   InkWell(
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(5, 1, 5, 1),
-                      child: Row(
-                        children: [
-                          Text(
-                            "P(" + m["precision"].toString() + ")  ",
-                            style: TextStyle(
-                              color: Colors.brown,
-                              fontSize: 10,
-                            ),
-                          ),
-                          Icon(
-                            MdiIcons.tableArrowRight,
-                            color: Colors.brown,
-                            size: 20,
-                          ),
-                        ],
+                      child: Icon(
+                        MdiIcons.tableArrowRight,
+                        color: Color(sc.actionButtonsColor.value),
+                        size: 20,
                       ),
                     ),
                     onTap: () {
@@ -77,8 +67,8 @@ class HistoryWidget extends StatelessWidget {
                       r.tgr.value = m["grValue"] ?? "";
                       Get.to(TableResult());
                     },
-                    highlightColor: Colors.pink.shade900,
-                    splashColor: Colors.pink.shade900,
+                    highlightColor: Color(sc.onTapColor.value),
+                    splashColor: Color(sc.onTapColor.value),
                     radius: 30,
                   ),
                 ],
@@ -95,12 +85,14 @@ class HistoryWidget extends StatelessWidget {
                     child: ParsedText(
                       text: m["nValue"] ?? "",
                       textScaleFactor: 1.4,
-                      style: TextStyle(color: Colors.white70),
+                      style: TextStyle(
+                        color: Color(sc.displayFontColor.value),
+                      ),
                       parse: <MatchText>[
                         MatchText(
                           pattern: r"[/\+\-\u00D7\(\)%]",
                           style: TextStyle(
-                            color: Colors.green,
+                            color: Color(sc.operatorsColor.value),
                           ),
                         ),
                       ],
@@ -126,7 +118,9 @@ class HistoryWidget extends StatelessWidget {
                     },
                     child: Text(m["grValue"] ?? "",
                         textScaleFactor: 1.5,
-                        style: TextStyle(color: Colors.yellow.shade300)),
+                        style: TextStyle(
+                          color: Color(sc.grossResultFontColor.value),
+                        )),
                   ),
                 ),
                 alignment: Alignment.bottomRight,

@@ -2,7 +2,7 @@ import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:calculator_04/controllers/main_controller.dart';
-import 'package:intl/intl.dart';
+
 
 class InputW extends StatelessWidget {
   InputW({Key? key}) : super(key: key);

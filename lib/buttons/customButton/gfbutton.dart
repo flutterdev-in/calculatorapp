@@ -44,36 +44,36 @@ class GFButtonC extends StatelessWidget {
     double mw = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.all(padding),
-      child: Material(
+      child: Obx(() => Material(
         color: isButtenEnter
             ? Color(sc.enterButtonBackgroundColor.value)
             : Color(sc.buttonsBackgroundColor.value),
         child: InkWell(
-          onTap: ontap,
-          onLongPress: onLongPress,
-          child: Ink(
-            width: (mw - 20) / 4,
-            child: wantChild
-                ? Center(child: child)
-                : Center(
-                    child: isIcon
-                        ? Icon(
-                            iconData,
-                            color: iconColor,
-                            size: iconSize,
-                          )
-                        : Text(
-                            text!,
-                            style: TextStyle(
-                              color: textColour,
-                              fontSize: textSize,
-                            ),
-                          ),
-                  ),
-          ),
-          highlightColor: Color(sc.onTapColor.value),
-          splashColor: Color(sc.onTapColor.value),
-        ),
+              onTap: ontap,
+              onLongPress: onLongPress,
+              child: Ink(
+                width: (mw - 20) / 4,
+                child: wantChild
+                    ? Center(child: child)
+                    : Center(
+                        child: isIcon
+                            ? Icon(
+                                iconData,
+                                color: iconColor,
+                                size: iconSize,
+                              )
+                            : Text(
+                                text!,
+                                style: TextStyle(
+                                  color: textColour,
+                                  fontSize: textSize,
+                                ),
+                              ),
+                      ),
+              ),
+              highlightColor: Color(sc.onTapColor.value),
+              splashColor: Color(sc.onTapColor.value),
+            )),
       ),
     );
   }

@@ -1,8 +1,5 @@
 import 'package:calculator_04/buttons/_main_container.dart';
 import 'package:calculator_04/buttons/backspace.dart';
-import 'package:calculator_04/buttons/clear.dart';
-import 'package:calculator_04/buttons/enter.dart';
-import 'package:calculator_04/buttons/plus.dart';
 
 import 'package:calculator_04/history/history_box.dart';
 import 'package:calculator_04/history/history_button.dart';

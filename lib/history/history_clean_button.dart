@@ -1,9 +1,7 @@
 import 'package:calculator_04/buttons/customButton/gfbutton.dart';
-import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/history/history_controller.dart';
 import 'package:calculator_04/hive_boxes.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class HistoryCleanButton extends StatelessWidget {
   const HistoryCleanButton({Key? key}) : super(key: key);

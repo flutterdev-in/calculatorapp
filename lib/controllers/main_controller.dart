@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 import 'package:rich_text_controller/rich_text_controller.dart';
 
 

@@ -37,7 +37,7 @@ class ResultW extends StatelessWidget {
       r.allResults(b.n.value);
       return SizedBox(
         width: double.infinity,
-        height: md.height / 8 ,
+        height: md.height / 8,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(2, 0, 2, 2),
           child: Column(
@@ -49,18 +49,20 @@ class ResultW extends StatelessWidget {
                     flex: 1,
                     child: Align(
                         child: result(
-                            r.llr.value,
-                            sc.subResultsFontSize.value.toDouble(),
-                            Colors.orange.shade200),
+                          r.llr.value,
+                          sc.subResultsFontSize.value.toDouble(),
+                          Color(sc.subResultsFontColor.value),
+                        ),
                         alignment: Alignment.topLeft),
                   ),
                   Expanded(
                     flex: 1,
                     child: Align(
                         child: result(
-                            r.sr.value,
-                            sc.subResultsFontSize.value.toDouble(),
-                            Colors.orange.shade200),
+                          r.sr.value,
+                          sc.subResultsFontSize.value.toDouble(),
+                          Color(sc.subResultsFontColor.value),
+                        ),
                         alignment: Alignment.topRight),
                   ),
                 ],
@@ -76,9 +78,10 @@ class ResultW extends StatelessWidget {
                 }
                 return Align(
                     child: result(
-                        r.gr.value,
-                        sc.grossResultFontSize.value.toDouble(),
-                        Colors.orange.shade300),
+                      r.gr.value,
+                      sc.grossResultFontSize.value.toDouble(),
+                      Color(sc.grossResultFontColor.value),
+                    ),
                     alignment: al);
               }),
             ],

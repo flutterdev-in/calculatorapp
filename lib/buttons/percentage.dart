@@ -1,11 +1,9 @@
-import 'package:calculator_04/_buttons.dart';
 import 'package:calculator_04/buttons/customButton/gfbutton.dart';
 import 'package:calculator_04/buttons/functions/add_symbol.dart';
 import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/useful/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:calculator_04/controllers/main_controller.dart';
 
 class Percentage extends StatelessWidget {

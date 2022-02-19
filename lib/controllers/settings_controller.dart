@@ -3,6 +3,7 @@ import 'package:calculator_04/settings/settings_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+
 final SettingsController sc = Get.put(
   SettingsController(),
   permanent: true,
@@ -80,22 +81,21 @@ class SettingsController extends GetxController {
 
     sbox.put(bm.favColors, favColors0);
   }
-  
-
-  
 }
+
+
+
 void putFavColor(int intColor) {
-  List<int> lf = sbox.get(bm.favColors)??favColors0;
+  List<int> lf = sbox.get(bm.favColors) ?? favColors0;
   if (!lf.contains(intColor)) {
     lf.add(intColor);
     if (lf.length > 35) {
-      lf.removeAt(0);
+      lf.removeAt(favColors0.length);
     }
-    
+
     sbox.put(bm.favColors, lf);
-  }}
-
-
+  }
+}
 
 List<Color> listFavColors(List<int> listint) {
   List<Color> listFavColors0 = [];
@@ -104,11 +104,6 @@ List<Color> listFavColors(List<int> listint) {
   }
   return listFavColors0;
 }
-
-
-
-
-
 
 List<int> favColors0 = [
   0xFFFFFFFF,

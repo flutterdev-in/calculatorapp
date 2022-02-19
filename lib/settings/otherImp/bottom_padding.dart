@@ -11,7 +11,7 @@ class BottonPadding extends StatelessWidget {
     return Card(
       color: Colors.white12,
       child: ListTile(
-        title:const Text("Bottom Empty Space"),
+        title: const Text("Bottom empty space"),
         trailing: SizedBox(
           width: 110,
           child: Row(
@@ -20,24 +20,18 @@ class BottonPadding extends StatelessWidget {
               InkWell(
                 child: const Center(child: Text("  -  ")),
                 onTap: () {
-                 
-                    sc.bottomPadding.value -= 3;
-                    sbox.put(
-                        bm.bottomPadding, sc.bottomPadding.value);
-                  
+                  sc.bottomPadding.value -= 3;
+                  sbox.put(bm.bottomPadding, sc.bottomPadding.value);
                 },
               ),
               Obx(() => Text(sc.bottomPadding.value
                   .toString()
                   .replaceAll(RegExp(r'\..*'), ""))),
               InkWell(
-                child:const Text("  +  "),
+                child: const Text("  +  "),
                 onTap: () {
-                  
-                    sc.bottomPadding.value += 3;
-                    sbox.put(
-                        bm.bottomPadding, sc.bottomPadding.value);
-                  
+                  sc.bottomPadding.value += 3;
+                  sbox.put(bm.bottomPadding, sc.bottomPadding.value);
                 },
               ),
             ],

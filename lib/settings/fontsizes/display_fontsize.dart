@@ -4,7 +4,6 @@ import 'package:calculator_04/hive_boxes.dart';
 import 'package:calculator_04/settings/settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 
 class DisplayFontSize extends StatelessWidget {
   const DisplayFontSize({Key? key}) : super(key: key);

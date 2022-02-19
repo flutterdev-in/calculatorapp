@@ -4,17 +4,22 @@ import 'package:calculator_04/settings/settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:get/get.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
+Rx<String> selectedString = "".obs;
 
 class ColorPickerWd extends StatelessWidget {
-  int colorInt;
   String text;
+  int colorInt;
   void Function(Color) onColorChange;
+  String colorKeyToPut;
 
   ColorPickerWd({
     Key? key,
     required this.text,
     required this.colorInt,
     required this.onColorChange,
+    required this.colorKeyToPut,
   }) : super(key: key);
 
   @override
@@ -22,17 +27,28 @@ class ColorPickerWd extends StatelessWidget {
     return Card(
       color: Colors.white12,
       child: ListTile(
+        selectedColor: Colors.green,
         title: Text(text),
-        trailing: Padding(
-          padding: const EdgeInsets.fromLTRB(2, 12, 2, 12),
-          child: InkWell(
-            child: Container(
-              width: 35,
-              color: Color(colorInt),
-            ),
-            onTap: () => colorPicker(context),
-          ),
+        trailing: Flexible(
+          child: Obx(() => Wrap(
+                children: [
+                  (selectedString.value == colorKeyToPut)
+                      ? Icon(
+                          MdiIcons.circleSmall,
+                        )
+                      : SizedBox(),
+                  Container(
+                    width: 35,
+                    height: 35,
+                    color: Color(colorInt),
+                  ),
+                ],
+              )),
         ),
+        onTap: () {
+          selectedString.value = colorKeyToPut;
+          colorPicker(context);
+        },
       ),
     );
   }
@@ -47,7 +63,7 @@ class ColorPickerWd extends StatelessWidget {
         scrollable: true,
         actionsAlignment: MainAxisAlignment.start,
         content: SizedBox(
-          height: 550,
+          height: 500,
           child: Obx(() => Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -63,7 +79,7 @@ class ColorPickerWd extends StatelessWidget {
                           },
                         )
                       : ColorPicker(
-                          labelTypes: [ColorLabelType.rgb],
+                          labelTypes: [],
                           paletteType: PaletteType.hueWheel,
                           pickerColor: Color(colorInt),
                           onColorChanged: (color) {
@@ -79,14 +95,15 @@ class ColorPickerWd extends StatelessWidget {
                           onPressed: () {
                             isFavPick.value = !isFavPick.value;
                           },
-                          child:
-                              Text(isFavPick.value ? "Template" : "My Colors")),
+                          child: Text(
+                              isFavPick.value ? "Disk view" : "My Colors")),
                       ElevatedButton(
                           onPressed: () {
                             Navigator.of(context).pop();
                             putFavColor(pickedColorInt.value);
+                            sbox.put(colorKeyToPut, pickedColorInt.value);
                           },
-                          child: Text("Pick colour")),
+                          child: Text("Pick color")),
                     ],
                   ),
                 ],

@@ -43,7 +43,7 @@ class TableResult extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Align(
-                child: parseText("Total  =  " + rc.tgr.value,
+                child: parseText("Total =  " + rc.tgr.value,
                     txtColor: Color(sc.grossResultFontColor.value)),
                 alignment: Alignment.topRight,
               ),
@@ -117,6 +117,9 @@ class TableResult extends StatelessWidget {
           child: Align(
             child: Text(
               (index + 1).toString(),
+              style: TextStyle(
+                color: Color(sc.displayFontColor.value),
+              ),
             ),
             alignment: Alignment.center,
           ),

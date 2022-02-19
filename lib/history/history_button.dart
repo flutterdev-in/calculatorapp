@@ -2,11 +2,9 @@ import 'package:calculator_04/buttons/customButton/gfbutton.dart';
 import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/history/history_box.dart';
 import 'package:calculator_04/history/history_controller.dart';
-import 'package:calculator_04/history/history_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:calculator_04/controllers/main_controller.dart';
-import 'package:hive/hive.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class HistoryButton extends StatelessWidget {

@@ -3,7 +3,6 @@ import 'package:calculator_04/buttons/functions/add_symbol.dart';
 import 'package:calculator_04/history/history_box.dart';
 import 'package:calculator_04/controllers/result_controller.dart';
 import 'package:calculator_04/controllers/settings_controller.dart';
-import 'package:calculator_04/useful/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';

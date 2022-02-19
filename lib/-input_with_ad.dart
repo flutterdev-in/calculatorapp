@@ -4,7 +4,7 @@ import 'package:calculator_04/input/input_stack.dart';
 import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
+
 
 class InputWithAdWidget extends StatelessWidget {
   InputWithAdWidget({Key? key}) : super(key: key);

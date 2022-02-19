@@ -203,6 +203,7 @@ class ResultController extends GetxController {
       await sbox.put(bm.primaryCommaPosition, await primaryComma());
     }
     primaryCommaPosition.value = sbox.get(bm.primaryCommaPosition) ?? 33;
+    nf.value = primaryCommaPosition.value;
   }
 }
 

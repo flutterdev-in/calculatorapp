@@ -1,13 +1,10 @@
 import 'package:calculator_04/controllers/result_controller.dart';
-import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/hive_boxes.dart';
 import 'package:calculator_04/settings/settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/colors/gf_color.dart';
-import 'package:getwidget/components/button/gf_button.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:hive/hive.dart';
+
 
 class CommaPosition extends StatelessWidget {
   const CommaPosition({Key? key}) : super(key: key);
