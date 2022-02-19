@@ -3,7 +3,6 @@ import 'package:calculator_04/buttons/backspace.dart';
 import 'package:calculator_04/buttons/clear.dart';
 import 'package:calculator_04/buttons/enter.dart';
 import 'package:calculator_04/buttons/plus.dart';
-import 'package:calculator_04/buttons/precision.dart';
 
 import 'package:calculator_04/history/history_box.dart';
 import 'package:calculator_04/history/history_button.dart';
@@ -13,7 +12,7 @@ import 'package:calculator_04/history/history_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:calculator_04/controller/main_controller.dart';
+import 'package:calculator_04/controllers/main_controller.dart';
 
 class ButtonsWd extends StatelessWidget {
   ButtonsWd({Key? key}) : super(key: key);
@@ -37,25 +36,35 @@ class ButtonsWd extends StatelessWidget {
         }
       }),
     );
+
+    // ? Row(
+    //     children: [
+    //       Expanded(
+    //           flex: 400,
+    //           child: Container(
+    //               child:  HistoryWidget(),
+    //               // !hc.isHistoryEmpty.value
+    //               //     ? HistoryWidget()
+    //               //     : const SizedBox(),
+    //               color: Colors.white10)),
+    //       Expanded(child: fixedButtons(), flex: 97),
+    //     ],
+    //   )
   }
 
   Widget withHistory() {
-    return Row(
-      children: [
-        Expanded(
-          flex: 400,
-          child: Container(
-              child: Obx(() {
-                if (!hc.isHistoryEmpty.value) {
-                  return HistoryWidget();
-                } else {
-                  return Container();
-                }
-              }),
-              color: Colors.white10),
-        ),
-        Expanded(child: fixedButtons(), flex: 97),
-      ],
+    return Obx(
+      () => Row(
+        children: [
+          Expanded(
+            flex: 400,
+            child: Container(
+                child: !hc.isHistoryEmpty.value ? HistoryWidget() : Container(),
+                color: Colors.white10),
+          ),
+          Expanded(child: fixedButtons(), flex: 97),
+        ],
+      ),
     );
   }
 

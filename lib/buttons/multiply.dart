@@ -1,32 +1,32 @@
 import 'package:calculator_04/buttons/customButton/gfbutton.dart';
 import 'package:calculator_04/buttons/functions/add_symbol.dart';
 import 'package:calculator_04/buttons/functions/ocb.dart';
+import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/useful/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:calculator_04/controller/main_controller.dart';
+import 'package:calculator_04/controllers/main_controller.dart';
 
 class Multiply extends StatelessWidget {
   Multiply({Key? key}) : super(key: key);
-  final MainController b = Get.put(MainController());
 
   void onPressed() {
-    b.n.value = AddSymbol().add("mt", b.n.value, b.p.value);
-    b.p.value++;
+    mc.n.value = AddSymbol().add("mt", mc.n.value, mc.p.value);
+    mc.p.value++;
     Iterable<String> regex(String pattern) {
-      return RegEx().listMatch(pattern, b.n.value);
+      return RegEx().listMatch(pattern, mc.n.value);
     }
 
-    if (b.n.value.contains(RegExp(r'(^)mt'))) {
-      b.n.value = b.n.value.replaceAll("dv", "");
+    if (mc.n.value.contains(RegExp(r'(^)mt'))) {
+      mc.n.value = mc.n.value.replaceAll("dv", "");
       // b.p.value--;
-    } else if (b.n.value.contains(RegExp(r'(\d|\)|%|\n)mt'))) {
-      b.n.value = b.n.value.replaceAll("mt", "\u00D7");
-    } else if (b.n.value.contains(".mt")) {
-      b.n.value = b.n.value.replaceAll("mt", "0\u00D7");
-      b.p.value++;
+    } else if (mc.n.value.contains(RegExp(r'(\d|\)|%|\n)mt'))) {
+      mc.n.value = mc.n.value.replaceAll("mt", "\u00D7");
+    } else if (mc.n.value.contains(".mt")) {
+      mc.n.value = mc.n.value.replaceAll("mt", "0\u00D7");
+      mc.p.value++;
     }
 
     for (String matchedString in regex(
@@ -35,34 +35,33 @@ class Multiply extends StatelessWidget {
       int closedBraS = OCB().ocb(matchedString, '\u207D', '\u207E')[1];
       if (matchedString.contains(RegExp(
           r'[\u2070\u00B9\u00B2\u00B3\u2074\u2075\u2076\u2077\u2078\u2079]mt'))) {
-        b.n.value = b.n.value.replaceAll("mt", "\u02E3");
+        mc.n.value = mc.n.value.replaceAll("mt", "\u02E3");
       } else if (matchedString.contains('\u22C5mt')) {
-        b.n.value = b.n.value.replaceAll("mt", "\u02E3");
+        mc.n.value = mc.n.value.replaceAll("mt", "\u02E3");
       } else if (closedBraS == openBraS) {
-        b.n.value = b.n.value.replaceAll("mt", "\u00D7");
+        mc.n.value = mc.n.value.replaceAll("mt", "\u00D7");
       }
     }
-    if (b.n.value.contains(RegExp(
+    if (mc.n.value.contains(RegExp(
         r'[\u2070\u00B9\u00B2\u00B3\u2074\u2075\u2076\u2077\u2078\u2079]mt'))) {
-      b.n.value = b.n.value.replaceAll("mt", "\u00D7");
-    } else if (b.n.value.contains('\u22C5mt')) {
-      b.n.value = b.n.value.replaceAll("mt", "\u2070\u00D7");
-      b.p.value++;
+      mc.n.value = mc.n.value.replaceAll("mt", "\u00D7");
+    } else if (mc.n.value.contains('\u22C5mt')) {
+      mc.n.value = mc.n.value.replaceAll("mt", "\u2070\u00D7");
+      mc.p.value++;
     }
-    if (b.n.value.contains('mt')) {
-      b.n.value = b.n.value.replaceAll("mt", "");
-      b.p.value--;
+    if (mc.n.value.contains('mt')) {
+      mc.n.value = mc.n.value.replaceAll("mt", "");
+      mc.p.value--;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return GFButtonC.all(
-      ontap: () => onPressed(),
-      iconData: MdiIcons.windowClose,
-      iconColor: Colors.green,
-      iconSize: 40,
-      // padding: 0.3,
-    );
+    return Obx(() => GFButtonC.all(
+          ontap: () => onPressed(),
+          iconData: MdiIcons.windowClose,
+          iconColor: Color(sc.operatorsColor.value), //  Colors.green,
+          iconSize: sc.operatorsIconSize.value.toDouble(),
+        ));
   }
 }

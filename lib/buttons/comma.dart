@@ -1,26 +1,23 @@
 import 'package:calculator_04/buttons/customButton/gfbutton.dart';
-import 'package:calculator_04/result/controllers/result_controller.dart';
-import 'package:calculator_04/settings/settings_screens.dart';
+import 'package:calculator_04/controllers/result_controller.dart';
+import 'package:calculator_04/controllers/settings_controller.dart';
+import 'package:calculator_04/hive_boxes.dart';
+import 'package:calculator_04/settings/settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:getwidget/getwidget.dart';
 
 class Comma extends StatelessWidget {
-  Comma({Key? key}) : super(key: key);
-  final ResultController r = Get.put(ResultController());
-  final Box boxS = Hive.box("settings");
+  const Comma({Key? key}) : super(key: key);
+
   void onPressed() {
-    r.isCommaEnabled.value = !r.isCommaEnabled.value;
-    boxS.put("isCommaEnabled", r.isCommaEnabled.value);
-    String nfd = boxS.get("nfd") ?? "33";
-    String nfd0 = boxS.get("nfd0") ?? "";
-    if (r.isCommaEnabled.value) {
-      r.nf.value = nfd;
+    var primaryCommaPosition = sbox.get(bm.primaryCommaPosition) ?? 33;
+    var secondaryCommaPosition = sbox.get(bm.secondaryCommaPosition) ?? 0;
+    if (rc.isPrimaryComma.value) {
+      rc.nf.value = secondaryCommaPosition;
     } else {
-      r.nf.value = nfd0;
+      rc.nf.value = primaryCommaPosition;
     }
+    rc.isPrimaryComma.value = !rc.isPrimaryComma.value;
   }
 
   Widget icon() {
@@ -33,11 +30,11 @@ class Comma extends StatelessWidget {
             children: [
               Text(
                 ",",
-                textScaleFactor: 4,
                 style: TextStyle(
-                    color: r.isCommaEnabled.value
-                        ? Colors.brown
-                        : Colors.blueGrey.shade800),
+                    fontSize: sc.operatorsIconSize.value.toDouble(),
+                    color: rc.isPrimaryComma.value
+                        ? Color(sc.actionButtonsColor.value)
+                        : Color(sc.numbersColor.value)),
               ),
               SizedBox(
                 height: 6,
@@ -51,10 +48,10 @@ class Comma extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GFButtonC.all(
-      ontap: () => onPressed(),
-      wantChild: true,
-      child: Obx(() => icon()),
-    );
+    return Obx(() => GFButtonC.all(
+          ontap: () => onPressed(),
+          wantChild: true,
+          child: icon(),
+        ));
   }
 }

@@ -1,7 +1,7 @@
 import 'package:calculator_04/ads/banner_ad_widget.dart';
-import 'package:calculator_04/controller/main_controller.dart';
+import 'package:calculator_04/controllers/main_controller.dart';
 import 'package:calculator_04/input/input_stack.dart';
-import 'package:calculator_04/settings/settings_controller.dart';
+import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -18,9 +18,9 @@ class InputWithAdWidget extends StatelessWidget {
           (md.height * 3 / 5 - 50) -
           (md.height / 8) -
           44 -
-          (sc.bottomPadding.value);
+          (sc.bottomPadding.value.toDouble());
       return Container(
-        padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+        padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
         height: heightx,
         child: Stack(
           children: [

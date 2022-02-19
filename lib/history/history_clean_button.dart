@@ -1,30 +1,27 @@
 import 'package:calculator_04/buttons/customButton/gfbutton.dart';
+import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/history/history_controller.dart';
-import 'package:calculator_04/history/history_widget.dart';
+import 'package:calculator_04/hive_boxes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:calculator_04/controller/main_controller.dart';
-import 'package:hive/hive.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class HistoryCleanButton extends StatelessWidget {
-  HistoryCleanButton({Key? key}) : super(key: key);
-  final MainController b = Get.put(MainController());
-  final HistoryController hc = Get.put(HistoryController());
+  const HistoryCleanButton({Key? key}) : super(key: key);
+
   void onPressed() async {
-    await Hive.box("history").clear();
-    await Future.delayed(Duration(milliseconds: 600));
+    await hbox.clear();
+    await Future.delayed(const Duration(milliseconds: 600));
     hc.isHistoryEmpty.value = true;
   }
 
   @override
   Widget build(BuildContext context) {
     return GFButtonC.all(
-      ontap: () => onPressed(),
-      isIcon: false,
-      text: " Clear\n History",
-      textScaleFactor: 1.1,
-      textColour: Colors.brown,
-    );
+          ontap: () => onPressed(),
+          isIcon: false,
+          text: " Clear\n History",
+          textSize: 10,
+          textColour: Colors.brown,
+        );
   }
 }

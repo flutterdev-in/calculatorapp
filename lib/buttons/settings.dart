@@ -1,28 +1,29 @@
 import 'package:calculator_04/buttons/customButton/gfbutton.dart';
+import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/history/history_box.dart';
-import 'package:calculator_04/result/controllers/result_controller.dart';
+import 'package:calculator_04/controllers/result_controller.dart';
 import 'package:calculator_04/settings/settings_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:calculator_04/controller/main_controller.dart';
+import 'package:calculator_04/controllers/main_controller.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class Settings extends StatelessWidget {
-  Settings({Key? key}) : super(key: key);
-  final MainController b = Get.put(MainController());
-  final ResultController r = Get.put(ResultController());
-  
+  const Settings({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return GFButtonC.all(
-      ontap: () => Get.to(
-        SettingsScreen(),
-        opaque: false,
-        transition: Transition.leftToRightWithFade,
-      ),
-      iconData: MdiIcons.cog,
-      iconSize: 20,
-      iconColor: Colors.brown,
-    );
+    return Obx(() => GFButtonC.all(
+          ontap: () {
+            Get.to(
+              const SettingsScreen(),
+              opaque: false,
+              transition: Transition.leftToRightWithFade,
+            );
+          },
+          iconData: MdiIcons.cog,
+          iconSize: sc.actionButtonsIconSize.value.toDouble(),
+          iconColor: Color(sc.actionButtonsColor.value), //  Colors.brown,
+        ));
   }
 }

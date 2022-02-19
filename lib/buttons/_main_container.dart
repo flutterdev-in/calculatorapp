@@ -13,7 +13,6 @@ import 'package:calculator_04/buttons/numbers.dart';
 import 'package:calculator_04/buttons/percentage.dart';
 import 'package:calculator_04/buttons/plus.dart';
 import 'package:calculator_04/buttons/power.dart';
-import 'package:calculator_04/buttons/precision.dart';
 import 'package:calculator_04/buttons/zero_zero.dart';
 import 'package:calculator_04/history/history_button.dart';
 import 'package:calculator_04/buttons/settings.dart';
@@ -26,9 +25,13 @@ class MainContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     Size md = MediaQuery.of(context).size;
     double mw = MediaQuery.of(context).size.width;
-    return Container(
-      height: md.height * 3 / 5 - 50,
-      child: grossContainer(),
+    return Align(
+      alignment: Alignment.bottomRight,
+      child: Container(
+        height: md.height * 3 / 5 - 50,
+        width: md.width - 12,
+        child: grossContainer(),
+      ),
     );
   }
 
@@ -48,12 +51,11 @@ class MainContainer extends StatelessWidget {
   Widget firstRow() {
     return Row(
       children: [
-        Expanded(child: Clear(), flex: 8),
-        Expanded(child: Settings(), flex: 6),
-        Expanded(child: Comma(), flex: 5),
-        Expanded(child: PrecisionB(), flex: 10),
-        Expanded(child: BackSpace(), flex: 8),
-        Expanded(child: HistoryButton(), flex: 8),
+        Expanded(child: Clear(), flex: 1),
+        Expanded(child: Settings(), flex: 1),
+        Expanded(child: Comma(), flex: 1),
+        Expanded(child: BackSpace(), flex: 1),
+        Expanded(child: HistoryButton(), flex: 1),
       ],
     );
   }

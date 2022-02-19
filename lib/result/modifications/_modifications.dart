@@ -17,6 +17,7 @@ class Modifications {
         .replaceAll("+-", '-')
         .replaceAll("+*", '*')
         .replaceAll(",", '')
+        .replaceAll("'", '')
         .replaceAll("+/", '/')
         .replaceAll(RegExp(r'\s+'), '')
         ;

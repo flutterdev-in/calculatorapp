@@ -10,7 +10,6 @@ import 'package:calculator_04/buttons/numbers.dart';
 import 'package:calculator_04/buttons/percentage.dart';
 import 'package:calculator_04/buttons/plus.dart';
 import 'package:calculator_04/buttons/power.dart';
-import 'package:calculator_04/buttons/precision.dart';
 import 'package:calculator_04/buttons/zero_zero.dart';
 import 'package:calculator_04/history/history_box.dart';
 import 'package:calculator_04/history/history_button.dart';
@@ -19,12 +18,11 @@ import 'package:calculator_04/history/history_controller.dart';
 import 'package:calculator_04/history/history_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:calculator_04/controller/main_controller.dart';
+import 'package:calculator_04/controllers/main_controller.dart';
 
 class ButtonsW extends StatelessWidget {
   ButtonsW({Key? key}) : super(key: key);
   MainController b = Get.put(MainController());
-  final HistoryController hc = Get.put(HistoryController());
   final HistoryBox hb = HistoryBox();
 
   @override
@@ -72,12 +70,19 @@ class ButtonsW extends StatelessWidget {
 
   Widget calcWhole() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        firstLeft(),
-        secondLeft(),
-        thirdLeft(),
-        rigthColumn(),
+        SizedBox(
+          width: 100,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            firstLeft(),
+            secondLeft(),
+            thirdLeft(),
+            rigthColumn(),
+          ],
+        ),
       ],
     );
   }
@@ -100,7 +105,6 @@ class ButtonsW extends StatelessWidget {
       children: [
         Expanded(child: HistoryButton(), flex: 3),
         Expanded(child: BackSpace(), flex: 3),
-        Expanded(child: PrecisionB(), flex: 4),
         Expanded(child: HistoryCleanButton(), flex: 4),
         Expanded(child: Plus(), flex: 4),
         Expanded(child: Enter(), flex: 4),
@@ -113,7 +117,6 @@ class ButtonsW extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Clear(),
-        PrecisionB(),
         BackSpace(),
       ],
     );
@@ -208,7 +211,6 @@ class ButtonsW extends StatelessWidget {
 
   Widget secondLeft() {
     return Column(children: [
-      Expanded(child: PrecisionB(), flex: 3),
       Expanded(child: Percentage(), flex: 3),
       Expanded(child: Numbers.select(8), flex: 4),
       Expanded(child: Numbers.select(5), flex: 4),

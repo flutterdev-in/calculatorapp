@@ -1,20 +1,20 @@
 import 'package:calculator_04/buttons/customButton/gfbutton.dart';
+import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/history/history_box.dart';
 import 'package:calculator_04/history/history_controller.dart';
 import 'package:calculator_04/history/history_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:calculator_04/controller/main_controller.dart';
+import 'package:calculator_04/controllers/main_controller.dart';
 import 'package:hive/hive.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class HistoryButton extends StatelessWidget {
   HistoryButton({Key? key}) : super(key: key);
   final MainController b = Get.put(MainController());
-  final HistoryController hrx = Get.put(HistoryController());
   void onPressed() {
-    hrx.isHistoryOpen.value = !hrx.isHistoryOpen.value;
-    hrx.isHistoryEmpty.value = false;
+    hc.isHistoryOpen.value = !hc.isHistoryOpen.value;
+    hc.isHistoryEmpty.value = false;
   }
 
   void longPress() {
@@ -30,9 +30,9 @@ class HistoryButton extends StatelessWidget {
           ontap: () => onPressed(),
           onLongPress: () => longPress(),
           iconData:
-              hrx.isHistoryOpen.value ? MdiIcons.tableLarge : MdiIcons.history,
-          iconColor: Colors.brown,
-          iconSize: 25,
+              hc.isHistoryOpen.value ? MdiIcons.tableLarge : MdiIcons.history,
+          iconColor: Color(sc.actionButtonsColor.value),
+          iconSize: sc.actionButtonsIconSize.value.toDouble() + 4,
           // buttonColor: Colors.white12,
         ));
   }

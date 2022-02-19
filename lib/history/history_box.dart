@@ -1,4 +1,4 @@
-import 'package:calculator_04/result/controllers/result_controller.dart';
+import 'package:calculator_04/controllers/result_controller.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 

@@ -1,7 +1,6 @@
 import 'dart:convert';
-import 'package:calculator_04/useful/regex.dart';
+import 'package:calculator_04/settings/settings_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:calculator_04/controller/main_controller.dart';
 import 'package:calculator_04/result/modifications/_modifications.dart';
 import 'package:calculator_04/result/try_catch.dart';
 import 'package:get/get.dart';
@@ -10,24 +9,29 @@ import 'package:intl/intl.dart';
 import 'package:num_utilities/src/num_utilities.dart'; // do not delete, roundToPrecision using this
 import 'package:function_tree/function_tree.dart';
 
+final ResultController rc = Get.put(
+  ResultController(),
+  permanent: true,
+);
+
 class ResultController extends GetxController {
-  MainController b = Get.put(MainController());
-  Box bxs = Hive.box("settings");
+  Box sbox = Hive.box("settings");
   Rx<String> gr = "0".obs;
   Rx<String> sr = "".obs;
   Rx<String> llr = "".obs;
   Rx<String> tableString = "".obs;
   Rx<String> tsr = "".obs;
   Rx<String> tgr = "".obs;
-  Rx<bool> isCommaEnabled = true.obs;
-  Rx<String> nf = "".obs;
+  Rx<int> nf = 33.obs;
   Rx<int> precision = 2.obs;
-  Rx<int> digitLength = 9.obs;
-  Rx<String> ls = "".obs;
+  Rx<String> commaSymbol = ",".obs;
+  Rx<bool> isPrimaryComma = true.obs;
+  Rx<int> primaryCommaPosition = 33.obs;
+  Rx<int> secondaryCommaPosition = 0.obs;
 
   @override
   void onInit() async {
-    await getDefaultsFromBox();
+    await init();
     super.onInit();
   }
 
@@ -53,9 +57,7 @@ class ResultController extends GetxController {
   }
 
   void lastLineResult(String nValue) {
-
-
-   if (nValue.contains("\n")) {
+    if (nValue.contains("\n")) {
       List<String> splitNvalue = nValue.split("\n");
       if (splitNvalue.length < 3 && splitNvalue.last == "") {
         llr.value = "";
@@ -78,14 +80,10 @@ class ResultController extends GetxController {
   void grossResult(String nValue) {
     String nValue0 = "";
     if (nValue.contains("\n")) {
-      nValue0 = sr.value.replaceAll(",", "") + "\n" + nValue.split("\n").last;
+      nValue0 = sr.value + "\n" + nValue.split("\n").last;
     } else {
       nValue0 = nValue;
     }
-
-    // if (nValue.isEmpty) {
-    //   gr.value = "0";
-    // }
     String newLastNvalue = Modifications().modifications(nValue0);
     num resultNum = TryCatches().tc(newLastNvalue);
 
@@ -101,7 +99,7 @@ class ResultController extends GetxController {
       return resultNum.toString();
     } else if (resultNum.toString().contains("e+")) {
       return resultIfE(resultNum);
-    } else if (resultNum.abs() < int.parse("1" + "0" * digitLength.value)) {
+    } else if (resultNum.abs() < 1000000000) {
       String precisionS = roundNum(resultNum);
       return numFormat(precisionS);
     } else {
@@ -111,12 +109,12 @@ class ResultController extends GetxController {
 
   String manageDigitForLargeNumber(num resultNum) {
     String newResultString;
-    if (nf.value == "23" && resultNum < ("10^16").interpret()) {
+    if (nf.value == 23 && resultNum < ("10^16").interpret()) {
       num newResultNum = resultNum / 10000000;
       String precisionS = roundNum(newResultNum);
       newResultString = numFormat(precisionS);
       return newResultString + " \u00D710" + tenPowerInUnicode("7");
-    } else if (nf.value == "33" && resultNum < ("10^21").interpret()) {
+    } else if (nf.value == 33 && resultNum < ("10^21").interpret()) {
       num newResultNum = resultNum / 1000000000;
       String precisionS = roundNum(newResultNum);
       newResultString = numFormat(precisionS);
@@ -136,15 +134,15 @@ class ResultController extends GetxController {
   String numFormat(String roundS) {
     String bfd = roundS.split(".").first;
     String afd = roundS.split(".").last;
-    if (nf.value == "23") {
+    if (nf.value == 23) {
       NumberFormat nfm = NumberFormat.currency(locale: "hi");
       bfd = nfm.format(num.parse(bfd));
-    } else if (nf.value == "33") {
+    } else if (nf.value == 33) {
       NumberFormat nfm = NumberFormat.currency(locale: "en_US");
       bfd = nfm.format(num.parse(bfd));
     }
     bfd = bfd.replaceAll(RegExp(r'[^\-\d\.\,]*'), "");
-    bfd = bfd.split(".").first;
+    bfd = bfd.split(".").first.replaceAll(",", commaSymbol.value);
 
     if (roundS.contains(".")) {
       return bfd + "." + afd;
@@ -182,47 +180,29 @@ class ResultController extends GetxController {
     return first + " \u00D710" + tenPowerInUnicode(last);
   }
 
-  Future<void> getDefaultsFromBox() async {
-    bool? _isCommaEnabled = bxs.get("isCommaEnabled");
-    int? _precision = bxs.get("precision");
-    int? _digitLength = bxs.get("digitLength");
+  Future<void> init() async {
+    commaSymbol.value = sbox.get(bm.commaSymbol) ?? ",";
+    precision.value = sbox.get(bm.precision) ?? 2;
+    secondaryCommaPosition.value = sbox.get(bm.secondaryCommaPosition) ?? 0;
 
-    if (_isCommaEnabled == null) {
-      bxs.put("isCommaEnabled", true);
-    }
-    if (_precision == null) {
-      bxs.put("precision", 2);
-    }
-    if (_digitLength == null) {
-      bxs.put("digitLength", 9);
-    }
-    bxs.put("nfd0", "");
-    isCommaEnabled.value = bxs.get("isCommaEnabled") ?? true;
-    precision.value = bxs.get("precision") ?? 2;
-    digitLength.value = bxs.get("digitLength") ?? 9;
-
-    // get nfValue
-    String? nfValue = bxs.get("nfd");
-    if (nfValue == null) {
+    Future<int> primaryComma() async {
+      int c = 33;
       try {
         await http.get(Uri.parse('http://ip-api.com/json')).then((value) {
           String countryCode =
               json.decode(value.body)['countryCode'].toString().toUpperCase();
           if (countryCode.contains(RegExp(r'IN|PK|NP|BD|LK'))) {
-            nfValue = "23";
-          } else {
-            nfValue = "33";
+            c = 23;
           }
         });
-      } catch (err) {
-        nfValue = "33";
-      }
-      bxs.put("nfd", nfValue);
+      } catch (err) {}
+      return c;
     }
-    nf.value = nfValue ?? "33";
-    if (!isCommaEnabled.value) {
-      nf.value = "";
+
+    if (sbox.get(bm.primaryCommaPosition) == null) {
+      await sbox.put(bm.primaryCommaPosition, await primaryComma());
     }
+    primaryCommaPosition.value = sbox.get(bm.primaryCommaPosition) ?? 33;
   }
 }
 
@@ -255,9 +235,9 @@ String tenPowerInUnicode(String power) {
   // String manageDigitForLargeNumber(num resultNum) {
   //   int length = resultNum.toString().split(".").first.length;
   //   int digit = length - 2;
-  //   if (nf.value == "23") {
+  //   if (nf.value == 223) {
   //     digit = length - length % 2 - 1;
-  //   } else if (nf.value == "33") {
+  //   } else if (nf.value == 333) {
   //     digit = length - length % 3;
   //     if (length % 3 == 0) {
   //       digit = length - 3;

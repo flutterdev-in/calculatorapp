@@ -1,4 +1,6 @@
-import 'package:calculator_04/result/controllers/result_controller.dart';
+import 'package:calculator_04/controllers/main_controller.dart';
+import 'package:calculator_04/controllers/result_controller.dart';
+import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/result/modifications/_modifications.dart';
 import 'package:calculator_04/result/try_catch.dart';
 import 'package:calculator_04/useful/regex.dart';
@@ -8,7 +10,6 @@ import 'package:get/get.dart';
 
 class TableResult extends StatelessWidget {
   TableResult({Key? key}) : super(key: key);
-  final ResultController r = Get.put(ResultController());
   List<String> listStrings = [];
   String lastString = "";
 
@@ -22,12 +23,12 @@ class TableResult extends StatelessWidget {
           title: Text("Result Table"),
           backgroundColor: Colors.black,
         ),
-        body: Container(
-          color: Colors.black,
-          child: ListView(
-            children: [listBuilder(), endResult()],
-          ),
-        ),
+        body: Obx(() => Container(
+              color: Colors.black,
+              child: ListView(
+                children: [listBuilder(), endResult()],
+              ),
+            )),
       ),
     );
   }
@@ -42,8 +43,8 @@ class TableResult extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Align(
-                child: parseText("Total  =  " + r.tgr.value,
-                    txtColor: Colors.yellow.shade500),
+                child: parseText("Total  =  " + rc.tgr.value,
+                    txtColor: Color(sc.grossResultFontColor.value)),
                 alignment: Alignment.topRight,
               ),
             )),
@@ -64,8 +65,8 @@ class TableResult extends StatelessWidget {
                 alignment: Alignment.topRight,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: parseText("Total  =  " + r.tsr.value,
-                      txtColor: Colors.orange.shade200),
+                  child: parseText("Total  =  " + rc.tsr.value,
+                      txtColor: Color(sc.subResultsFontColor.value)),
                 ),
               ),
             ),
@@ -80,9 +81,9 @@ class TableResult extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Wrap(
                     children: [
-                      parseText("Total $lastString = ",
-                          txtColor: Colors.orange.shade200),
-                      parseText(r.tgr.value, txtColor: Colors.orange.shade400),
+                      parseText("Total$lastString = ",
+                          txtColor: Color(sc.grossResultFontColor.value)),
+                      parseText(rc.tgr.value, txtColor: Colors.orange.shade400),
                     ],
                   ),
                 ),
@@ -100,93 +101,134 @@ class TableResult extends StatelessWidget {
         physics: ScrollPhysics(),
         itemCount: listStrings.length,
         itemBuilder: (context, index) {
-          String rowString = listStrings[index];
-          String rowResult = rowResultF(rowString);
-          return Padding(
-            padding: const EdgeInsets.fromLTRB(8, 1, 8, 1),
-            child: IntrinsicHeight(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      height: double.infinity,
-                      color: Colors.white12,
-                      child: Align(
-                        child: Text(
-                          (index + 1).toString(),
-                          textScaleFactor: 1.25,
-                        ),
-                        alignment: Alignment.center,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 2,
-                  ),
-                  Expanded(
-                    flex: 10,
-                    child: Container(
-                      height: double.infinity,
-                      color: Colors.white12,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Align(
-                          child: parseText(rowString),
-                          alignment: Alignment.topRight,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 2,
-                  ),
-                  Expanded(
-                    flex: 8,
-                    child: Container(
-                      height: double.infinity,
-                      color: Colors.white12,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Align(
-                          child: parseText(rowResult),
-                          alignment: Alignment.topRight,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          );
+          return listRow(index);
         });
   }
 
+  Widget listRow(int index) {
+    String rowString = listStrings[index];
+    String rowResult = rowResultF(rowString);
+    Widget indexW() {
+      return Expanded(
+        flex: 2,
+        child: Container(
+          height: double.infinity,
+          color: Colors.white12,
+          child: Align(
+            child: Text(
+              (index + 1).toString(),
+            ),
+            alignment: Alignment.center,
+          ),
+        ),
+      );
+    }
+
+    Widget rowSW() {
+      return Expanded(
+        flex: 10,
+        child: Container(
+          height: double.infinity,
+          color: Colors.white12,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Align(
+              child: parseText(rowString,
+                  txtColor: Color(sc.displayFontColor.value)),
+              alignment: Alignment.topRight,
+            ),
+          ),
+        ),
+      );
+    }
+
+    Widget resultRowW({double txtFactor = 1}) {
+      return Expanded(
+        flex: 8,
+        child: Container(
+          height: double.infinity,
+          color: Colors.white12,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Align(
+              child: parseText(rowResult,
+                  txtColor: Color(sc.displayFontColor.value)),
+              alignment: Alignment.topRight,
+            ),
+          ),
+        ),
+      );
+    }
+
+    if (mc.n.value.contains(RegExp(r'[^\n\.\d]+'))) {
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(8, 1, 8, 1),
+        child: IntrinsicHeight(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              indexW(),
+              SizedBox(
+                width: 2,
+              ),
+              rowSW(),
+              SizedBox(
+                width: 2,
+              ),
+              resultRowW(),
+            ],
+          ),
+        ),
+      );
+    } else {
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(8, 1, 8, 1),
+        child: IntrinsicHeight(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              indexW(),
+              SizedBox(
+                width: 2,
+              ),
+              resultRowW(),
+            ],
+          ),
+        ),
+      );
+    }
+  }
+
   Widget parseText(String txt, {Color txtColor = Colors.white}) {
+    double textFactor = 1.2;
+    if (mc.n.value.contains(RegExp(r'[^\n\.\d]+'))) {
+      textFactor = 1;
+    }
     return ParsedText(
       text: txt,
-      textScaleFactor: 1.4,
       softWrap: true,
-      // maxLines: 10,
-      style: TextStyle(color: Colors.white),
+      style: TextStyle(
+        color: txtColor,
+        fontSize: sc.tableFontSize.value.toDouble() * textFactor,
+      ),
       parse: <MatchText>[
         MatchText(
           pattern: r"[/\+\-\u00D7\(\)%]",
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.green,
           ),
         ),
         MatchText(
           pattern: r",",
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white70,
           ),
         ),
         MatchText(
           pattern: r"[A-Za-z=]",
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.purple,
           ),
         ),
@@ -199,7 +241,7 @@ class TableResult extends StatelessWidget {
         MatchText(
           pattern:
               r"[\u2070\u00B9\u00B2\u00B3\u2074\u2075\u2076\u2077\u2078\u2079]",
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.blue,
           ),
         ),
@@ -215,20 +257,20 @@ class TableResult extends StatelessWidget {
     if (finalResult0 == 0.1921465) {
       return "invalid input";
     } else {
-      return r.resultString(finalResult0);
+      return rc.resultString(finalResult0);
     }
   }
 
   void getInputs() {
-    String subString = r.tableString.value
+    String subString = rc.tableString.value
         .replaceAll(RegExp(r'\n(\u00D7|/|\d+(\.\d*)?%)[^\n]*$'), "")
         .replaceAll(RegExp(r'\n[^\d]*$'), "");
     listStrings = subString.split("\n");
 
-    if (r.tableString.value
+    if (rc.tableString.value
         .contains(RegExp(r'\n(\u00D7|/|\d+(\.\d*)?%)[^\n]*$'))) {
       lastString = RegEx()
-          .listMatch(r'\n(\u00D7|/|\d+(\.\d*)?%)[^\n]*$', r.tableString.value)
+          .listMatch(r'\n(\u00D7|/|\d+(\.\d*)?%)[^\n]*$', rc.tableString.value)
           .first;
     }
   }

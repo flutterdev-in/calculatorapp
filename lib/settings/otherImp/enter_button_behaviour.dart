@@ -1,15 +1,14 @@
-import 'package:calculator_04/result/controllers/result_controller.dart';
-import 'package:calculator_04/settings/settings_controller.dart';
+import 'package:calculator_04/controllers/result_controller.dart';
+import 'package:calculator_04/controllers/settings_controller.dart';
+import 'package:calculator_04/hive_boxes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class EnterButtonBehavior extends StatelessWidget {
-  EnterButtonBehavior({Key? key}) : super(key: key);
-  final ResultController r = Get.put(ResultController());
-  final SettingsController sc = Get.put(SettingsController());
-  final Box sbox = Hive.box("settings");
+  const EnterButtonBehavior({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     sc.isEnterLine.value = sbox.get("isEnterLine") ?? true;
@@ -17,14 +16,14 @@ class EnterButtonBehavior extends StatelessWidget {
     return Card(
       color: Colors.white12,
       child: ExpansionTile(
-        title: Text("Enter button behaviour"),
+        title: const Text("Enter button response"),
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Column(
                 children: [
-                  Text("Single Tap"),
+                  const Text("On tap"),
                   Obx(() => Text(
                         sc.isEnterLine.value ? "Next line" : "Equal",
                         style: TextStyle(
@@ -35,7 +34,7 @@ class EnterButtonBehavior extends StatelessWidget {
                 ],
               ),
               IconButton(
-                icon: Icon(MdiIcons.swapHorizontal),
+                icon: const Icon(MdiIcons.swapHorizontal),
                 onPressed: () {
                   sc.isEnterLine.value = !sc.isEnterLine.value;
                   sbox.put("isEnterLine", sc.isEnterLine.value);
@@ -43,7 +42,7 @@ class EnterButtonBehavior extends StatelessWidget {
               ),
               Column(
                 children: [
-                  Text("Long press"),
+                  const Text("Long press"),
                   Obx(() => Text(
                         sc.isEnterLine.value ? "Equal" : "Next line",
                         style: TextStyle(

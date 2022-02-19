@@ -1,12 +1,15 @@
-import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:rich_text_controller/rich_text_controller.dart';
-import 'dart:io';
-import 'package:devicelocale/devicelocale.dart';
-import 'package:http/http.dart' as http;
+
+
+final MainController mc = Get.put(
+  MainController(),
+  permanent: true,
+);
 
 class MainController extends GetxController {
   Rx<int> p = 0.obs;
@@ -19,10 +22,6 @@ class MainController extends GetxController {
     super.onInit();
   }
 
-  Future<void> openBoxes() async {
-    await Hive.openBox("history");
-    await Hive.openBox("settings");
-  }
 
   void rtcInit() {
     rtc = RichTextController(

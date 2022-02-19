@@ -1,13 +1,12 @@
-import 'package:calculator_04/settings/settings_controller.dart';
+import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:calculator_04/controller/main_controller.dart';
+import 'package:calculator_04/controllers/main_controller.dart';
+import 'package:intl/intl.dart';
 
 class InputW extends StatelessWidget {
   InputW({Key? key}) : super(key: key);
 
-  MainController b = Get.put(MainController());
-  final SettingsController sc = Get.put(SettingsController());
   @override
   Widget build(BuildContext context) {
     Size md = MediaQuery.of(context).size;
@@ -15,14 +14,14 @@ class InputW extends StatelessWidget {
     return SizedBox(
       height: double.infinity,
       child: Obx(() {
-        b.rtc!.text = b.n.value;
-        if (b.p.value < 0) {
-          b.p.value = 0;
-        } else if (b.p.value > b.n.value.length) {
-          b.p.value = b.n.value.length;
+        mc.rtc!.text = mc.n.value;
+        if (mc.p.value < 0) {
+          mc.p.value = 0;
+        } else if (mc.p.value > mc.n.value.length) {
+          mc.p.value = mc.n.value.length;
         }
-        b.rtc!.selection =
-            TextSelection.fromPosition(TextPosition(offset: b.p.value));
+        mc.rtc!.selection =
+            TextSelection.fromPosition(TextPosition(offset: mc.p.value));
 
         return ConstrainedBox(
           constraints: BoxConstraints(maxHeight: md.height / 5),
@@ -31,28 +30,28 @@ class InputW extends StatelessWidget {
             reverse: true,
             child: TextField(
               onTap: () {
-                int selection = b.rtc!.selection.base.offset;
-                if (selection < b.n.value.length) {
-                  b.p.value = selection;
+                int selection = mc.rtc!.selection.base.offset;
+                if (selection < mc.n.value.length) {
+                  mc.p.value = selection;
                 } else {
-                  b.p.value = b.n.value.length;
+                  mc.p.value = mc.n.value.length;
                 }
               },
               keyboardType: TextInputType.multiline,
               textAlignVertical: TextAlignVertical.top,
-              // scrollPadding: EdgeInsets.all(1.0),
               maxLines: null,
               decoration: InputDecoration(
                 focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.white70)),
               ),
               style: TextStyle(
-                  fontSize: sc.inputFontSize.value, color: Colors.white),
+                  fontSize: sc.displayFontSize.value.toDouble(),
+                  color: Color(sc.displayFontColor.value)),
               readOnly: true,
               autofocus: true,
               showCursor: true,
-              cursorColor: Colors.purple,
-              controller: b.rtc,
+              cursorColor: Color(sc.cursorColor.value), // Colors.purple,
+              controller: mc.rtc,
             ),
           ),
         );

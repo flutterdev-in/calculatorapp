@@ -1,11 +1,14 @@
 import 'package:calculator_04/-input_with_ad.dart';
+import 'package:calculator_04/_buttons.dart';
 import 'package:calculator_04/history/history_container.dart';
-import 'package:calculator_04/_result.dart';
+import 'package:calculator_04/result/result_screen.dart';
+import 'package:calculator_04/hive_boxes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:url_strategy/url_strategy.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();
@@ -46,10 +49,7 @@ class MyHomePage extends StatelessWidget {
             padding: const EdgeInsets.all(6.0),
             child: Column(
               children: [
-                // BannerAdW(),
                 InputWithAdWidget(),
-                // InputStack(),
-                // InputW(),
                 ResultW(),
                 ButtonsWd(),
               ],

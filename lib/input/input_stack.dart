@@ -1,6 +1,6 @@
-import 'package:calculator_04/controller/main_controller.dart';
+import 'package:calculator_04/controllers/main_controller.dart';
 import 'package:calculator_04/input/input_widget.dart';
-import 'package:calculator_04/result/controllers/result_controller.dart';
+import 'package:calculator_04/controllers/result_controller.dart';
 import 'package:calculator_04/result/resultTable/result_table.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

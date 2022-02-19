@@ -1,24 +1,39 @@
-class SettingsModel {
+import 'package:flutter/material.dart';
+
+final BoxModel bm = BoxModel();
+
+class BoxModel {
+  String settings = "settings";
+
   String isThemeBlack = "isThemeBlack";
 
+  String precision = "precision";
   String isEnterLine = "isEnterLine";
-  String enterButtonBehavior = "enterButtonBehavior";
-  String defaultPrecision = "defaultPrecision";
-    String bottomPadding = "bottomPadding";
+  String commaSymbol = "commaSymbol";
+  String primaryCommaPosition = "primaryCommaPosition";
+  String secondaryCommaPosition = "secondaryCommaPosition";
+  String bottomPadding = "bottomPadding";
+  String mainResultPlacement = "mainResultPlacement";
 
-  String inputFontSize = "inputFontSize";
-  String grossResultFontSize = "grossResultFontSize";
-  String subResultsFontSize = "subResultsFontSize";
   String tableFontSize = "tableFontSize";
+  String displayFontSize = "displayFontSize";
+  String subResultsFontSize = "subResultsFontSize";
+  String grossResultFontSize = "grossResultFontSize";
+  String actionButtonsIconSize = "actionButtonsIconSize";
+  String operatorsIconSize = "operatorsIconSize";
+  String numbersFontSize = "numbersFontSize";
 
-  String inputFontColor = "inputFontColor";
-  String actionButtonColor = "actionButtonColor";
+  String favColors = "favColors";
+  String displayFontColor = "displayFontColor";
+  String grossResultFontColor = " grossResultFontColor";
+  String subResultsFontColor = " subResultsFontColor";
+  String actionButtonsColor = "actionButtonsColor";
   String buttonsBackgroundColor = "buttonsBackgroundColor";
   String cursorColor = "cursorColor";
-  String enterButtonColor = "enterButtonColor";
+  String enterButtonIconColor = "enterButtonIconColor";
+  String enterButtonBackgroundColor = "enterButtonBackgroundColor";
   String numbersColor = "numbersColor";
-  String onTapSplashColor = "onTapSplashColor";
-  String operatorsColor = "operatorsColor";
-  String tableFontColor = "tableFontColor";
+  String onTapColor = "onTapColor";
+  String operatorsColor = "operatorColor";
   String powerValuesColor = "powerValuesColor";
 }

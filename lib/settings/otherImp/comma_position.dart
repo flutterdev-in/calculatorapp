@@ -1,5 +1,7 @@
-import 'package:calculator_04/result/controllers/result_controller.dart';
-import 'package:calculator_04/settings/settings_controller.dart';
+import 'package:calculator_04/controllers/result_controller.dart';
+import 'package:calculator_04/controllers/settings_controller.dart';
+import 'package:calculator_04/hive_boxes.dart';
+import 'package:calculator_04/settings/settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/colors/gf_color.dart';
@@ -7,122 +9,193 @@ import 'package:getwidget/components/button/gf_button.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:hive/hive.dart';
 
-class BottomPadding extends StatelessWidget {
-  BottomPadding({Key? key}) : super(key: key);
-  final ResultController r = Get.put(ResultController());
-  final SettingsController sc = Get.put(SettingsController());
-  final Box sbox = Hive.box("settings");
+class CommaPosition extends StatelessWidget {
+  const CommaPosition({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Card(
         color: Colors.white12,
-        child: Obx(
-          () {
-            String nfd00 = sbox.get("nfd0") ?? "";
-            Rx<String> nfd0 = nfd00.obs;
-            String nf0 = sbox.get("nfd") ?? "";
-            Rx<String> nf = nf0.obs;
-            r.nf.value = nf.value;
-            return ExpansionTile(
-              title: Text("Default comma position"),
+        child: ExpansionTile(title: const Text("Result format"), children: [
+          Obx(
+            () => Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Primary",
-                          style: TextStyle(color: Colors.green),
-                        ),
-                        GFButton(
-                          onPressed: () {
-                            nf.value = "33";
-                            r.nf.value = nf.value;
-                            // r.isCommaEnabled.value = true;
-                            sbox.put("nfd", "33");
-                          },
-                          text: "ddd,ddd,ddd",
-                          type: GFButtonType.outline,
-                          color: nf.value == "33"
-                              ? GFColors.SECONDARY
-                              : GFColors.LIGHT,
-                        ),
-                        GFButton(
-                          onPressed: () {
-                            nf.value = "23";
-                            r.nf.value = nf.value;
-                            // r.isCommaEnabled.value = true;
-                            sbox.put("nfd", "23");
-                          },
-                          text: "dd,dd,ddd",
-                          type: GFButtonType.outline,
-                          color: nf.value == "23"
-                              ? GFColors.SECONDARY
-                              : GFColors.LIGHT,
-                        ),
-                        GFButton(
-                          onPressed: () {
-                            nf.value = "";
-                            r.nf.value = nf.value;
-                            // r.isCommaEnabled.value = false;
-                            sbox.put("nfd", "");
-                          },
-                          text: "dddddddd",
-                          type: GFButtonType.outline,
-                          color: (nf.value != "23" && nf.value != "33")
-                              ? GFColors.SECONDARY
-                              : GFColors.LIGHT,
-                        ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Secondary",
-                          style: TextStyle(color: Colors.orange),
-                        ),
-                        GFButton(
-                          onPressed: () {
-                            nfd0.value = "33";
-                            sbox.put("nfd0", "33");
-                          },
-                          text: "ddd,ddd,ddd",
-                          type: GFButtonType.outline,
-                          color: nfd0.value == "33"
-                              ? GFColors.SECONDARY
-                              : GFColors.LIGHT,
-                        ),
-                        GFButton(
-                          onPressed: () {
-                            nfd0.value = "23";
-                            sbox.put("nfd0", "23");
-                          },
-                          text: "dd,dd,ddd",
-                          type: GFButtonType.outline,
-                          color: nfd0.value == "23"
-                              ? GFColors.SECONDARY
-                              : GFColors.LIGHT,
-                        ),
-                        GFButton(
-                          onPressed: () {
-                            nfd0.value = "";
-                            sbox.put("nfd0", "");
-                          },
-                          text: "dddddddd",
-                          type: GFButtonType.outline,
-                          color: (nfd0.value != "23" && nfd0.value != "33")
-                              ? GFColors.SECONDARY
-                              : GFColors.LIGHT,
-                        ),
-                      ],
-                    ),
-                  ],
+                commaPosition(),
+                commaSymbol(),
+              ],
+            ),
+          ),
+        ]));
+  }
+
+  Widget commaPosition() {
+    int _primaryCommaPosition = sbox.get(bm.primaryCommaPosition) ?? 33;
+    int _secondaryCommaPosition = sbox.get(bm.secondaryCommaPosition) ?? 0;
+    Rx<int> primaryCommaPosition = _primaryCommaPosition.obs;
+    Rx<int> secondaryCommaPosition = _secondaryCommaPosition.obs;
+    return Column(
+      children: [
+        Text("Comma position"),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Primary",
+                  style: TextStyle(color: Colors.green),
+                ),
+                GFButton(
+                  onPressed: () {
+                    primaryCommaPosition.value = 33;
+                    if (rc.isPrimaryComma.value) {
+                      rc.nf.value = 33;
+                    }
+                    sbox.put(bm.primaryCommaPosition, 33);
+                  },
+                  text: "ddd,ddd,ddd",
+                  type: GFButtonType.outline,
+                  color: primaryCommaPosition.value == 33
+                      ? Colors.green
+                      : Colors.white,
+                ),
+                GFButton(
+                  onPressed: () {
+                    primaryCommaPosition.value = 23;
+                    if (rc.isPrimaryComma.value) {
+                      rc.nf.value = 23;
+                    }
+                    sbox.put(bm.primaryCommaPosition, 23);
+                  },
+                  text: "dd,dd,ddd",
+                  type: GFButtonType.outline,
+                  color: primaryCommaPosition.value == 23
+                      ? Colors.green
+                      : Colors.white,
+                ),
+                GFButton(
+                  onPressed: () {
+                    primaryCommaPosition.value = 0;
+                    if (rc.isPrimaryComma.value) {
+                      rc.nf.value = 0;
+                    }
+
+                    sbox.put(bm.primaryCommaPosition, 0);
+                  },
+                  text: "dddddddd",
+                  type: GFButtonType.outline,
+                  color: (primaryCommaPosition.value != 33 &&
+                          primaryCommaPosition.value != 23)
+                      ? Colors.green
+                      : Colors.white,
                 ),
               ],
-            );
-          },
-        ));  }
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Secondary",
+                  style: TextStyle(color: Colors.orange),
+                ),
+                GFButton(
+                  onPressed: () {
+                    secondaryCommaPosition.value = 33;
+                    if (!rc.isPrimaryComma.value) {
+                      rc.nf.value = 33;
+                    }
+                    sbox.put(bm.secondaryCommaPosition, 33);
+                  },
+                  text: "ddd,ddd,ddd",
+                  type: GFButtonType.outline,
+                  color: secondaryCommaPosition.value == 33
+                      ? Colors.orange
+                      : Colors.white,
+                ),
+                GFButton(
+                  onPressed: () {
+                    secondaryCommaPosition.value = 23;
+                    if (!rc.isPrimaryComma.value) {
+                      rc.nf.value = 23;
+                    }
+                    sbox.put(bm.secondaryCommaPosition, 23);
+                  },
+                  text: "dd,dd,ddd",
+                  type: GFButtonType.outline,
+                  color: secondaryCommaPosition.value == 23
+                      ? Colors.orange
+                      : Colors.white,
+                ),
+                GFButton(
+                  onPressed: () {
+                    secondaryCommaPosition.value = 0;
+                    if (!rc.isPrimaryComma.value) {
+                      rc.nf.value = 0;
+                    }
+                    sbox.put(bm.secondaryCommaPosition, 0);
+                  },
+                  text: "dddddddd",
+                  type: GFButtonType.outline,
+                  color: (secondaryCommaPosition.value != 33 &&
+                          secondaryCommaPosition.value != 23)
+                      ? Colors.orange
+                      : Colors.white,
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget commaSymbol() {
+    return Card(
+      color: Colors.black12,
+      child: ListTile(
+        title: const Text("Comma symbol"),
+        trailing: SizedBox(
+          width: 110,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                icon: Text(
+                  "d,d",
+                  style: TextStyle(
+                    color: rc.commaSymbol.value == ","
+                        ? Colors.green
+                        : Colors.white,
+                  ),
+                ),
+                onPressed: () {
+                  if (rc.commaSymbol.value != ",") {
+                    rc.commaSymbol.value = ",";
+                  }
+                  sbox.put(bm.commaSymbol, ",");
+                },
+              ),
+              IconButton(
+                icon: Text(
+                  "d'd",
+                  style: TextStyle(
+                    color: rc.commaSymbol.value == "'"
+                        ? Colors.purple
+                        : Colors.white,
+                  ),
+                ),
+                onPressed: () {
+                  if (rc.commaSymbol.value != "'") {
+                    rc.commaSymbol.value = "'";
+                  }
+                  sbox.put(bm.commaSymbol, "'");
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }

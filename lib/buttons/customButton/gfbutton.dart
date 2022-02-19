@@ -1,23 +1,26 @@
+import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:getwidget/getwidget.dart';
+import 'package:get/get.dart';
 
 class GFButtonC extends StatelessWidget {
   GFButtonC({Key? key}) : super(key: key);
+
   void Function()? ontap;
   void Function()? onDoubleTap;
   void Function()? onLongPress;
 
   bool isIcon = true;
   String? text;
-  double textScaleFactor = 3;
+  double? textSize;
   Color? textColour = Colors.white;
   IconData? iconData;
   double iconSize = 30;
   Color iconColor = Colors.white;
-  Color buttonColor = Colors.grey;
+  Color? buttonColor;
   bool wantChild = false;
   Widget? child;
   double padding = 0.6;
+  bool isButtenEnter = false;
 
   GFButtonC.all({
     this.ontap,
@@ -25,12 +28,13 @@ class GFButtonC extends StatelessWidget {
     this.onLongPress,
     this.iconData,
     this.iconColor = Colors.white,
-    this.buttonColor = Colors.white10,
+    this.isButtenEnter = false,
+    this.buttonColor,
     this.textColour = Colors.white,
     this.isIcon = true,
     this.text,
     this.iconSize = 30,
-    this.textScaleFactor = 3,
+    this.textSize = 30,
     this.wantChild = false,
     this.child,
     this.padding = 0.6,
@@ -41,7 +45,9 @@ class GFButtonC extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(padding),
       child: Material(
-        color: buttonColor,
+        color: isButtenEnter
+            ? Color(sc.enterButtonBackgroundColor.value)
+            : Color(sc.buttonsBackgroundColor.value),
         child: InkWell(
           onTap: ontap,
           onLongPress: onLongPress,
@@ -58,14 +64,15 @@ class GFButtonC extends StatelessWidget {
                           )
                         : Text(
                             text!,
-                            textScaleFactor: textScaleFactor,
-                            style: TextStyle(color: textColour),
+                            style: TextStyle(
+                              color: textColour,
+                              fontSize: textSize,
+                            ),
                           ),
                   ),
           ),
-          highlightColor: Colors.pink.shade900,
-          splashColor: Colors.pink.shade900,
-          radius: 60,
+          highlightColor: Color(sc.onTapColor.value),
+          splashColor: Color(sc.onTapColor.value),
         ),
       ),
     );

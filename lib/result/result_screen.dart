@@ -1,9 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:calculator_04/result/controllers/result_controller.dart';
-import 'package:calculator_04/controller/main_controller.dart';
-import 'package:calculator_04/result/modifications/_modifications.dart';
-import 'package:calculator_04/result/try_catch.dart';
-import 'package:calculator_04/settings/settings_controller.dart';
+import 'package:calculator_04/controllers/result_controller.dart';
+import 'package:calculator_04/controllers/main_controller.dart';
+import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
@@ -39,8 +37,7 @@ class ResultW extends StatelessWidget {
       r.allResults(b.n.value);
       return SizedBox(
         width: double.infinity,
-        // color: Colors.white24,
-        height: md.height / 8,
+        height: md.height / 8 ,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(2, 0, 2, 2),
           child: Column(
@@ -51,23 +48,39 @@ class ResultW extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: Align(
-                        child: result(r.llr.value, sc.subResultsFontSize.value,
+                        child: result(
+                            r.llr.value,
+                            sc.subResultsFontSize.value.toDouble(),
                             Colors.orange.shade200),
                         alignment: Alignment.topLeft),
                   ),
                   Expanded(
                     flex: 1,
                     child: Align(
-                        child: result(r.sr.value, sc.subResultsFontSize.value,
+                        child: result(
+                            r.sr.value,
+                            sc.subResultsFontSize.value.toDouble(),
                             Colors.orange.shade200),
                         alignment: Alignment.topRight),
                   ),
                 ],
               ),
-              Align(
-                  child: result(r.gr.value, sc.grossResultFontSize.value,
-                      Colors.orange.shade300),
-                  alignment: Alignment.bottomRight),
+              Obx(() {
+                AlignmentGeometry al;
+                if (sc.mainResultPlacement.value == "left") {
+                  al = Alignment.bottomLeft;
+                } else if (sc.mainResultPlacement.value == "center") {
+                  al = Alignment.bottomCenter;
+                } else {
+                  al = Alignment.bottomRight;
+                }
+                return Align(
+                    child: result(
+                        r.gr.value,
+                        sc.grossResultFontSize.value.toDouble(),
+                        Colors.orange.shade300),
+                    alignment: al);
+              }),
             ],
           ),
         ),

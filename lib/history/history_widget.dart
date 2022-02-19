@@ -1,7 +1,7 @@
 import 'package:calculator_04/history/history_box.dart';
-import 'package:calculator_04/controller/main_controller.dart';
+import 'package:calculator_04/controllers/main_controller.dart';
 import 'package:calculator_04/history/history_controller.dart';
-import 'package:calculator_04/result/controllers/result_controller.dart';
+import 'package:calculator_04/controllers/result_controller.dart';
 import 'package:calculator_04/result/resultTable/result_table.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +20,7 @@ class HistoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     double mw = MediaQuery.of(context).size.width;
     List hList = Hive.box("history").keys.toList().reversed.toList();
-    
+
     return ListView.builder(
       itemCount: hList.length,
       itemBuilder: (context, index) {
@@ -57,7 +57,7 @@ class HistoryWidget extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
-                            "R(" + m["precision"].toString() + ")  ",
+                            "P(" + m["precision"].toString() + ")  ",
                             style: TextStyle(
                               color: Colors.brown,
                               fontSize: 10,
@@ -117,9 +117,11 @@ class HistoryWidget extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(5, 2, 5, 1),
                   child: InkWell(
                     onTap: () {
-                      b.n.value =b.n.value+ m["grValue"]
-                          .replaceAll(",", "")
-                          .replaceAll(" ", "");
+                      b.n.value = b.n.value +
+                          m["grValue"]
+                              .replaceAll(",", "")
+                              .replaceAll("'", "")
+                              .replaceAll(" ", "");
                       b.p.value = b.n.value.length;
                     },
                     child: Text(m["grValue"] ?? "",

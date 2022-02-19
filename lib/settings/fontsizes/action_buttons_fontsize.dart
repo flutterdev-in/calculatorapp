@@ -1,3 +1,4 @@
+import 'package:calculator_04/controllers/result_controller.dart';
 import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/hive_boxes.dart';
 import 'package:calculator_04/settings/settings_model.dart';
@@ -5,40 +6,38 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
-class SubResultsFontSize extends StatelessWidget {
-  const SubResultsFontSize({Key? key}) : super(key: key);
+class ActionButtonsFontsize extends StatelessWidget {
+  const ActionButtonsFontsize({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
       color: Colors.white12,
       child: ListTile(
-        title: const Text("Sub results\nfont size"),
+        title: Text("Action buttons\nfont size"),
         trailing: SizedBox(
           width: 110,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               InkWell(
-                child: const Center(child: Text("  -  ")),
+                child: Center(child: Text("  -  ")),
                 onTap: () {
-                  if (sc.subResultsFontSize.value > 0) {
-                    sc.subResultsFontSize.value -= 2;
-                    sbox.put(
-                        bm.subResultsFontSize, sc.subResultsFontSize.value);
+                  if (sc.actionButtonsIconSize.value > 10) {
+                    sc.actionButtonsIconSize.value--;
+                    sbox.put(bm.actionButtonsIconSize, sc.actionButtonsIconSize.value);
                   }
                 },
               ),
-              Obx(() => Text(sc.subResultsFontSize.value
+              Obx(() => Text((sc.actionButtonsIconSize.value-8)
                   .toString()
                   .replaceAll(RegExp(r'\..*'), ""))),
               InkWell(
-                child: const Text("  +  "),
+                child: Text("  +  "),
                 onTap: () {
-                  if (sc.subResultsFontSize.value < 35) {
-                    sc.subResultsFontSize.value += 2;
-                    sbox.put(
-                        bm.subResultsFontSize, sc.subResultsFontSize.value);
+                  if (sc.actionButtonsIconSize.value < 60) {
+                    sc.actionButtonsIconSize.value++;
+                    sbox.put(bm.actionButtonsIconSize, sc.actionButtonsIconSize.value);
                   }
                 },
               ),
