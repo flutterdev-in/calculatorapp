@@ -22,6 +22,7 @@ class BoxModel {
   String numbersFontSize = "numbersFontSize";
 
   String screenBackgroundColor = "screenBackgroundColor";
+  String dividerLineColor = "dividerLineColor";
   String favColors = "favColors";
   String displayFontColor = "displayFontColor";
   String grossResultFontColor = " grossResultFontColor";

@@ -28,6 +28,13 @@ class ColorsScreen extends StatelessWidget {
                     colorKeyToPut: bm.screenBackgroundColor,
                   )),
               Obx(() => ColorPickerWd(
+                    text: "Divider line color",
+                    colorInt: sc.dividerLineColor.value,
+                    onColorPick: () =>
+                        sc.dividerLineColor.value = pickedColorInt.value,
+                    colorKeyToPut: bm.dividerLineColor,
+                  )),
+              Obx(() => ColorPickerWd(
                     text: "Display font color",
                     colorInt: sc.displayFontColor.value,
                     onColorPick: () =>

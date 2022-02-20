@@ -28,6 +28,7 @@ class SettingsController extends GetxController {
 
   RxList<int> favColors = [0xFFFFFFFF].obs;
   Rx<int> screenBackgroundColor = pc(Colors.black, Colors.white).obs;
+  Rx<int> dividerLineColor = pc(Colors.white70, Colors.black38).obs;
   Rx<int> displayFontColor = 0xFFFFFFFF.obs;
   Rx<int> grossResultFontColor = 0xFFFFCC80.obs;
   Rx<int> subResultsFontColor = 0xFFFFB74D.obs;
@@ -40,7 +41,7 @@ class SettingsController extends GetxController {
   Rx<int> onTapColor = 0xFF880E4F.obs;
   Rx<int> operatorsColor = 0xFF4CAF50.obs;
   Rx<int> powerValuesColor = 0xFF2196F3.obs;
-
+  
   @override
   void onInit() {
     init();
@@ -67,6 +68,8 @@ class SettingsController extends GetxController {
     favColors.value = sbox.get(bm.favColors) ?? favColors0;
     screenBackgroundColor.value =
         sbox.get(bm.screenBackgroundColor) ?? pc(Colors.black, Colors.white);
+     dividerLineColor.value =
+        sbox.get(bm.dividerLineColor) ?? pc(Colors.white70, Colors.black38);   
     displayFontColor.value =
         sbox.get(bm.displayFontColor) ?? pc(Colors.white, Colors.black);
     grossResultFontColor.value = sbox.get(bm.grossResultFontColor) ??
@@ -101,6 +104,7 @@ List<int> favColors0 = Get.isDarkMode ? darkThemeColors : lightThemeColors;
 
 List<int> darkThemeColors = [
   psc(Colors.black),
+  psc(Colors.white70),
   psc(Colors.white),
   psc(Colors.orange.shade400),
   psc(Colors.orange.shade200),
@@ -117,6 +121,7 @@ List<int> darkThemeColors = [
 
 List<int> lightThemeColors = [
   psc(Colors.white),
+   psc(Colors.black38),
   psc(Colors.black),
   psc(Colors.orange.shade900),
   psc(Colors.orange.shade700),
