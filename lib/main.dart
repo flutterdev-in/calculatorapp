@@ -16,12 +16,9 @@ Future<void> main() async {
   await Hive.openBox("history");
   await Hive.openBox("settings");
   await Hive.openBox("favhistory");
-  // await Hive.box("settings").clear();
+  await Hive.box("settings").clear();
   runApp(const MyApp());
 }
-
-
-
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -30,7 +27,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'AI Calculator',
-      theme: ThemeData.light(),
+      theme: ThemeData(
+          brightness: Brightness.light,
+          colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.green,
+          )),
       darkTheme: ThemeData.dark(),
       home: MyHomePage(),
     );

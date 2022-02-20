@@ -90,7 +90,7 @@ class SettingsController extends GetxController {
     numbersColor.value =
         sbox.get(bm.numbersColor) ?? pc(Colors.white, Colors.black);
     onTapColor.value =
-        sbox.get(bm.onTapColor) ?? pc(Colors.purple, Colors.purple);
+        sbox.get(bm.onTapColor) ?? pc(Colors.purple.shade900, Colors.purple.shade900);
     operatorsColor.value =
         sbox.get(bm.operatorsColor) ?? pc(Colors.green, Colors.green.shade900);
     powerValuesColor.value =

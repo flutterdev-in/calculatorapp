@@ -139,7 +139,8 @@ class HistoryWidget extends StatelessWidget {
                 alignment: Alignment.bottomRight,
               ),
               Divider(
-                  color: Get.isDarkMode ? Colors.white24 : Colors.black38,
+                  thickness: 1,
+                  color: Color(sc.screenBackgroundColor.value),
                   height: 10),
             ],
           ),
