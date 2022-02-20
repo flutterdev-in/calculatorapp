@@ -2,7 +2,6 @@ import 'package:calculator_04/buttons/_main_container.dart';
 import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/history/fav_history_button.dart';
 import 'package:calculator_04/history/fav_history_widget.dart';
-
 import 'package:calculator_04/history/history_box.dart';
 import 'package:calculator_04/history/history_button.dart';
 import 'package:calculator_04/history/history_clean_button.dart';
@@ -35,20 +34,6 @@ class ButtonsWd extends StatelessWidget {
         }
       }),
     );
-
-    // ? Row(
-    //     children: [
-    //       Expanded(
-    //           flex: 400,
-    //           child: Container(
-    //               child:  HistoryWidget(),
-    //               // !hc.isHistoryEmpty.value
-    //               //     ? HistoryWidget()
-    //               //     : const SizedBox(),
-    //               color: Colors.white10)),
-    //       Expanded(child: fixedButtons(), flex: 97),
-    //     ],
-    //   )
   }
 
   Widget withHistory() {

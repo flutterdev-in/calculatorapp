@@ -10,6 +10,7 @@ class HistoryBox {
 
   void addItemToHistoryBox(String nValue) {
     DateTime time = DateTime.now();
+    nValue = nValue.replaceAll(RegExp(r'\n[^\d]*$'), "");
     Map map = {
       "time": time,
       "nValue": nValue,
@@ -24,6 +25,7 @@ class HistoryBox {
 
   void addItemToFavHistoryBox(String nValue) {
     DateTime time = DateTime.now();
+    nValue = nValue.replaceAll(RegExp(r'\n[^\d]*$'), "");
     Map map = {
       "time": time,
       "nValue": nValue,

@@ -76,8 +76,7 @@ class ColorPickerWd extends StatelessWidget {
                 children: [
                   isFavPick.value
                       ? BlockPicker(
-                          availableColors: listFavColors(
-                              sbox.get(bm.favColors) ?? favColors0),
+                          availableColors: listFavColors(sc.favColors),
                           pickerColor: Color(colorInt),
                           onColorChanged: (color) {
                             pickedColorInt.value =
@@ -104,13 +103,14 @@ class ColorPickerWd extends StatelessWidget {
                               isFavPick.value ? "Disk view" : "My Colors")),
                       ElevatedButton(
                           onPressed: () {
-                            Navigator.of(context).pop();
                             onColorPick();
-                            List<int> lf = sbox.get(bm.favColors) ?? favColors0;
-                            lf.add(pickedColorInt.value);
-                            sbox.put(bm.favColors, lf);
+                            Navigator.of(context).pop();
+                            sc.favColors.add(pickedColorInt.value);
+
+                            sbox.put(colorKeyToPut, pickedColorInt.value);
+                            putFavColor(pickedColorInt.value);
                           },
-                          child:const Text("Pick color")),
+                          child: const Text("Pick color")),
                     ],
                   ),
                 ],

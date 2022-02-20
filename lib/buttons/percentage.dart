@@ -16,6 +16,11 @@ class Percentage extends StatelessWidget {
       return RegEx().listMatch(pattern, mc.n.value);
     }
 
+    if (mc.n.value == "pt") {
+      mc.n.value = mc.n.value.replaceAll("pt", "");
+      mc.p.value = 0;
+    }
+
     if (mc.n.value.contains(RegExp(r'\d\.pt\D|.*\.pt$'))) {
       mc.n.value = mc.n.value.replaceAll("pt", "0%");
       mc.p.value++;

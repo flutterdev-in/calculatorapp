@@ -13,14 +13,14 @@ class Modifications {
         .replaceAll("\n*", '*')
         .replaceAll("\n/", '/')
         .replaceAll("\n", '+')
+        .replaceAll(RegExp(r'\n$'), '')
         .replaceAll("*-", '*(-1)*')
         .replaceAll("+-", '-')
         .replaceAll("+*", '*')
         .replaceAll(",", '')
         .replaceAll("'", '')
         .replaceAll("+/", '/')
-        .replaceAll(RegExp(r'\s+'), '')
-        ;
+        .replaceAll(RegExp(r'\s+'), '');
 
     modifiedValue = ModifyPowers().handlePowers(modifiedValue);
 

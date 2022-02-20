@@ -1,10 +1,10 @@
-
 import 'package:calculator_04/controllers/settings_controller.dart';
+import 'package:calculator_04/hive_boxes.dart';
+import 'package:calculator_04/settings/settings_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:rich_text_controller/rich_text_controller.dart';
-
 
 final MainController mc = Get.put(
   MainController(),
@@ -16,5 +16,10 @@ class MainController extends GetxController {
   Rx<String> n = "".obs;
   RichTextController? rtc;
 
- 
+  @override
+  void onInit() {
+    n.value = sbox.get(bm.stateNvalue) ?? "";
+    p.value = sbox.get(bm.statePvalue) ?? n.value.length;
+    super.onInit();
+  }
 }

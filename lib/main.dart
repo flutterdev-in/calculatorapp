@@ -1,7 +1,10 @@
 import 'package:calculator_04/-input_with_ad.dart';
+import 'package:calculator_04/controllers/main_controller.dart';
 import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/history/history_container.dart';
+import 'package:calculator_04/hive_boxes.dart';
 import 'package:calculator_04/result/result_screen.dart';
+import 'package:calculator_04/settings/settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -38,8 +41,28 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    WidgetsBinding.instance!.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      sbox.put(bm.stateNvalue, mc.n.value);
+      sbox.put(bm.statePvalue, mc.p.value);
+    }
+    super.didChangeAppLifecycleState(state);
+  }
 
   @override
   Widget build(BuildContext context) {

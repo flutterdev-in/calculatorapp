@@ -151,7 +151,7 @@ int psc(Color color) {
 }
 
 void putFavColor(int intColor) {
-  List<int> lf = sbox.get(bm.favColors) ?? favColors0;
+  List<int> lf = sc.favColors;
   if (!lf.contains(intColor)) {
     lf.add(intColor);
     if (lf.length > 35) {

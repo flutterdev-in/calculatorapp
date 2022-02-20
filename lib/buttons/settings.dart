@@ -13,7 +13,7 @@ class Settings extends StatelessWidget {
     return Obx(() => GFButtonC.all(
           ontap: () {
             Get.to(
-              const SettingsScreen(),
+              SettingsScreen(),
               opaque: false,
               transition: Transition.leftToRightWithFade,
             );

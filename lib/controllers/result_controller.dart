@@ -1,5 +1,9 @@
 import 'dart:convert';
+import 'package:calculator_04/controllers/main_controller.dart';
+import 'package:calculator_04/history/history_box.dart';
+import 'package:calculator_04/history/history_controller.dart';
 import 'package:calculator_04/settings/settings_model.dart';
+import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:calculator_04/result/modifications/_modifications.dart';
 import 'package:calculator_04/result/try_catch.dart';
@@ -32,7 +36,20 @@ class ResultController extends GetxController {
   @override
   void onInit() async {
     await init();
+    
     super.onInit();
+  }
+
+  
+
+  @override
+  void onClose() {
+    HistoryBox hb = HistoryBox();
+    if (!mc.n.value.contains(RegExp(r'^[^\d]*$'))) {
+      hb.addItemToHistoryBox(mc.n.value);
+      hc.isFavPressed.value = false;
+    }
+    super.onClose();
   }
 
   void allResults(String nValue) {
@@ -78,13 +95,7 @@ class ResultController extends GetxController {
   }
 
   void grossResult(String nValue) {
-    String nValue0 = "";
-    if (nValue.contains("\n")) {
-      nValue0 = sr.value + "\n" + nValue.split("\n").last;
-    } else {
-      nValue0 = nValue;
-    }
-    String newLastNvalue = Modifications().modifications(nValue0);
+    String newLastNvalue = Modifications().modifications(nValue);
     num resultNum = TryCatches().tc(newLastNvalue);
 
     if (resultNum == 0.1921465) {
