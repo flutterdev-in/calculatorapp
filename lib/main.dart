@@ -1,4 +1,5 @@
 import 'package:calculator_04/-input_with_ad.dart';
+import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/history/history_container.dart';
 import 'package:calculator_04/result/result_screen.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +16,12 @@ Future<void> main() async {
   await Hive.openBox("history");
   await Hive.openBox("settings");
   await Hive.openBox("favhistory");
+  // await Hive.box("settings").clear();
   runApp(const MyApp());
 }
+
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -25,12 +30,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'AI Calculator',
-      themeMode: ThemeMode.light,
-      darkTheme: ThemeData(
-          brightness: Brightness.dark,
-          /* dark theme settings */
-          ),
-      home: const MyHomePage(),
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      home: MyHomePage(),
     );
   }
 }
@@ -42,21 +44,19 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          color: Get.isDarkMode?
-              Colors.black:
-              Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.all(6.0),
-            child: Column(
-              children: [
-                InputWithAdWidget(),
-                ResultW(),
-                ButtonsWd(),
-              ],
-            ),
-          ),
-        ),
+        body: Obx(() => Container(
+              color: Color(sc.screenBackgroundColor.value),
+              child: Padding(
+                padding: const EdgeInsets.all(6.0),
+                child: Column(
+                  children: [
+                    InputWithAdWidget(),
+                    ResultW(),
+                    ButtonsWd(),
+                  ],
+                ),
+              ),
+            )),
       ),
     );
   }

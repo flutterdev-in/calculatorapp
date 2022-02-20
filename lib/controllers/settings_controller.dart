@@ -1,5 +1,6 @@
 import 'package:calculator_04/hive_boxes.dart';
 import 'package:calculator_04/settings/settings_model.dart';
+import 'package:calculator_04/settings/themes/theme_apply.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,11 +11,11 @@ final SettingsController sc = Get.put(
 );
 
 class SettingsController extends GetxController {
-  Rx<bool> isThemeBlack = true.obs;
+  Rx<bool> isThemeDark = Get.isDarkMode.obs;
 
   Rx<bool> isEnterLine = true.obs;
 
-  Rx<num> bottomPadding = 15.obs;
+  Rx<num> bottomPadding = 5.obs;
   Rx<String> mainResultPlacement = "right".obs;
 
   Rx<num> displayFontSize = 20.obs;
@@ -26,6 +27,7 @@ class SettingsController extends GetxController {
   Rx<num> tableFontSize = 22.obs;
 
   RxList<int> favColors = [0xFFFFFFFF].obs;
+  Rx<int> screenBackgroundColor = pc(Colors.black, Colors.white).obs;
   Rx<int> displayFontColor = 0xFFFFFFFF.obs;
   Rx<int> grossResultFontColor = 0xFFFFCC80.obs;
   Rx<int> subResultsFontColor = 0xFFFFB74D.obs;
@@ -46,19 +48,13 @@ class SettingsController extends GetxController {
   }
 
   void init() {
-    int pc(Color dc, Color lc) {
-      return Get.isDarkMode
-          ? int.parse(dc.value.toString())
-          : int.parse(lc.value.toString());
-    }
-
-    Color k = Colors.orange;
-    isThemeBlack.value = sbox.get(bm.isThemeBlack) ?? true;
+    isThemeDark.value = sbox.get(bm.isThemeDark) ?? Get.isDarkMode;
     isEnterLine.value = sbox.get(bm.isEnterLine) ?? true;
 
-    bottomPadding.value = sbox.get(bm.bottomPadding) ?? 15;
+    bottomPadding.value = sbox.get(bm.bottomPadding) ?? 5;
     mainResultPlacement.value = sbox.get(bm.mainResultPlacement) ?? "right";
 
+    //
     displayFontSize.value = sbox.get(bm.displayFontSize) ?? 20;
     grossResultFontSize.value = sbox.get(bm.grossResultFontSize) ?? 22;
     subResultsFontSize.value = sbox.get(bm.subResultsFontSize) ?? 20;
@@ -67,32 +63,82 @@ class SettingsController extends GetxController {
     actionButtonsIconSize.value = sbox.get(bm.actionButtonsIconSize) ?? 25;
     tableFontSize.value = sbox.get(bm.tableFontSize) ?? 22;
 
+    //
     favColors.value = sbox.get(bm.favColors) ?? favColors0;
-
+    screenBackgroundColor.value =
+        sbox.get(bm.screenBackgroundColor) ?? pc(Colors.black, Colors.white);
     displayFontColor.value =
         sbox.get(bm.displayFontColor) ?? pc(Colors.white, Colors.black);
     grossResultFontColor.value = sbox.get(bm.grossResultFontColor) ??
         pc(Colors.orange.shade400, Colors.orange.shade900); // 0xFFFFCC80
     subResultsFontColor.value = sbox.get(bm.subResultsFontColor) ??
         pc(Colors.orange.shade200, Colors.orange.shade700);
-    actionButtonsColor.value = sbox.get(bm.actionButtonsColor) ?? 0xFF795548;
+    actionButtonsColor.value =
+        sbox.get(bm.actionButtonsColor) ?? pc(Colors.brown, Colors.brown);
     buttonsBackgroundColor.value = sbox.get(bm.buttonsBackgroundColor) ??
         pc(Colors.white10, Colors.black12);
-    cursorColor.value = sbox.get(bm.cursorColor) ?? 0xFF9C27B0;
+    cursorColor.value =
+        sbox.get(bm.cursorColor) ?? pc(Colors.purple, Colors.purple);
     enterButtonIconColor.value =
-        sbox.get(bm.enterButtonIconColor) ?? 0xFFFFFFFF;
+        sbox.get(bm.enterButtonIconColor) ?? pc(Colors.white, Colors.white);
     enterButtonBackgroundColor.value =
         sbox.get(bm.enterButtonBackgroundColor) ??
             pc(Colors.green.shade900, Colors.green.shade900);
     numbersColor.value =
         sbox.get(bm.numbersColor) ?? pc(Colors.white, Colors.black);
-    onTapColor.value = sbox.get(bm.onTapColor) ?? 0xFF880E4F;
+    onTapColor.value =
+        sbox.get(bm.onTapColor) ?? pc(Colors.purple, Colors.purple);
     operatorsColor.value =
         sbox.get(bm.operatorsColor) ?? pc(Colors.green, Colors.green.shade900);
-    powerValuesColor.value = sbox.get(bm.powerValuesColor) ?? 0xFF2196F3;
+    powerValuesColor.value =
+        sbox.get(bm.powerValuesColor) ?? pc(Colors.blue, Colors.blue);
 
     sbox.put(bm.favColors, favColors0);
   }
+}
+
+List<int> favColors0 = Get.isDarkMode ? darkThemeColors : lightThemeColors;
+
+List<int> darkThemeColors = [
+  psc(Colors.black),
+  psc(Colors.white),
+  psc(Colors.orange.shade400),
+  psc(Colors.orange.shade200),
+  psc(Colors.brown),
+  psc(Colors.white10),
+  psc(Colors.purple),
+  psc(Colors.white),
+  psc(Colors.green.shade900),
+  psc(Colors.white),
+  psc(Colors.purple),
+  psc(Colors.green),
+  psc(Colors.blue),
+];
+
+List<int> lightThemeColors = [
+  psc(Colors.white),
+  psc(Colors.black),
+  psc(Colors.orange.shade900),
+  psc(Colors.orange.shade700),
+  psc(Colors.brown),
+  psc(Colors.black12),
+  psc(Colors.purple),
+  psc(Colors.white),
+  psc(Colors.green.shade900),
+  psc(Colors.black),
+  psc(Colors.purple),
+  psc(Colors.green.shade900),
+  psc(Colors.blue),
+];
+
+int pc(Color dc, Color lc) {
+  return Get.isDarkMode
+      ? int.parse(dc.value.toString())
+      : int.parse(lc.value.toString());
+}
+
+int psc(Color color) {
+  return int.parse(color.value.toString());
 }
 
 void putFavColor(int intColor) {
@@ -115,7 +161,7 @@ List<Color> listFavColors(List<int> listint) {
   return listFavColors0;
 }
 
-List<int> favColors0 = [
+List<int> favColors00 = [
   0xFFFFFFFF,
   0xFFFFCC80,
   0xFFFFB74D,

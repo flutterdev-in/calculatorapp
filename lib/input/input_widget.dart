@@ -54,7 +54,7 @@ class InputW extends StatelessWidget {
                 focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
                         color:
-                            Get.isDarkMode ? Colors.white70 : Colors.black38)),
+                             Get.isDarkMode ? Colors.white70 : Colors.black38)),
               ),
               style: TextStyle(
                   fontSize: sc.displayFontSize.value.toDouble(),

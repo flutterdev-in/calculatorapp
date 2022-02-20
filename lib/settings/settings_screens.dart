@@ -1,7 +1,9 @@
+import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/settings/colors/_colors.dart';
 import 'package:calculator_04/settings/fontsizes/_font_sizes.dart';
 import 'package:calculator_04/settings/otherImp/bottom_padding.dart';
 import 'package:calculator_04/settings/otherImp/comma_position.dart';
+import 'package:calculator_04/settings/otherImp/darktheme.dart';
 import 'package:calculator_04/settings/otherImp/default_precision.dart';
 import 'package:calculator_04/settings/otherImp/enter_button_behaviour.dart';
 import 'package:calculator_04/settings/otherImp/main_result_position.dart';
@@ -23,13 +25,14 @@ class SettingsScreen extends StatelessWidget {
           color: Get.isDarkMode ? Colors.black : Colors.white,
           child: ListView(
             children: [
-              FontSizes(),
               ColorsCard(),
+              FontSizes(),
               MainResultPosition(),
               EnterButtonBehavior(),
               CommaPosition(),
               DefaultPrecision(),
               BottonPadding(),
+              // DarkDecideCard(),
             ],
           ),
         ),

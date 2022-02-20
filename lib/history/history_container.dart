@@ -96,11 +96,12 @@ class ButtonsWd extends StatelessWidget {
         Expanded(
             child: Padding(
               padding: const EdgeInsets.all(0.5),
-              child: Container(
-                color: Get.isDarkMode ? Colors.white10 : Colors.black12,
-                child: Padding(
-                  padding: const EdgeInsets.all(9.0),
-                  child: Obx(() => Text(
+              child: Obx(
+                () => Container(
+                  color: sc.isThemeDark.value ? Colors.white10 : Colors.black12,
+                  child: Padding(
+                      padding: const EdgeInsets.all(9.0),
+                      child: Text(
                         "Swipe for action",
                         textScaleFactor: 1.13,
                         style: TextStyle(
@@ -109,7 +110,25 @@ class ButtonsWd extends StatelessWidget {
                 ),
               ),
             ),
-            flex: 15),
+            flex: 7),
+        Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(0.5),
+              child: Obx(
+                () => Container(
+                  color: sc.isThemeDark.value ? Colors.white10 : Colors.black12,
+                  child: Padding(
+                      padding: const EdgeInsets.all(9.0),
+                      child: Text(
+                        "Tap to paste value",
+                        textScaleFactor: 1.13,
+                        style: TextStyle(
+                            color: Color(sc.actionButtonsColor.value)),
+                      )),
+                ),
+              ),
+            ),
+            flex: 8),
       ],
     );
   }

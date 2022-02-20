@@ -23,12 +23,12 @@ class TableResult extends StatelessWidget {
           title: Text("Result Table"),
           // backgroundColor: Get.isDarkMode ? Colors.black : Colors.white,
         ),
-        body: Obx(() => Container(
-              color: Get.isDarkMode ? Colors.black : Colors.white,
-              child: ListView(
-                children: [listBuilder(), endResult()],
-              ),
-            )),
+        body: Container(
+          color: Get.isDarkMode ? Colors.black : Colors.white,
+          child: ListView(
+            children: [listBuilder(), endResult()],
+          ),
+        ),
       ),
     );
   }
@@ -37,7 +37,7 @@ class TableResult extends StatelessWidget {
     if (lastString.isEmpty || lastString == "") {
       return Padding(
         padding: const EdgeInsets.fromLTRB(8, 2, 8, 2),
-        child: Container(
+        child: Obx(() => Container(
             width: double.maxFinite,
             color: Get.isDarkMode ? Colors.white10 : Colors.black12,
             child: Padding(
@@ -47,7 +47,7 @@ class TableResult extends StatelessWidget {
                     txtColor: Color(sc.grossResultFontColor.value)),
                 alignment: Alignment.topRight,
               ),
-            )),
+            ))),
       );
     } else {
       if (lastString.contains(RegExp(r'^\n?[\u00D7/]'))) {
@@ -59,22 +59,22 @@ class TableResult extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(8, 2, 8, 2),
-            child: Container(
-              color: Get.isDarkMode ? Colors.white10 : Colors.black12,
-              child: Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: parseText("Total  =  " + rc.tsr.value,
-                      txtColor: Color(sc.subResultsFontColor.value)),
-                ),
-              ),
-            ),
+            child: Obx(() => Container(
+                  color: Get.isDarkMode ? Colors.white10 : Colors.black12,
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: parseText("Total  =  " + rc.tsr.value,
+                          txtColor: Color(sc.subResultsFontColor.value)),
+                    ),
+                  ),
+                )),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(8, 2, 8, 2),
             child: Container(
-              color: Get.isDarkMode ? Colors.white10 : Colors.black12,
+              color: sc.isThemeDark.value ? Colors.white10 : Colors.black12,
               child: Align(
                 alignment: Alignment.topRight,
                 child: Padding(
@@ -114,7 +114,7 @@ class TableResult extends StatelessWidget {
         flex: 2,
         child: Container(
           height: double.infinity,
-          color: Get.isDarkMode ? Colors.white10 : Colors.black12,
+          color: sc.isThemeDark.value ? Colors.white10 : Colors.black12,
           child: Align(
             child: Text(
               (index + 1).toString(),
@@ -133,7 +133,7 @@ class TableResult extends StatelessWidget {
         flex: 10,
         child: Container(
           height: double.infinity,
-          color: Get.isDarkMode ? Colors.white10 : Colors.black12,
+          color: sc.isThemeDark.value ? Colors.white10 : Colors.black12,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Align(
@@ -151,7 +151,7 @@ class TableResult extends StatelessWidget {
         flex: 8,
         child: Container(
           height: double.infinity,
-          color: Get.isDarkMode ? Colors.white10 : Colors.black12,
+          color: sc.isThemeDark.value ? Colors.white10 : Colors.black12,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Align(
@@ -227,7 +227,7 @@ class TableResult extends StatelessWidget {
         MatchText(
           pattern: r",",
           style: TextStyle(
-            color: Get.isDarkMode ? Colors.white70 : Colors.black87,
+            color: sc.isThemeDark.value ? Colors.white70 : Colors.black87,
           ),
         ),
         MatchText(

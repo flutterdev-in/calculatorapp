@@ -1,3 +1,4 @@
+import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/settings/fontsizes/action_buttons_fontsize.dart';
 import 'package:calculator_04/settings/fontsizes/display_fontsize.dart';
 import 'package:calculator_04/settings/fontsizes/main_results_fontsize.dart';
@@ -20,7 +21,7 @@ class FontSizesScreen extends StatelessWidget {
           // backgroundColor: Colors.black38,
         ),
         body: Container(
-          color: Get.isDarkMode ? Colors.black : Colors.white,
+           color: Get.isDarkMode ? Colors.black : Colors.white,
           child: ListView(
             children: [
               TableFontSize(),
@@ -44,7 +45,7 @@ class FontSizes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Get.isDarkMode ? Colors.white12 : Colors.white70,
+      color: sc.isThemeDark.value ? Colors.white12 : Colors.white70,
       child: ListTile(
           title: Text("Font sizes"),
           onTap: () {

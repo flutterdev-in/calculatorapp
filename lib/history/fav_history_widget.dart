@@ -31,14 +31,14 @@ class FavHistoryWidget extends StatelessWidget {
         return Dismissible(
           background: Center(
             child: Text(
-              "item moved to recycle bin",
-              style: TextStyle(color: Colors.blue),
+              "Item moved to recycle bin",
+              style: TextStyle(color: Color(sc.actionButtonsColor.value)),
             ),
           ),
           secondaryBackground: Center(
             child: Text(
-              "item deleted",
-              style: TextStyle(color: Colors.red),
+              "Item deleted",
+              style: TextStyle(color: Color(sc.grossResultFontColor.value)),
             ),
           ),
           key: ObjectKey(time),

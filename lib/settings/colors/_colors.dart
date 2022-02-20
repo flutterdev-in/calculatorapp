@@ -21,6 +21,13 @@ class ColorsScreen extends StatelessWidget {
             shrinkWrap: true,
             children: [
               Obx(() => ColorPickerWd(
+                    text: "Screen background color",
+                    colorInt: sc.screenBackgroundColor.value,
+                    onColorPick: () =>
+                        sc.screenBackgroundColor.value = pickedColorInt.value,
+                    colorKeyToPut: bm.screenBackgroundColor,
+                  )),
+              Obx(() => ColorPickerWd(
                     text: "Display font color",
                     colorInt: sc.displayFontColor.value,
                     onColorPick: () =>
@@ -118,7 +125,7 @@ class ColorsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Get.isDarkMode ? Colors.white12 : Colors.white70,
+      color: sc.isThemeDark.value ? Colors.white12 : Colors.white70,
       child: ListTile(
           title: Text("Colors"),
           onTap: () {

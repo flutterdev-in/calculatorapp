@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 
 class DisplayFontSize extends StatelessWidget {
   const DisplayFontSize({Key? key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return Card(

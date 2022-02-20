@@ -1,10 +1,9 @@
-
 final BoxModel bm = BoxModel();
 
 class BoxModel {
   String settings = "settings";
 
-  String isThemeBlack = "isThemeBlack";
+  String isThemeDark = "isThemeDark";
 
   String precision = "precision";
   String isEnterLine = "isEnterLine";
@@ -22,6 +21,7 @@ class BoxModel {
   String operatorsIconSize = "operatorsIconSize";
   String numbersFontSize = "numbersFontSize";
 
+  String screenBackgroundColor = "screenBackgroundColor";
   String favColors = "favColors";
   String displayFontColor = "displayFontColor";
   String grossResultFontColor = " grossResultFontColor";

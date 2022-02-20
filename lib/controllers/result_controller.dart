@@ -232,6 +232,8 @@ String tenPowerInUnicode(String power) {
 }
 
 
+  
+
 
   // String manageDigitForLargeNumber(num resultNum) {
   //   int length = resultNum.toString().split(".").first.length;

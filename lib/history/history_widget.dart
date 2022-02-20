@@ -31,14 +31,14 @@ class HistoryWidget extends StatelessWidget {
         return Dismissible(
           background: Center(
             child: Text(
-              "item moved to favorites",
-              style: TextStyle(color: Colors.green),
+              "Item moved to favorites",
+              style: TextStyle(color: Color(sc.actionButtonsColor.value)),
             ),
           ),
           secondaryBackground: Center(
             child: Text(
-              "item deleted",
-              style: TextStyle(color: Colors.red),
+              "Item deleted",
+              style: TextStyle(color: Color(sc.grossResultFontColor.value)),
             ),
           ),
           key: ObjectKey(time),

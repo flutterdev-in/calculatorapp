@@ -1,4 +1,5 @@
 import 'package:calculator_04/controllers/result_controller.dart';
+import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/hive_boxes.dart';
 import 'package:calculator_04/settings/settings_model.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +55,7 @@ class CommaPosition extends StatelessWidget {
                   type: GFButtonType.outline,
                   color: primaryCommaPosition.value == 33
                       ? Colors.green
-                      : Get.isDarkMode
+                      : sc.isThemeDark.value
                           ? Colors.white
                           : Colors.black,
                 ),
@@ -70,7 +71,7 @@ class CommaPosition extends StatelessWidget {
                   type: GFButtonType.outline,
                   color: primaryCommaPosition.value == 23
                       ? Colors.green
-                      : Get.isDarkMode
+                      : sc.isThemeDark.value
                           ? Colors.white
                           : Colors.black,
                 ),
@@ -88,7 +89,7 @@ class CommaPosition extends StatelessWidget {
                   color: (primaryCommaPosition.value != 33 &&
                           primaryCommaPosition.value != 23)
                       ? Colors.green
-                      : Get.isDarkMode
+                      : sc.isThemeDark.value
                           ? Colors.white
                           : Colors.black,
                 ),
@@ -113,7 +114,7 @@ class CommaPosition extends StatelessWidget {
                   type: GFButtonType.outline,
                   color: secondaryCommaPosition.value == 33
                       ? Colors.orange
-                      : Get.isDarkMode
+                      : sc.isThemeDark.value
                           ? Colors.white
                           : Colors.black,
                 ),
@@ -129,7 +130,7 @@ class CommaPosition extends StatelessWidget {
                   type: GFButtonType.outline,
                   color: secondaryCommaPosition.value == 23
                       ? Colors.orange
-                      : Get.isDarkMode
+                      : sc.isThemeDark.value
                           ? Colors.white
                           : Colors.black,
                 ),
@@ -146,7 +147,7 @@ class CommaPosition extends StatelessWidget {
                   color: (secondaryCommaPosition.value != 33 &&
                           secondaryCommaPosition.value != 23)
                       ? Colors.orange
-                      : Get.isDarkMode
+                      : sc.isThemeDark.value
                           ? Colors.white
                           : Colors.black,
                 ),
@@ -160,7 +161,7 @@ class CommaPosition extends StatelessWidget {
 
   Widget commaSymbol() {
     return Card(
-      color: Get.isDarkMode ? Colors.black12 : Colors.white60,
+      color: sc.isThemeDark.value ? Colors.black12 : Colors.white60,
       child: ListTile(
         title: const Text("Comma symbol"),
         trailing: SizedBox(
@@ -174,7 +175,7 @@ class CommaPosition extends StatelessWidget {
                   style: TextStyle(
                     color: rc.commaSymbol.value == ","
                         ? Colors.green
-                        : Get.isDarkMode
+                        : sc.isThemeDark.value
                             ? Colors.white
                             : Colors.black,
                   ),
@@ -192,7 +193,7 @@ class CommaPosition extends StatelessWidget {
                   style: TextStyle(
                     color: rc.commaSymbol.value == "'"
                         ? Colors.purple
-                        : Get.isDarkMode
+                        : sc.isThemeDark.value
                             ? Colors.white
                             : Colors.black,
                   ),

@@ -5,6 +5,7 @@ import 'package:calculator_04/hive_boxes.dart';
 import 'package:calculator_04/settings/settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class Comma extends StatelessWidget {
   const Comma({Key? key}) : super(key: key);
@@ -21,29 +22,20 @@ class Comma extends StatelessWidget {
   }
 
   Widget icon() {
-    return Stack(children: [
-      Align(
-        alignment: Alignment.center,
-        child: SingleChildScrollView(
-          reverse: true,
-          child: Column(
-            children: [
-              Text(
-                ",",
-                style: TextStyle(
-                    fontSize: sc.operatorsIconSize.value.toDouble(),
-                    color: rc.isPrimaryComma.value
-                        ? Color(sc.actionButtonsColor.value)
-                        : Color(sc.numbersColor.value)),
-              ),
-              SizedBox(
-                height: 6,
-              )
-            ],
-          ),
-        ),
-      ),
-    ]);
+    return rc.commaSymbol.value == ","
+        ? Icon(MdiIcons.comma,
+            size: sc.operatorsIconSize.value.toDouble() - 24,
+            color: rc.isPrimaryComma.value
+                ? Color(sc.actionButtonsColor.value)
+                : Color(sc.numbersColor.value))
+        : Text(
+            "'",
+            style: TextStyle(
+                fontSize: sc.operatorsIconSize.value.toDouble() - 3,
+                color: rc.isPrimaryComma.value
+                    ? Color(sc.actionButtonsColor.value)
+                    : Color(sc.numbersColor.value)),
+          );
   }
 
   @override
