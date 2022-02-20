@@ -1,7 +1,10 @@
 import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/settings/colors/_colors.dart';
 import 'package:calculator_04/settings/fontsizes/_font_sizes.dart';
-import 'package:calculator_04/settings/otherImp/bottom_padding.dart';
+import 'package:calculator_04/settings/spacings/_spacings.dart';
+import 'package:calculator_04/settings/spacings/bottom_padding.dart';
+import 'package:calculator_04/settings/spacings/buttons_radius.dart';
+import 'package:calculator_04/settings/spacings/buttons_spacing.dart';
 import 'package:calculator_04/settings/otherImp/comma_position.dart';
 import 'package:calculator_04/settings/otherImp/darktheme.dart';
 import 'package:calculator_04/settings/otherImp/default_precision.dart';
@@ -27,12 +30,12 @@ class SettingsScreen extends StatelessWidget {
             children: [
               ColorsCard(),
               FontSizes(),
+              Spacings(),
               MainResultPosition(),
               EnterButtonBehavior(),
               CommaPosition(),
               DefaultPrecision(),
-              BottonPadding(),
-              // DarkDecideCard(),
+              DarkDecideCard(),
             ],
           ),
         ),

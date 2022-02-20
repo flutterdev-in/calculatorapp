@@ -10,6 +10,8 @@ class BoxModel {
   String commaSymbol = "commaSymbol";
   String primaryCommaPosition = "primaryCommaPosition";
   String secondaryCommaPosition = "secondaryCommaPosition";
+  String buttonsSpacing = "buttonsSpacing";
+  String buttonsRadius = "buttonsRadius";
   String bottomPadding = "bottomPadding";
   String mainResultPlacement = "mainResultPlacement";
 

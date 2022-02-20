@@ -1,10 +1,12 @@
 import 'package:calculator_04/controllers/result_controller.dart';
 import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/hive_boxes.dart';
-import 'package:calculator_04/main.dart';
 import 'package:calculator_04/settings/settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
+
+Rx<bool> isDark = Get.isDarkMode.obs;
 
 class DarkDecideCard extends StatelessWidget {
   const DarkDecideCard({Key? key}) : super(key: key);
@@ -14,36 +16,38 @@ class DarkDecideCard extends StatelessWidget {
     rc.precision.value = sbox.get(bm.precision) ?? 2;
 
     return Card(
-      color: sc.isThemeDark.value ? Colors.white12 : Colors.white70,
-      child: Obx(() => Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Text("Calculator theme"),
-              TextButton(
-                onPressed: () {
-                  sc.isThemeDark.value == false;
-                  
-                },
-                child: Text(
+      color: Get.isDarkMode ? Colors.white12 : Colors.white70,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          const Text("Reset theme"),
+          TextButton(
+            onPressed: () async {
+              selectTheme(lightThemeColors);
+              isDark.value = false;
+              await Hive.box("settings").clear();
+            },
+            child: Obx(() => Text(
                   "Light",
                   style: TextStyle(
-                      color: sc.isThemeDark.value ? Colors.red : Colors.green),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  sc.isThemeDark.value = true;
-
-                  
-                },
-                child: Text(
+                    color: isDark.value ? Colors.red : Colors.green,
+                  ),
+                )),
+          ),
+          TextButton(
+            onPressed: () async {
+              selectTheme(darkThemeColors);
+              isDark.value = true;
+              await Hive.box("settings").clear();
+            },
+            child: Obx(() => Text(
                   "Dark",
                   style: TextStyle(
-                      color: sc.isThemeDark.value ? Colors.green : Colors.red),
-                ),
-              ),
-            ],
-          )),
+                      color: isDark.value ? Colors.green : Colors.red),
+                )),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -62,6 +66,7 @@ List<int> darkThemeColors = [
   psc(Colors.purple),
   psc(Colors.green),
   psc(Colors.blue),
+  psc(Colors.white70),
 ];
 
 List<int> lightThemeColors = [
@@ -78,10 +83,28 @@ List<int> lightThemeColors = [
   psc(Colors.purple),
   psc(Colors.green.shade900),
   psc(Colors.blue),
+  psc(Colors.black38),
 ];
 
 void selectTheme(List<int> l) {
+  sc.isEnterLine.value = true;
+
+  sc.buttonsRadius.value = 0;
+  sc.buttonsSpacing.value = 0.6;
+  sc.bottomPadding.value = 5;
+  sc.mainResultPlacement.value = "right";
+
+  //
+  sc.displayFontSize.value = 20;
+  sc.grossResultFontSize.value = 22;
+  sc.subResultsFontSize.value = 20;
+  sc.numbersFontSize.value = 27;
+  sc.operatorsIconSize.value = 37;
+  sc.actionButtonsIconSize.value = 25;
+  sc.tableFontSize.value = 22;
+
   sc.screenBackgroundColor.value = l[0];
+
   sc.displayFontColor.value = l[1];
   sc.grossResultFontColor.value = l[2];
   sc.subResultsFontColor.value = l[3];
@@ -94,6 +117,20 @@ void selectTheme(List<int> l) {
   sc.onTapColor.value = l[10];
   sc.operatorsColor.value = l[11];
   sc.powerValuesColor.value = l[12];
+  sc.dividerLineColor.value = l[13];
+
+  sbox.put(bm.isEnterLine, true);
+  sbox.put(bm.buttonsRadius, 0);
+  sbox.put(bm.buttonsSpacing, 0.6);
+  sbox.put(bm.bottomPadding, 5);
+  sbox.put(bm.mainResultPlacement, "right");
+  sbox.put(bm.displayFontSize, 20);
+  sbox.put(bm.grossResultFontSize, 22);
+  sbox.put(bm.subResultsFontSize, 20);
+  sbox.put(bm.numbersFontSize, 27);
+  sbox.put(bm.operatorsIconSize, 37);
+  sbox.put(bm.actionButtonsIconSize, 25);
+  sbox.put(bm.tableFontSize, 22);
 
   sbox.put(bm.screenBackgroundColor, l[0]);
   sbox.put(bm.displayFontColor, l[1]);
@@ -108,4 +145,5 @@ void selectTheme(List<int> l) {
   sbox.put(bm.onTapColor, l[10]);
   sbox.put(bm.operatorsColor, l[11]);
   sbox.put(bm.powerValuesColor, l[12]);
+  sbox.put(bm.dividerLineColor, l[13]);
 }

@@ -15,6 +15,8 @@ class SettingsController extends GetxController {
 
   Rx<bool> isEnterLine = true.obs;
 
+  Rx<num> buttonsSpacing = 0.6.obs;
+  Rx<int> buttonsRadius = 0.obs;
   Rx<num> bottomPadding = 5.obs;
   Rx<String> mainResultPlacement = "right".obs;
 
@@ -41,7 +43,7 @@ class SettingsController extends GetxController {
   Rx<int> onTapColor = 0xFF880E4F.obs;
   Rx<int> operatorsColor = 0xFF4CAF50.obs;
   Rx<int> powerValuesColor = 0xFF2196F3.obs;
-  
+
   @override
   void onInit() {
     init();
@@ -52,6 +54,8 @@ class SettingsController extends GetxController {
     isThemeDark.value = sbox.get(bm.isThemeDark) ?? Get.isDarkMode;
     isEnterLine.value = sbox.get(bm.isEnterLine) ?? true;
 
+    buttonsRadius.value = sbox.get(bm.buttonsRadius) ?? 0;
+    buttonsSpacing.value = sbox.get(bm.buttonsSpacing) ?? 0.6;
     bottomPadding.value = sbox.get(bm.bottomPadding) ?? 5;
     mainResultPlacement.value = sbox.get(bm.mainResultPlacement) ?? "right";
 
@@ -68,8 +72,7 @@ class SettingsController extends GetxController {
     favColors.value = sbox.get(bm.favColors) ?? favColors0;
     screenBackgroundColor.value =
         sbox.get(bm.screenBackgroundColor) ?? pc(Colors.black, Colors.white);
-     dividerLineColor.value =
-        sbox.get(bm.dividerLineColor) ?? pc(Colors.white70, Colors.black38);   
+    
     displayFontColor.value =
         sbox.get(bm.displayFontColor) ?? pc(Colors.white, Colors.black);
     grossResultFontColor.value = sbox.get(bm.grossResultFontColor) ??
@@ -89,13 +92,14 @@ class SettingsController extends GetxController {
             pc(Colors.green.shade900, Colors.green.shade900);
     numbersColor.value =
         sbox.get(bm.numbersColor) ?? pc(Colors.white, Colors.black);
-    onTapColor.value =
-        sbox.get(bm.onTapColor) ?? pc(Colors.purple.shade900, Colors.purple.shade900);
+    onTapColor.value = sbox.get(bm.onTapColor) ??
+        pc(Colors.purple.shade900, Colors.purple.shade900);
     operatorsColor.value =
         sbox.get(bm.operatorsColor) ?? pc(Colors.green, Colors.green.shade900);
     powerValuesColor.value =
         sbox.get(bm.powerValuesColor) ?? pc(Colors.blue, Colors.blue);
-
+    dividerLineColor.value =
+        sbox.get(bm.dividerLineColor) ?? pc(Colors.white70, Colors.black38);
     sbox.put(bm.favColors, favColors0);
   }
 }
@@ -121,7 +125,7 @@ List<int> darkThemeColors = [
 
 List<int> lightThemeColors = [
   psc(Colors.white),
-   psc(Colors.black38),
+  psc(Colors.black38),
   psc(Colors.black),
   psc(Colors.orange.shade900),
   psc(Colors.orange.shade700),

@@ -27,29 +27,35 @@ class ColorPickerWd extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: Get.isDarkMode ? Colors.white12 : Colors.white70,
-      child: ListTile(
-        selectedColor: Colors.green,
-        title: Text(text),
-        trailing: Flexible(
-          child: Obx(() => Wrap(
-                children: [
-                  (selectedString.value == colorKeyToPut)
+      child: Obx(
+        () => ListTile(
+          selectedColor: Colors.green,
+          title: Stack(
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(text),
+              Align(
+                alignment: Alignment.centerRight,
+                child: SizedBox(
+                  child: (selectedString.value == colorKeyToPut)
                       ? Icon(
                           MdiIcons.circleSmall,
                         )
                       : SizedBox(),
-                  Container(
-                    width: 35,
-                    height: 35,
-                    color: Color(colorInt),
-                  ),
-                ],
-              )),
+                ),
+              ),
+            ],
+          ),
+          trailing: Container(
+            width: 35,
+            height: 35,
+            color: Color(colorInt),
+          ),
+          onTap: () {
+            selectedString.value = colorKeyToPut;
+            colorPicker(context);
+          },
         ),
-        onTap: () {
-          selectedString.value = colorKeyToPut;
-          colorPicker(context);
-        },
       ),
     );
   }
@@ -100,9 +106,11 @@ class ColorPickerWd extends StatelessWidget {
                           onPressed: () {
                             Navigator.of(context).pop();
                             onColorPick();
-                            sbox.put(colorKeyToPut, pickedColorInt.value);
+                            List<int> lf = sbox.get(bm.favColors) ?? favColors0;
+                            lf.add(pickedColorInt.value);
+                            sbox.put(bm.favColors, lf);
                           },
-                          child: Text("Pick color")),
+                          child:const Text("Pick color")),
                     ],
                   ),
                 ],

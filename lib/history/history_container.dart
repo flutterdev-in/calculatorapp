@@ -80,7 +80,8 @@ class ButtonsWd extends StatelessWidget {
         Expanded(
           flex: 29,
           child: Container(
-              color: Get.isDarkMode ? Colors.white10 : Colors.black12),
+            color: Color(sc.buttonsBackgroundColor.value),
+          ),
         ),
         Expanded(child: fixedButtons(), flex: 7),
       ],
@@ -98,7 +99,7 @@ class ButtonsWd extends StatelessWidget {
               padding: const EdgeInsets.all(0.5),
               child: Obx(
                 () => Container(
-                  color: sc.isThemeDark.value ? Colors.white10 : Colors.black12,
+                  color: Color(sc.buttonsBackgroundColor.value),
                   child: Padding(
                       padding: const EdgeInsets.all(9.0),
                       child: Text(
@@ -116,7 +117,7 @@ class ButtonsWd extends StatelessWidget {
               padding: const EdgeInsets.all(0.5),
               child: Obx(
                 () => Container(
-                  color: sc.isThemeDark.value ? Colors.white10 : Colors.black12,
+                  color: Color(sc.buttonsBackgroundColor.value),
                   child: Padding(
                       padding: const EdgeInsets.all(9.0),
                       child: Text(

@@ -42,40 +42,44 @@ class GFButtonC extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double mw = MediaQuery.of(context).size.width;
-    return Padding(
-      padding: EdgeInsets.all(padding),
-      child: Obx(
-        () => Material(
-            color: isButtenEnter
-                ? Color(sc.enterButtonBackgroundColor.value)
-                : Color(sc.buttonsBackgroundColor.value),
-            child: InkWell(
-              onTap: ontap,
-              onLongPress: onLongPress,
-              child: Ink(
-                width: (mw - 20) / 4,
-                child: wantChild
-                    ? Center(child: child)
-                    : Center(
-                        child: isIcon
-                            ? Icon(
-                                iconData,
-                                color: iconColor,
-                                size: iconSize,
-                              )
-                            : Text(
-                                text!,
-                                style: TextStyle(
-                                  color: textColour,
-                                  fontSize: textSize,
+    return Obx(
+      () => Padding(
+        padding: EdgeInsets.all(sc.buttonsSpacing.value.toDouble()),
+        child: ClipRRect(
+          borderRadius:
+              BorderRadius.circular(sc.buttonsRadius.value.toDouble()),
+          child: Material(
+              color: isButtenEnter
+                  ? Color(sc.enterButtonBackgroundColor.value)
+                  : Color(sc.buttonsBackgroundColor.value),
+              child: InkWell(
+                onTap: ontap,
+                onLongPress: onLongPress,
+                child: Ink(
+                  width: (mw - 20) / 4,
+                  child: wantChild
+                      ? Center(child: child)
+                      : Center(
+                          child: isIcon
+                              ? Icon(
+                                  iconData,
+                                  color: iconColor,
+                                  size: iconSize,
+                                )
+                              : Text(
+                                  text!,
+                                  style: TextStyle(
+                                    color: textColour,
+                                    fontSize: textSize,
+                                  ),
                                 ),
-                              ),
-                      ),
-              ),
-              // highlightColor: Color(sc.onTapColor.value),
-              splashColor: Color(sc.onTapColor.value),
-              radius: 5000,
-            )),
+                        ),
+                ),
+                // highlightColor: Color(sc.onTapColor.value),
+                splashColor: Color(sc.onTapColor.value),
+                radius: 5000,
+              )),
+        ),
       ),
     );
   }

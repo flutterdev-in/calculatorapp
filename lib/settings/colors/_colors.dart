@@ -18,7 +18,7 @@ class ColorsScreen extends StatelessWidget {
         body: Container(
           color: Get.isDarkMode ? Colors.black : Colors.white,
           child: ListView(
-            shrinkWrap: true,
+            // shrinkWrap: true,
             children: [
               Obx(() => ColorPickerWd(
                     text: "Screen background color",
