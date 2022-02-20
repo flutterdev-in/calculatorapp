@@ -17,10 +17,10 @@ class FontSizesScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Font sizes"),
-          backgroundColor: Colors.black38,
+          // backgroundColor: Colors.black38,
         ),
         body: Container(
-          color: Colors.black,
+          color: Get.isDarkMode ? Colors.black : Colors.white,
           child: ListView(
             children: [
               TableFontSize(),
@@ -44,12 +44,15 @@ class FontSizes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white12,
+      color: Get.isDarkMode ? Colors.white12 : Colors.white70,
       child: ListTile(
           title: Text("Font sizes"),
           onTap: () {
-            Get.to(FontSizesScreen(),
-                transition: Transition.leftToRightWithFade);
+            Get.to(
+              FontSizesScreen(),
+              transition: Transition.leftToRightWithFade,
+              opaque: false,
+            );
           }),
     );
   }

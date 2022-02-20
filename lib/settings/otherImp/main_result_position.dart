@@ -12,7 +12,7 @@ class MainResultPosition extends StatelessWidget {
     sc.mainResultPlacement.value = sbox.get(bm.mainResultPlacement) ?? "right";
 
     return Card(
-      color: Colors.white12,
+      color: Get.isDarkMode ? Colors.white12 : Colors.white70,
       child:
           ExpansionTile(title: const Text("Main result position"), children: [
         Obx(
@@ -25,7 +25,9 @@ class MainResultPosition extends StatelessWidget {
                   style: TextStyle(
                     color: sc.mainResultPlacement.value == "left"
                         ? Colors.green
-                        : Colors.white,
+                        : Get.isDarkMode
+                            ? Colors.white
+                            : Colors.black,
                   ),
                 ),
                 onPressed: () {
@@ -41,7 +43,9 @@ class MainResultPosition extends StatelessWidget {
                   style: TextStyle(
                     color: sc.mainResultPlacement.value == "center"
                         ? Colors.green
-                        : Colors.white,
+                        : Get.isDarkMode
+                            ? Colors.white
+                            : Colors.black,
                   ),
                 ),
                 onPressed: () {
@@ -58,7 +62,9 @@ class MainResultPosition extends StatelessWidget {
                     color: (sc.mainResultPlacement.value != "left" &&
                             sc.mainResultPlacement.value != "center")
                         ? Colors.green
-                        : Colors.white,
+                        : Get.isDarkMode
+                            ? Colors.white
+                            : Colors.black,
                   ),
                 ),
                 onPressed: () {

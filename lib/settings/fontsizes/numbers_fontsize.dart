@@ -4,14 +4,13 @@ import 'package:calculator_04/settings/settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class NumbersFontsize extends StatelessWidget {
   const NumbersFontsize({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white12,
+      color: Get.isDarkMode ? Colors.white12 : Colors.white70,
       child: ListTile(
         title: Text("Numbers\nfont size"),
         trailing: SizedBox(

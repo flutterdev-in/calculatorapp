@@ -1,5 +1,7 @@
 import 'package:calculator_04/buttons/_main_container.dart';
-import 'package:calculator_04/buttons/backspace.dart';
+import 'package:calculator_04/controllers/settings_controller.dart';
+import 'package:calculator_04/history/fav_history_button.dart';
+import 'package:calculator_04/history/fav_history_widget.dart';
 
 import 'package:calculator_04/history/history_box.dart';
 import 'package:calculator_04/history/history_button.dart';
@@ -56,8 +58,15 @@ class ButtonsWd extends StatelessWidget {
           Expanded(
             flex: 400,
             child: Container(
-                child: !hc.isHistoryEmpty.value ? HistoryWidget() : Container(),
-                color: Colors.white10),
+              child: !hc.isHistoryEmpty.value
+                  ? hc.isFavPressed.value
+                      ? FavHistoryWidget()
+                      : HistoryWidget()
+                  : Container(
+                      // child: Text("Recycle bin"),
+                      ),
+              color: Color(sc.buttonsBackgroundColor.value),
+            ),
           ),
           Expanded(child: fixedButtons(), flex: 97),
         ],
@@ -70,7 +79,8 @@ class ButtonsWd extends StatelessWidget {
       children: [
         Expanded(
           flex: 29,
-          child: Container(color: Colors.white10),
+          child: Container(
+              color: Get.isDarkMode ? Colors.white10 : Colors.black12),
         ),
         Expanded(child: fixedButtons(), flex: 7),
       ],
@@ -80,21 +90,22 @@ class ButtonsWd extends StatelessWidget {
   Widget fixedButtons() {
     return Column(
       children: [
-        Expanded(child: HistoryButton(), flex: 3),
-        Expanded(child: BackSpace(), flex: 5),
-        Expanded(child: HistoryCleanButton(), flex: 5),
+        Expanded(child: HistoryButton(), flex: 4),
+        Expanded(child: FavHistoryButton(), flex: 6),
+        Expanded(child: HistoryCleanButton(), flex: 7),
         Expanded(
             child: Padding(
               padding: const EdgeInsets.all(0.5),
               child: Container(
-                color: Colors.white10,
+                color: Get.isDarkMode ? Colors.white10 : Colors.black12,
                 child: Padding(
                   padding: const EdgeInsets.all(9.0),
-                  child: Text(
-                    "Swipe left or right to delete each item",
-                    textScaleFactor: 1.13,
-                    style: TextStyle(color: Colors.brown),
-                  ),
+                  child: Obx(() => Text(
+                        "Swipe for action",
+                        textScaleFactor: 1.13,
+                        style: TextStyle(
+                            color: Color(sc.actionButtonsColor.value)),
+                      )),
                 ),
               ),
             ),

@@ -38,12 +38,12 @@ class MainContainer extends StatelessWidget {
   Widget grossContainer() {
     return Column(
       children: [
-        Expanded(child: firstRow(), flex: 3),
-        Expanded(child: secondRow(), flex: 4),
-        Expanded(child: thirdRow(), flex: 5),
-        Expanded(child: forthRow(), flex: 5),
-        Expanded(child: fifthRow(), flex: 5),
-        Expanded(child: sixthRow(), flex: 5),
+        Expanded(child: firstRow(), flex: 4),
+        Expanded(child: secondRow(), flex: 5),
+        Expanded(child: thirdRow(), flex: 6),
+        Expanded(child: forthRow(), flex: 6),
+        Expanded(child: fifthRow(), flex: 6),
+        Expanded(child: sixthRow(), flex: 6),
       ],
     );
   }

@@ -2,6 +2,7 @@ import 'package:calculator_04/buttons/customButton/gfbutton.dart';
 import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/history/history_box.dart';
 import 'package:calculator_04/controllers/result_controller.dart';
+import 'package:calculator_04/history/history_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:calculator_04/controllers/main_controller.dart';
@@ -14,6 +15,7 @@ class Clear extends StatelessWidget {
     HistoryBox hb = HistoryBox();
     if (!mc.n.value.contains(RegExp(r'^[^\d]*$'))) {
       hb.addItemToHistoryBox(mc.n.value);
+      hc.isFavPressed.value = false;
     }
 
     mc.n.value = "";
@@ -22,8 +24,15 @@ class Clear extends StatelessWidget {
   }
 
   void onLongPressed() {
+    HistoryBox hb = HistoryBox();
+    if (!mc.n.value.contains(RegExp(r'^[^\d]*$'))) {
+      hb.addItemToFavHistoryBox(mc.n.value);
+      hc.isFavPressed.value = true;
+    }
+
     mc.n.value = "";
     mc.p.value = 0;
+    rc.gr.value = "0";
   }
 
   @override

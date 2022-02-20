@@ -11,8 +11,8 @@ import 'package:intl/intl.dart';
 import 'package:flutter_parsed_text/flutter_parsed_text.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-class HistoryWidget extends StatelessWidget {
-  HistoryWidget({Key? key}) : super(key: key);
+class FavHistoryWidget extends StatelessWidget {
+  FavHistoryWidget({Key? key}) : super(key: key);
   HistoryBox hb = HistoryBox();
   final MainController b = Get.put(MainController());
   final HistoryController hc = Get.put(HistoryController());
@@ -20,19 +20,19 @@ class HistoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double mw = MediaQuery.of(context).size.width;
-    List hList = Hive.box("history").keys.toList().reversed.toList();
+    List hList = Hive.box("favhistory").keys.toList().reversed.toList();
 
     return ListView.builder(
       itemCount: hList.length,
       itemBuilder: (context, index) {
-        Map m = Hive.box("history").get(hList[index]);
+        Map m = Hive.box("favhistory").get(hList[index]);
         final DateFormat formatter = DateFormat("dd MMM yyyy, h:mm a");
         final String time = formatter.format(m["time"] ?? "");
         return Dismissible(
           background: Center(
             child: Text(
-              "item moved to favorites",
-              style: TextStyle(color: Colors.green),
+              "item moved to recycle bin",
+              style: TextStyle(color: Colors.blue),
             ),
           ),
           secondaryBackground: Center(
@@ -44,9 +44,9 @@ class HistoryWidget extends StatelessWidget {
           key: ObjectKey(time),
           onDismissed: (direction) async {
             if (direction == DismissDirection.startToEnd) {
-              await Hive.box("favhistory").add(m);
+              await Hive.box("history").add(m);
             }
-            await Hive.box("history").delete(hList[index]);
+            await Hive.box("favhistory").delete(hList[index]);
           },
           child: Column(
             children: [
@@ -61,6 +61,11 @@ class HistoryWidget extends StatelessWidget {
                           color: Color(sc.actionButtonsColor.value),
                         )),
                   ),
+                  Icon(
+                    Icons.favorite,
+                    color: Color(sc.actionButtonsColor.value),
+                    size: 18,
+                  ),
                   InkWell(
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(5, 1, 5, 1),
@@ -74,11 +79,7 @@ class HistoryWidget extends StatelessWidget {
                       r.tableString.value = m["nValue"] ?? "";
                       r.tsr.value = m["srValue"] ?? "";
                       r.tgr.value = m["grValue"] ?? "";
-                      Get.to(
-                        TableResult(),
-                        transition: Transition.leftToRightWithFade,
-                        opaque: false,
-                      );
+                      Get.to(TableResult());
                     },
                     highlightColor: Color(sc.onTapColor.value),
                     splashColor: Color(sc.onTapColor.value),

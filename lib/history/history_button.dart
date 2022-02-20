@@ -13,12 +13,15 @@ class HistoryButton extends StatelessWidget {
   void onPressed() {
     hc.isHistoryOpen.value = !hc.isHistoryOpen.value;
     hc.isHistoryEmpty.value = false;
+    hc.isFavPressed.value = false;
   }
 
   void longPress() {
     HistoryBox hb = HistoryBox();
     if (!b.n.value.contains(RegExp(r'^[^\d]*$'))) {
       hb.addItemToHistoryBox(b.n.value);
+      hc.isHistoryEmpty.value = false;
+      hc.isFavPressed.value = false;
     }
   }
 

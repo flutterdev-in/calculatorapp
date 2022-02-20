@@ -2,7 +2,7 @@ import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:calculator_04/controllers/main_controller.dart';
-
+import 'package:rich_text_controller/rich_text_controller.dart';
 
 class InputW extends StatelessWidget {
   InputW({Key? key}) : super(key: key);
@@ -14,6 +14,16 @@ class InputW extends StatelessWidget {
     return SizedBox(
       height: double.infinity,
       child: Obx(() {
+        RichTextController rtc = RichTextController(
+          onMatch: (List<String> matches) {},
+          patternMatchMap: {
+            RegExp(r"[/\+\-\u00D7\(\)%]"):
+                TextStyle(color: Color(sc.operatorsColor.value)),
+            RegExp(r"[^\d\./\+\-\u00D7\(\)%]"):
+                TextStyle(color: Color(sc.powerValuesColor.value)),
+          },
+        );
+        mc.rtc = rtc;
         mc.rtc!.text = mc.n.value;
         if (mc.p.value < 0) {
           mc.p.value = 0;
@@ -42,7 +52,9 @@ class InputW extends StatelessWidget {
               maxLines: null,
               decoration: InputDecoration(
                 focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white70)),
+                    borderSide: BorderSide(
+                        color:
+                            Get.isDarkMode ? Colors.white70 : Colors.black38)),
               ),
               style: TextStyle(
                   fontSize: sc.displayFontSize.value.toDouble(),

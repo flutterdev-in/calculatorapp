@@ -44,11 +44,12 @@ class GFButtonC extends StatelessWidget {
     double mw = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.all(padding),
-      child: Obx(() => Material(
-        color: isButtenEnter
-            ? Color(sc.enterButtonBackgroundColor.value)
-            : Color(sc.buttonsBackgroundColor.value),
-        child: InkWell(
+      child: Obx(
+        () => Material(
+            color: isButtenEnter
+                ? Color(sc.enterButtonBackgroundColor.value)
+                : Color(sc.buttonsBackgroundColor.value),
+            child: InkWell(
               onTap: ontap,
               onLongPress: onLongPress,
               child: Ink(
@@ -71,8 +72,9 @@ class GFButtonC extends StatelessWidget {
                               ),
                       ),
               ),
-              highlightColor: Color(sc.onTapColor.value),
+              // highlightColor: Color(sc.onTapColor.value),
               splashColor: Color(sc.onTapColor.value),
+              radius: 5000,
             )),
       ),
     );

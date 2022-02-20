@@ -21,10 +21,10 @@ class TableResult extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text("Result Table"),
-          backgroundColor: Colors.black,
+          // backgroundColor: Get.isDarkMode ? Colors.black : Colors.white,
         ),
         body: Obx(() => Container(
-              color: Colors.black,
+              color: Get.isDarkMode ? Colors.black : Colors.white,
               child: ListView(
                 children: [listBuilder(), endResult()],
               ),
@@ -39,7 +39,7 @@ class TableResult extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(8, 2, 8, 2),
         child: Container(
             width: double.maxFinite,
-            color: Colors.white10,
+            color: Get.isDarkMode ? Colors.white10 : Colors.black12,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Align(
@@ -60,7 +60,7 @@ class TableResult extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(8, 2, 8, 2),
             child: Container(
-              color: Colors.white10,
+              color: Get.isDarkMode ? Colors.white10 : Colors.black12,
               child: Align(
                 alignment: Alignment.topRight,
                 child: Padding(
@@ -74,7 +74,7 @@ class TableResult extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(8, 2, 8, 2),
             child: Container(
-              color: Colors.white10,
+              color: Get.isDarkMode ? Colors.white10 : Colors.black12,
               child: Align(
                 alignment: Alignment.topRight,
                 child: Padding(
@@ -83,7 +83,8 @@ class TableResult extends StatelessWidget {
                     children: [
                       parseText("Total$lastString = ",
                           txtColor: Color(sc.grossResultFontColor.value)),
-                      parseText(rc.tgr.value, txtColor: Colors.orange.shade400),
+                      parseText(rc.tgr.value,
+                          txtColor: Color(sc.grossResultFontColor.value)),
                     ],
                   ),
                 ),
@@ -113,7 +114,7 @@ class TableResult extends StatelessWidget {
         flex: 2,
         child: Container(
           height: double.infinity,
-          color: Colors.white12,
+          color: Get.isDarkMode ? Colors.white10 : Colors.black12,
           child: Align(
             child: Text(
               (index + 1).toString(),
@@ -132,7 +133,7 @@ class TableResult extends StatelessWidget {
         flex: 10,
         child: Container(
           height: double.infinity,
-          color: Colors.white12,
+          color: Get.isDarkMode ? Colors.white10 : Colors.black12,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Align(
@@ -150,7 +151,7 @@ class TableResult extends StatelessWidget {
         flex: 8,
         child: Container(
           height: double.infinity,
-          color: Colors.white12,
+          color: Get.isDarkMode ? Colors.white10 : Colors.black12,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Align(
@@ -225,8 +226,8 @@ class TableResult extends StatelessWidget {
         ),
         MatchText(
           pattern: r",",
-          style: const TextStyle(
-            color: Colors.white70,
+          style: TextStyle(
+            color: Get.isDarkMode ? Colors.white70 : Colors.black87,
           ),
         ),
         MatchText(

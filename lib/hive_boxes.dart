@@ -3,3 +3,4 @@ import 'package:hive/hive.dart';
 
 final Box sbox = Hive.box(bm.settings);
 final Box hbox = Hive.box("history");
+final Box favhbox = Hive.box("favhistory");

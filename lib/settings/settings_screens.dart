@@ -6,7 +6,7 @@ import 'package:calculator_04/settings/otherImp/default_precision.dart';
 import 'package:calculator_04/settings/otherImp/enter_button_behaviour.dart';
 import 'package:calculator_04/settings/otherImp/main_result_position.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -17,10 +17,10 @@ class SettingsScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Settings"),
-          backgroundColor: Colors.black38,
+          // backgroundColor: Colors.black38,
         ),
         body: Container(
-          color: Colors.black,
+          color: Get.isDarkMode ? Colors.black : Colors.white,
           child: ListView(
             children: [
               FontSizes(),

@@ -7,25 +7,26 @@ import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 Rx<String> selectedString = "".obs;
+Rx<int> pickedColorInt = 0xFFFFFFFF.obs;
 
 class ColorPickerWd extends StatelessWidget {
   String text;
   int colorInt;
-  void Function(Color) onColorChange;
+  void Function() onColorPick;
   String colorKeyToPut;
 
   ColorPickerWd({
     Key? key,
     required this.text,
     required this.colorInt,
-    required this.onColorChange,
+    required this.onColorPick,
     required this.colorKeyToPut,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white12,
+      color: Get.isDarkMode ? Colors.white12 : Colors.white70,
       child: ListTile(
         selectedColor: Colors.green,
         title: Text(text),
@@ -55,7 +56,7 @@ class ColorPickerWd extends StatelessWidget {
 
   void colorPicker(BuildContext context) {
     Rx<bool> isFavPick = false.obs;
-    Rx<int> pickedColorInt = 0xFFFFFFFF.obs;
+
     showDialog(
       barrierDismissible: false,
       context: context,
@@ -73,7 +74,6 @@ class ColorPickerWd extends StatelessWidget {
                               sbox.get(bm.favColors) ?? favColors0),
                           pickerColor: Color(colorInt),
                           onColorChanged: (color) {
-                            onColorChange(color);
                             pickedColorInt.value =
                                 int.parse(color.value.toString());
                           },
@@ -83,7 +83,6 @@ class ColorPickerWd extends StatelessWidget {
                           paletteType: PaletteType.hueWheel,
                           pickerColor: Color(colorInt),
                           onColorChanged: (color) {
-                            onColorChange(color);
                             pickedColorInt.value =
                                 int.parse(color.value.toString());
                           },
@@ -100,7 +99,7 @@ class ColorPickerWd extends StatelessWidget {
                       ElevatedButton(
                           onPressed: () {
                             Navigator.of(context).pop();
-                            putFavColor(pickedColorInt.value);
+                            onColorPick();
                             sbox.put(colorKeyToPut, pickedColorInt.value);
                           },
                           child: Text("Pick color")),

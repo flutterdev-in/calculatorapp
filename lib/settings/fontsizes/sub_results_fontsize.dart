@@ -11,7 +11,7 @@ class SubResultsFontSize extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white12,
+      color: Get.isDarkMode ? Colors.white12 : Colors.white70,
       child: ListTile(
         title: const Text("Sub results\nfont size"),
         trailing: SizedBox(

@@ -13,95 +13,95 @@ class ColorsScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Colours"),
-          backgroundColor: Colors.black38,
+          // backgroundColor: Colors.black38,
         ),
         body: Container(
-          color: Colors.black,
+          color: Get.isDarkMode ? Colors.black : Colors.white,
           child: ListView(
             shrinkWrap: true,
             children: [
               Obx(() => ColorPickerWd(
                     text: "Display font color",
                     colorInt: sc.displayFontColor.value,
-                    onColorChange: (color) => sc.displayFontColor.value =
-                        int.parse(color.value.toString()),
+                    onColorPick: () =>
+                        sc.displayFontColor.value = pickedColorInt.value,
                     colorKeyToPut: bm.displayFontColor,
                   )),
               Obx(() => ColorPickerWd(
                     text: "Sub results font color",
                     colorInt: sc.subResultsFontColor.value,
-                    onColorChange: (color) => sc.subResultsFontColor.value =
-                        int.parse(color.value.toString()),
+                    onColorPick: () =>
+                        sc.subResultsFontColor.value = pickedColorInt.value,
                     colorKeyToPut: bm.subResultsFontColor,
                   )),
               Obx(() => ColorPickerWd(
                     text: "Main results font color",
                     colorInt: sc.grossResultFontColor.value,
-                    onColorChange: (color) => sc.grossResultFontColor.value =
-                        int.parse(color.value.toString()),
+                    onColorPick: () =>
+                        sc.grossResultFontColor.value = pickedColorInt.value,
                     colorKeyToPut: bm.grossResultFontColor,
                   )),
               Obx(() => ColorPickerWd(
                     text: "Action buttons color",
                     colorInt: sc.actionButtonsColor.value,
-                    onColorChange: (color) => sc.actionButtonsColor.value =
-                        int.parse(color.value.toString()),
+                    onColorPick: () =>
+                        sc.actionButtonsColor.value = pickedColorInt.value,
                     colorKeyToPut: bm.actionButtonsColor,
                   )),
               Obx(() => ColorPickerWd(
                     text: "Operators color",
                     colorInt: sc.operatorsColor.value,
-                    onColorChange: (color) => sc.operatorsColor.value =
-                        int.parse(color.value.toString()),
+                    onColorPick: () =>
+                        sc.operatorsColor.value = pickedColorInt.value,
                     colorKeyToPut: bm.operatorsColor,
                   )),
               Obx(() => ColorPickerWd(
                     text: "Numbers color",
                     colorInt: sc.numbersColor.value,
-                    onColorChange: (color) => sc.numbersColor.value =
-                        int.parse(color.value.toString()),
+                    onColorPick: () =>
+                        sc.numbersColor.value = pickedColorInt.value,
                     colorKeyToPut: bm.numbersColor,
                   )),
               Obx(() => ColorPickerWd(
                     text: "Enter button icon color",
                     colorInt: sc.enterButtonIconColor.value,
-                    onColorChange: (color) => sc.enterButtonIconColor.value =
-                        int.parse(color.value.toString()),
+                    onColorPick: () =>
+                        sc.enterButtonIconColor.value = pickedColorInt.value,
                     colorKeyToPut: bm.enterButtonIconColor,
                   )),
               Obx(() => ColorPickerWd(
                     text: "Enter button background color",
                     colorInt: sc.enterButtonBackgroundColor.value,
-                    onColorChange: (color) => sc.enterButtonBackgroundColor
-                        .value = int.parse(color.value.toString()),
+                    onColorPick: () => sc.enterButtonBackgroundColor.value =
+                        pickedColorInt.value,
                     colorKeyToPut: bm.enterButtonBackgroundColor,
                   )),
               Obx(() => ColorPickerWd(
                     text: "Buttons background color",
                     colorInt: sc.buttonsBackgroundColor.value,
-                    onColorChange: (color) => sc.buttonsBackgroundColor.value =
-                        int.parse(color.value.toString()),
+                    onColorPick: () =>
+                        sc.buttonsBackgroundColor.value = pickedColorInt.value,
                     colorKeyToPut: bm.buttonsBackgroundColor,
                   )),
               Obx(() => ColorPickerWd(
                     text: "Button tap color",
                     colorInt: sc.onTapColor.value,
-                    onColorChange: (color) =>
-                        sc.onTapColor.value = int.parse(color.value.toString()),
+                    onColorPick: () =>
+                        sc.onTapColor.value = pickedColorInt.value,
                     colorKeyToPut: bm.onTapColor,
                   )),
               Obx(() => ColorPickerWd(
                     text: "Power values color",
                     colorInt: sc.powerValuesColor.value,
-                    onColorChange: (color) => sc.powerValuesColor.value =
-                        int.parse(color.value.toString()),
+                    onColorPick: () =>
+                        sc.powerValuesColor.value = pickedColorInt.value,
                     colorKeyToPut: bm.powerValuesColor,
                   )),
               Obx(() => ColorPickerWd(
                     text: "Cursor color",
                     colorInt: sc.cursorColor.value,
-                    onColorChange: (color) => sc.cursorColor.value =
-                        int.parse(color.value.toString()),
+                    onColorPick: () =>
+                        sc.cursorColor.value = pickedColorInt.value,
                     colorKeyToPut: bm.cursorColor,
                   )),
             ],
@@ -118,13 +118,14 @@ class ColorsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white12,
+      color: Get.isDarkMode ? Colors.white12 : Colors.white70,
       child: ListTile(
           title: Text("Colors"),
           onTap: () {
             Get.to(
               ColorsScreen(),
               transition: Transition.leftToRightWithFade,
+              opaque: false,
             );
           }),
     );

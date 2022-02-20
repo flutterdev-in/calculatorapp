@@ -12,7 +12,7 @@ class EnterButtonBehavior extends StatelessWidget {
     sc.isEnterLine.value = sbox.get("isEnterLine") ?? true;
 
     return Card(
-      color: Colors.white12,
+      color: Get.isDarkMode ? Colors.white12 : Colors.white70,
       child: ExpansionTile(
         title: const Text("Enter button response"),
         children: [

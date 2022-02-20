@@ -11,7 +11,7 @@ class DisplayFontSize extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white12,
+      color: Get.isDarkMode ? Colors.white12 : Colors.white70,
       child: ListTile(
         title: Text("Display\nfont size"),
         trailing: SizedBox(

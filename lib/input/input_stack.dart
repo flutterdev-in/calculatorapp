@@ -1,4 +1,5 @@
 import 'package:calculator_04/controllers/main_controller.dart';
+import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/input/input_widget.dart';
 import 'package:calculator_04/controllers/result_controller.dart';
 import 'package:calculator_04/result/resultTable/result_table.dart';
@@ -20,7 +21,7 @@ class InputStack extends StatelessWidget {
           child: Obx(() {
             if (b.n.value.contains("\n")) {
               return IconButton(
-                  color: Colors.brown,
+                  color: Color(sc.actionButtonsColor.value),
                   icon: const Icon(
                     MdiIcons.tableArrowRight,
                   ),
@@ -28,7 +29,11 @@ class InputStack extends StatelessWidget {
                     r.tableString.value = b.n.value;
                     r.tgr.value = r.gr.value;
                     r.tsr.value = r.sr.value;
-                    Get.to(TableResult());
+                    Get.to(
+                      TableResult(),
+                      transition: Transition.leftToRightWithFade,
+                      opaque: false,
+                    );
                   });
             } else {
               return const Text("");

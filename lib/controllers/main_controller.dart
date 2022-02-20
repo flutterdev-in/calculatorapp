@@ -1,4 +1,5 @@
 
+import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -15,20 +16,5 @@ class MainController extends GetxController {
   Rx<String> n = "".obs;
   RichTextController? rtc;
 
-  @override
-  void onInit() {
-    rtcInit();
-    super.onInit();
-  }
-
-
-  void rtcInit() {
-    rtc = RichTextController(
-      onMatch: (List<String> matches) {},
-      patternMatchMap: {
-        RegExp(r"[/\+\-\u00D7\(\)%]"): TextStyle(color: Colors.green),
-        RegExp(r"[^\d\./\+\-\u00D7\(\)%]"): TextStyle(color: Colors.blue),
-      },
-    );
-  }
+ 
 }

@@ -12,7 +12,7 @@ class OperatorsFontsize extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white12,
+      color: Get.isDarkMode ? Colors.white12 : Colors.white70,
       child: ListTile(
         title: Text("Operators\nfont size"),
         trailing: SizedBox(

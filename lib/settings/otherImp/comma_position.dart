@@ -5,14 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 
-
 class CommaPosition extends StatelessWidget {
   const CommaPosition({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
-        color: Colors.white12,
+        color: Get.isDarkMode ? Colors.white12 : Colors.white70,
         child: ExpansionTile(title: const Text("Result format"), children: [
           Obx(
             () => Column(
@@ -55,7 +54,9 @@ class CommaPosition extends StatelessWidget {
                   type: GFButtonType.outline,
                   color: primaryCommaPosition.value == 33
                       ? Colors.green
-                      : Colors.white,
+                      : Get.isDarkMode
+                          ? Colors.white
+                          : Colors.black,
                 ),
                 GFButton(
                   onPressed: () {
@@ -69,7 +70,9 @@ class CommaPosition extends StatelessWidget {
                   type: GFButtonType.outline,
                   color: primaryCommaPosition.value == 23
                       ? Colors.green
-                      : Colors.white,
+                      : Get.isDarkMode
+                          ? Colors.white
+                          : Colors.black,
                 ),
                 GFButton(
                   onPressed: () {
@@ -85,7 +88,9 @@ class CommaPosition extends StatelessWidget {
                   color: (primaryCommaPosition.value != 33 &&
                           primaryCommaPosition.value != 23)
                       ? Colors.green
-                      : Colors.white,
+                      : Get.isDarkMode
+                          ? Colors.white
+                          : Colors.black,
                 ),
               ],
             ),
@@ -108,7 +113,9 @@ class CommaPosition extends StatelessWidget {
                   type: GFButtonType.outline,
                   color: secondaryCommaPosition.value == 33
                       ? Colors.orange
-                      : Colors.white,
+                      : Get.isDarkMode
+                          ? Colors.white
+                          : Colors.black,
                 ),
                 GFButton(
                   onPressed: () {
@@ -122,7 +129,9 @@ class CommaPosition extends StatelessWidget {
                   type: GFButtonType.outline,
                   color: secondaryCommaPosition.value == 23
                       ? Colors.orange
-                      : Colors.white,
+                      : Get.isDarkMode
+                          ? Colors.white
+                          : Colors.black,
                 ),
                 GFButton(
                   onPressed: () {
@@ -137,7 +146,9 @@ class CommaPosition extends StatelessWidget {
                   color: (secondaryCommaPosition.value != 33 &&
                           secondaryCommaPosition.value != 23)
                       ? Colors.orange
-                      : Colors.white,
+                      : Get.isDarkMode
+                          ? Colors.white
+                          : Colors.black,
                 ),
               ],
             ),
@@ -149,7 +160,7 @@ class CommaPosition extends StatelessWidget {
 
   Widget commaSymbol() {
     return Card(
-      color: Colors.black12,
+      color: Get.isDarkMode ? Colors.black12 : Colors.white60,
       child: ListTile(
         title: const Text("Comma symbol"),
         trailing: SizedBox(
@@ -163,7 +174,9 @@ class CommaPosition extends StatelessWidget {
                   style: TextStyle(
                     color: rc.commaSymbol.value == ","
                         ? Colors.green
-                        : Colors.white,
+                        : Get.isDarkMode
+                            ? Colors.white
+                            : Colors.black,
                   ),
                 ),
                 onPressed: () {
@@ -179,7 +192,9 @@ class CommaPosition extends StatelessWidget {
                   style: TextStyle(
                     color: rc.commaSymbol.value == "'"
                         ? Colors.purple
-                        : Colors.white,
+                        : Get.isDarkMode
+                            ? Colors.white
+                            : Colors.black,
                   ),
                 ),
                 onPressed: () {

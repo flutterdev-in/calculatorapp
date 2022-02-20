@@ -14,6 +14,7 @@ Future<void> main() async {
   await Hive.initFlutter();
   await Hive.openBox("history");
   await Hive.openBox("settings");
+  await Hive.openBox("favhistory");
   runApp(const MyApp());
 }
 
@@ -24,11 +25,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'AI Calculator',
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        /* dark theme settings */
-      ),
+          brightness: Brightness.dark,
+          /* dark theme settings */
+          ),
       home: const MyHomePage(),
     );
   }
@@ -42,7 +43,9 @@ class MyHomePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          color: Colors.black,
+          color: Get.isDarkMode?
+              Colors.black:
+              Colors.white,
           child: Padding(
             padding: const EdgeInsets.all(6.0),
             child: Column(

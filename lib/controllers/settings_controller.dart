@@ -1,8 +1,8 @@
 import 'package:calculator_04/hive_boxes.dart';
 import 'package:calculator_04/settings/settings_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 
 final SettingsController sc = Get.put(
   SettingsController(),
@@ -46,6 +46,13 @@ class SettingsController extends GetxController {
   }
 
   void init() {
+    int pc(Color dc, Color lc) {
+      return Get.isDarkMode
+          ? int.parse(dc.value.toString())
+          : int.parse(lc.value.toString());
+    }
+
+    Color k = Colors.orange;
     isThemeBlack.value = sbox.get(bm.isThemeBlack) ?? true;
     isEnterLine.value = sbox.get(bm.isEnterLine) ?? true;
 
@@ -62,28 +69,31 @@ class SettingsController extends GetxController {
 
     favColors.value = sbox.get(bm.favColors) ?? favColors0;
 
-    displayFontColor.value = sbox.get(bm.displayFontColor) ?? 0xFFFFFFFF;
-    grossResultFontColor.value =
-        sbox.get(bm.grossResultFontColor) ?? 0xFFFFCC80;
-    subResultsFontColor.value = sbox.get(bm.subResultsFontColor) ?? 0xFFFFB74D;
+    displayFontColor.value =
+        sbox.get(bm.displayFontColor) ?? pc(Colors.white, Colors.black);
+    grossResultFontColor.value = sbox.get(bm.grossResultFontColor) ??
+        pc(Colors.orange.shade400, Colors.orange.shade900); // 0xFFFFCC80
+    subResultsFontColor.value = sbox.get(bm.subResultsFontColor) ??
+        pc(Colors.orange.shade200, Colors.orange.shade700);
     actionButtonsColor.value = sbox.get(bm.actionButtonsColor) ?? 0xFF795548;
-    buttonsBackgroundColor.value =
-        sbox.get(bm.buttonsBackgroundColor) ?? 0x1AFFFFFF;
+    buttonsBackgroundColor.value = sbox.get(bm.buttonsBackgroundColor) ??
+        pc(Colors.white10, Colors.black12);
     cursorColor.value = sbox.get(bm.cursorColor) ?? 0xFF9C27B0;
     enterButtonIconColor.value =
         sbox.get(bm.enterButtonIconColor) ?? 0xFFFFFFFF;
     enterButtonBackgroundColor.value =
-        sbox.get(bm.enterButtonBackgroundColor) ?? 0xFF1B5E20;
-    numbersColor.value = sbox.get(bm.numbersColor) ?? 0xFFFFFFFF;
+        sbox.get(bm.enterButtonBackgroundColor) ??
+            pc(Colors.green.shade900, Colors.green.shade900);
+    numbersColor.value =
+        sbox.get(bm.numbersColor) ?? pc(Colors.white, Colors.black);
     onTapColor.value = sbox.get(bm.onTapColor) ?? 0xFF880E4F;
-    operatorsColor.value = sbox.get(bm.operatorsColor) ?? 0xFF4CAF50;
+    operatorsColor.value =
+        sbox.get(bm.operatorsColor) ?? pc(Colors.green, Colors.green.shade900);
     powerValuesColor.value = sbox.get(bm.powerValuesColor) ?? 0xFF2196F3;
 
     sbox.put(bm.favColors, favColors0);
   }
 }
-
-
 
 void putFavColor(int intColor) {
   List<int> lf = sbox.get(bm.favColors) ?? favColors0;
