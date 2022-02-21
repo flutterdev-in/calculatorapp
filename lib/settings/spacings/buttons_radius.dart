@@ -22,6 +22,7 @@ class ButtonsRadius extends StatelessWidget {
             children: [
               InkWell(
                 child: const Center(child: Text("  -  ")),
+                splashColor: Colors.brown.shade100,
                 onTap: () {
                   if (sc.buttonsRadius.value.isGreaterThan(0)) {
                     if (sc.buttonsRadius.value < 1) {
@@ -37,6 +38,7 @@ class ButtonsRadius extends StatelessWidget {
               Obx(() => Text(sc.buttonsRadius.value.toString())),
               InkWell(
                 child: const Text("  +  "),
+                splashColor: Colors.brown.shade100,
                 onTap: () {
                   if (sc.buttonsRadius.value < 60) {
                     sc.buttonsRadius.value += 5;

@@ -11,7 +11,7 @@ class ActionButtonsFontsize extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-     color: Get.isDarkMode ? Colors.white12 : Colors.white70,
+      color: Get.isDarkMode ? Colors.white12 : Colors.white70,
       child: ListTile(
         title: Text("Action buttons\nfont size"),
         trailing: SizedBox(
@@ -21,6 +21,7 @@ class ActionButtonsFontsize extends StatelessWidget {
             children: [
               InkWell(
                 child: Center(child: Text("  -  ")),
+                splashColor: Colors.brown.shade100,
                 onTap: () {
                   if (sc.actionButtonsIconSize.value > 10) {
                     sc.actionButtonsIconSize.value--;
@@ -34,6 +35,7 @@ class ActionButtonsFontsize extends StatelessWidget {
                   .replaceAll(RegExp(r'\..*'), ""))),
               InkWell(
                 child: Text("  +  "),
+                splashColor: Colors.brown.shade100,
                 onTap: () {
                   if (sc.actionButtonsIconSize.value < 60) {
                     sc.actionButtonsIconSize.value++;

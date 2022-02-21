@@ -56,7 +56,12 @@ dev_dependencies:
   hive_generator: ^1.1.2
   build_runner: ^2.1.7
   flutter_launcher_icons: ^0.9.2
+  flutter_native_splash: ^2.0.4 
 
+
+flutter_native_splash:
+  color: "#000000"
+  image: assets/Icon-512.png
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your

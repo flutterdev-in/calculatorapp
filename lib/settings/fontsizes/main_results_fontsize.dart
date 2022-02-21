@@ -19,6 +19,7 @@ class MainResultsFontSize extends StatelessWidget {
             children: [
               InkWell(
                 child: const Center(child: Text("  -  ")),
+                splashColor: Colors.brown.shade100,
                 onTap: () {
                   if (sc.grossResultFontSize.value > 0) {
                     sc.grossResultFontSize.value -= 2;
@@ -32,6 +33,7 @@ class MainResultsFontSize extends StatelessWidget {
                   .replaceAll(RegExp(r'\..*'), ""))),
               InkWell(
                 child: const Text("  +  "),
+                splashColor: Colors.brown.shade100,
                 onTap: () {
                   if (sc.grossResultFontSize.value < 35) {
                     sc.grossResultFontSize.value += 2;

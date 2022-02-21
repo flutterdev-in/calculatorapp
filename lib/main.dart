@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:url_strategy/url_strategy.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +34,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           brightness: Brightness.light,
           colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.green,
+            primarySwatch: MaterialColor(
+              int.parse(Colors.green.shade900.value.toString()),
+              colorMap,
+            ),
+            //  Colors.green,
           )),
       darkTheme: ThemeData.dark(),
       home: MyHomePage(),
@@ -57,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) {
+    if (state == AppLifecycleState.paused) {
       sbox.put(bm.stateNvalue, mc.n.value);
       sbox.put(bm.statePvalue, mc.p.value);
     }
@@ -85,6 +90,19 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
     );
   }
 }
+
+Map<int, Color> colorMap = {
+  50: Color.fromRGBO(136, 14, 79, .1),
+  100: Color.fromRGBO(136, 14, 79, .2),
+  200: Color.fromRGBO(136, 14, 79, .3),
+  300: Color.fromRGBO(136, 14, 79, .4),
+  400: Color.fromRGBO(136, 14, 79, .5),
+  500: Color.fromRGBO(136, 14, 79, .6),
+  600: Color.fromRGBO(136, 14, 79, .7),
+  700: Color.fromRGBO(136, 14, 79, .8),
+  800: Color.fromRGBO(136, 14, 79, .9),
+  900: Color.fromRGBO(136, 14, 79, 1),
+};
 
 // class MyHomePage0 extends StatelessWidget {
 //   const MyHomePage0({Key? key}) : super(key: key);

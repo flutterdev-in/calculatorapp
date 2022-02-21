@@ -52,9 +52,8 @@ class InputW extends StatelessWidget {
               maxLines: null,
               decoration: InputDecoration(
                 focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color:
-                             Color(sc.dividerLineColor.value))),
+                    borderSide:
+                        BorderSide(color: Color(sc.dividerLineColor.value))),
               ),
               style: TextStyle(
                   fontSize: sc.displayFontSize.value.toDouble(),
@@ -62,7 +61,8 @@ class InputW extends StatelessWidget {
               readOnly: true,
               autofocus: true,
               showCursor: true,
-              cursorColor: Color(sc.cursorColor.value), // Colors.purple,
+              cursorColor:
+                  Color(sc.cursorColor.value), // Colors.brown.shade100,
               controller: mc.rtc,
             ),
           ),

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
-Rx<bool> isDark = Get.isDarkMode.obs;
+Rx<bool> isDarkTheme = Get.isDarkMode.obs;
 
 class DarkDecideCard extends StatelessWidget {
   const DarkDecideCard({Key? key}) : super(key: key);
@@ -24,26 +24,37 @@ class DarkDecideCard extends StatelessWidget {
           TextButton(
             onPressed: () async {
               selectTheme(lightThemeColors);
-              isDark.value = false;
-              await Hive.box("settings").clear();
+              isDarkTheme.value = false;
+              await Future.delayed(const Duration(milliseconds: 700));
+              Get.back();
             },
             child: Obx(() => Text(
                   "Light",
                   style: TextStyle(
-                    color: isDark.value ? Colors.red : Colors.green,
+                    color: isDarkTheme.value
+                        ? Get.isDarkMode
+                            ? Colors.white
+                            : Colors.black
+                        : Colors.green,
                   ),
                 )),
           ),
           TextButton(
             onPressed: () async {
               selectTheme(darkThemeColors);
-              isDark.value = true;
-              await Hive.box("settings").clear();
+              isDarkTheme.value = true;
+              await Future.delayed(const Duration(milliseconds: 700));
+              Get.back();
             },
             child: Obx(() => Text(
                   "Dark",
                   style: TextStyle(
-                      color: isDark.value ? Colors.green : Colors.red),
+                    color: isDarkTheme.value
+                        ? Colors.green
+                        : Get.isDarkMode
+                            ? Colors.white
+                            : Colors.black,
+                  ),
                 )),
           ),
         ],
@@ -63,7 +74,7 @@ List<int> darkThemeColors = [
   psc(Colors.white),
   psc(Colors.green.shade900),
   psc(Colors.white),
-  psc(Colors.purple),
+  psc(Colors.purple.shade900),
   psc(Colors.green),
   psc(Colors.blue),
   psc(Colors.white70),
@@ -80,8 +91,8 @@ List<int> lightThemeColors = [
   psc(Colors.white),
   psc(Colors.green.shade900),
   psc(Colors.black),
-  psc(Colors.purple),
-  psc(Colors.green.shade900),
+  psc(Colors.indigo),
+  psc(Colors.green),
   psc(Colors.blue),
   psc(Colors.black38),
 ];

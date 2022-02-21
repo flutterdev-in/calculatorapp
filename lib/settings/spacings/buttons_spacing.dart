@@ -22,6 +22,7 @@ class ButtonsSpacing extends StatelessWidget {
             children: [
               InkWell(
                 child: const Center(child: Text("  -  ")),
+                splashColor: Colors.brown.shade100,
                 onTap: () {
                   if (sc.buttonsSpacing.value.isGreaterThan(0)) {
                     if (sc.buttonsSpacing.value < 0.2) {
@@ -37,6 +38,7 @@ class ButtonsSpacing extends StatelessWidget {
               Obx(() => Text(sc.buttonsSpacing.value.toStringAsFixed(1))),
               InkWell(
                 child: const Text("  +  "),
+                splashColor: Colors.brown.shade100,
                 onTap: () {
                   if (sc.buttonsSpacing.value < 10) {
                     sc.buttonsSpacing.value += 0.2;

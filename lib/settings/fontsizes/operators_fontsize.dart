@@ -21,6 +21,7 @@ class OperatorsFontsize extends StatelessWidget {
             children: [
               InkWell(
                 child: Center(child: Text("  -  ")),
+                splashColor: Colors.brown.shade100,
                 onTap: () {
                   if (sc.operatorsIconSize.value > 10) {
                     sc.operatorsIconSize.value--;
@@ -33,6 +34,7 @@ class OperatorsFontsize extends StatelessWidget {
                   .replaceAll(RegExp(r'\..*'), ""))),
               InkWell(
                 child: Text("  +  "),
+                splashColor: Colors.brown.shade100,
                 onTap: () {
                   if (sc.operatorsIconSize.value < 60) {
                     sc.operatorsIconSize.value++;

@@ -12,7 +12,7 @@ class DefaultPrecision extends StatelessWidget {
   Widget build(BuildContext context) {
     rc.precision.value = sbox.get(bm.precision) ?? 2;
     return Card(
-       color: Get.isDarkMode ? Colors.white12 : Colors.white70,
+      color: Get.isDarkMode ? Colors.white12 : Colors.white70,
       child: ListTile(
         title: const Text("Default precision"),
         trailing: SizedBox(
@@ -22,6 +22,7 @@ class DefaultPrecision extends StatelessWidget {
             children: [
               InkWell(
                 child: const Center(child: Text("  -  ")),
+                splashColor: Colors.brown.shade100,
                 onTap: () {
                   if (rc.precision.value > -6) {
                     rc.precision.value--;
@@ -34,6 +35,7 @@ class DefaultPrecision extends StatelessWidget {
                   .replaceAll(RegExp(r'\..*'), ""))),
               InkWell(
                 child: const Text("  +  "),
+                splashColor: Colors.brown.shade100,
                 onTap: () {
                   if (rc.precision.value < 7) {
                     rc.precision.value++;

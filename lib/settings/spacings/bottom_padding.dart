@@ -19,6 +19,7 @@ class BottonPadding extends StatelessWidget {
             children: [
               InkWell(
                 child: const Center(child: Text("  -  ")),
+                splashColor: Colors.brown.shade100,
                 onTap: () {
                   sc.bottomPadding.value -= 3;
                   sbox.put(bm.bottomPadding, sc.bottomPadding.value);
@@ -29,6 +30,7 @@ class BottonPadding extends StatelessWidget {
                   .replaceAll(RegExp(r'\..*'), ""))),
               InkWell(
                 child: const Text("  +  "),
+                splashColor: Colors.brown.shade100,
                 onTap: () {
                   sc.bottomPadding.value += 3;
                   sbox.put(bm.bottomPadding, sc.bottomPadding.value);

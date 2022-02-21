@@ -24,11 +24,11 @@ class TableResult extends StatelessWidget {
           // backgroundColor: Get.isDarkMode ? Colors.black : Colors.white,
         ),
         body: Container(
-              color: Get.isDarkMode ? Colors.black : Colors.white,
-              child: ListView(
-                children: [listBuilder(), endResult()],
-              ),
-            ),
+          color: Get.isDarkMode ? Colors.black : Colors.white,
+          child: ListView(
+            children: [listBuilder(), endResult()],
+          ),
+        ),
       ),
     );
   }
@@ -44,7 +44,8 @@ class TableResult extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Align(
                 child: parseText("Total =  " + rc.tgr.value,
-                    txtColor: Color(pc(Colors.orange.shade400, Colors.orange.shade900))),
+                    txtColor: Color(
+                        pc(Colors.orange.shade400, Colors.orange.shade900))),
                 alignment: Alignment.topRight,
               ),
             )),
@@ -66,7 +67,8 @@ class TableResult extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: parseText("Total  =  " + rc.tsr.value,
-                      txtColor: Color(pc(Colors.orange.shade200, Colors.orange.shade700))),
+                      txtColor: Color(
+                          pc(Colors.orange.shade200, Colors.orange.shade700))),
                 ),
               ),
             ),
@@ -82,9 +84,11 @@ class TableResult extends StatelessWidget {
                   child: Wrap(
                     children: [
                       parseText("Total$lastString = ",
-                          txtColor: Color(pc(Colors.orange.shade400, Colors.orange.shade900))),
+                          txtColor: Color(pc(
+                              Colors.orange.shade400, Colors.orange.shade900))),
                       parseText(rc.tgr.value,
-                          txtColor: Color(pc(Colors.orange.shade400, Colors.orange.shade900))),
+                          txtColor: Color(pc(
+                              Colors.orange.shade400, Colors.orange.shade900))),
                     ],
                   ),
                 ),

@@ -20,6 +20,7 @@ class NumbersFontsize extends StatelessWidget {
             children: [
               InkWell(
                 child: Center(child: Text("  -  ")),
+                splashColor: Colors.brown.shade100,
                 onTap: () {
                   if (sc.numbersFontSize.value > 10) {
                     sc.numbersFontSize.value--;
@@ -32,6 +33,7 @@ class NumbersFontsize extends StatelessWidget {
                   .replaceAll(RegExp(r'\..*'), ""))),
               InkWell(
                 child: Text("  +  "),
+                splashColor: Colors.brown.shade100,
                 onTap: () {
                   if (sc.numbersFontSize.value < 60) {
                     sc.numbersFontSize.value++;

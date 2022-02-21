@@ -21,6 +21,7 @@ class DisplayFontSize extends StatelessWidget {
             children: [
               InkWell(
                 child: Center(child: Text("  -  ")),
+                splashColor: Colors.brown.shade100,
                 onTap: () {
                   if (sc.displayFontSize.value > 0) {
                     sc.displayFontSize.value -= 2;
@@ -33,6 +34,8 @@ class DisplayFontSize extends StatelessWidget {
                   .replaceAll(RegExp(r'\..*'), ""))),
               InkWell(
                 child: Text("  +  "),
+                splashColor: Colors.brown.shade100,
+                // autofocus: true,
                 onTap: () {
                   if (sc.displayFontSize.value < 50) {
                     sc.displayFontSize.value += 2;

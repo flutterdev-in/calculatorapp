@@ -21,6 +21,7 @@ class TableFontSize extends StatelessWidget {
             children: [
               InkWell(
                 child: const Center(child: Text("  -  ")),
+                splashColor: Colors.brown.shade100,
                 onTap: () {
                   if (sc.tableFontSize.value > 0) {
                     sc.tableFontSize.value -= 2;
@@ -33,6 +34,7 @@ class TableFontSize extends StatelessWidget {
                   .replaceAll(RegExp(r'\..*'), ""))),
               InkWell(
                 child: const Text("  +  "),
+                splashColor: Colors.brown.shade100,
                 onTap: () {
                   if (sc.tableFontSize.value < 35) {
                     sc.tableFontSize.value += 2;

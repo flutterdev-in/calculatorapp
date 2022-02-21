@@ -72,7 +72,7 @@ class SettingsController extends GetxController {
     favColors.value = sbox.get(bm.favColors) ?? favColors0;
     screenBackgroundColor.value =
         sbox.get(bm.screenBackgroundColor) ?? pc(Colors.black, Colors.white);
-    
+
     displayFontColor.value =
         sbox.get(bm.displayFontColor) ?? pc(Colors.white, Colors.black);
     grossResultFontColor.value = sbox.get(bm.grossResultFontColor) ??
@@ -92,10 +92,10 @@ class SettingsController extends GetxController {
             pc(Colors.green.shade900, Colors.green.shade900);
     numbersColor.value =
         sbox.get(bm.numbersColor) ?? pc(Colors.white, Colors.black);
-    onTapColor.value = sbox.get(bm.onTapColor) ??
-        pc(Colors.purple.shade900, Colors.purple.shade900);
+    onTapColor.value =
+        sbox.get(bm.onTapColor) ?? pc(Colors.purple.shade900, Colors.indigo);
     operatorsColor.value =
-        sbox.get(bm.operatorsColor) ?? pc(Colors.green, Colors.green.shade900);
+        sbox.get(bm.operatorsColor) ?? pc(Colors.green, Colors.green);
     powerValuesColor.value =
         sbox.get(bm.powerValuesColor) ?? pc(Colors.blue, Colors.blue);
     dividerLineColor.value =
@@ -104,11 +104,12 @@ class SettingsController extends GetxController {
   }
 }
 
-List<int> favColors0 = Get.isDarkMode ? darkThemeColors : lightThemeColors;
+List<int> favColors0 = Get.isDarkMode
+    ? darkThemeColors.toSet().toList()
+    : lightThemeColors.toSet().toList();
 
 List<int> darkThemeColors = [
   psc(Colors.black),
-  psc(Colors.white70),
   psc(Colors.white),
   psc(Colors.orange.shade400),
   psc(Colors.orange.shade200),
@@ -118,14 +119,14 @@ List<int> darkThemeColors = [
   psc(Colors.white),
   psc(Colors.green.shade900),
   psc(Colors.white),
-  psc(Colors.purple),
+  psc(Colors.purple.shade900),
   psc(Colors.green),
   psc(Colors.blue),
+  psc(Colors.white70),
 ];
 
 List<int> lightThemeColors = [
   psc(Colors.white),
-  psc(Colors.black38),
   psc(Colors.black),
   psc(Colors.orange.shade900),
   psc(Colors.orange.shade700),
@@ -135,9 +136,10 @@ List<int> lightThemeColors = [
   psc(Colors.white),
   psc(Colors.green.shade900),
   psc(Colors.black),
-  psc(Colors.purple),
-  psc(Colors.green.shade900),
+  psc(Colors.indigo),
+  psc(Colors.green),
   psc(Colors.blue),
+  psc(Colors.black38),
 ];
 
 int pc(Color dc, Color lc) {
@@ -155,7 +157,7 @@ void putFavColor(int intColor) {
   if (!lf.contains(intColor)) {
     lf.add(intColor);
     if (lf.length > 35) {
-      lf.removeAt(favColors0.length);
+      lf.removeAt(15);
     }
 
     sbox.put(bm.favColors, lf);
