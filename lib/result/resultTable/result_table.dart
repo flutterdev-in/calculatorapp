@@ -113,6 +113,15 @@ class TableResult extends StatelessWidget {
   Widget listRow(int index) {
     String rowString = listStrings[index];
     String rowResult = rowResultF(rowString);
+
+    String listResultString() {
+      String listResultString0 = "";
+      for (String i in listStrings) {
+        listResultString0 = listResultString0 + rowResultF(i);
+      }
+      return listResultString0;
+    }
+
     Widget indexW() {
       return Expanded(
         flex: 2,
@@ -168,7 +177,26 @@ class TableResult extends StatelessWidget {
       );
     }
 
-    if (mc.n.value.contains(RegExp(r'[^\n\.\d]+'))) {
+    if (!rc.tableString.value.contains("\n")) {
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(8, 1, 8, 1),
+        child: IntrinsicHeight(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              indexW(),
+              SizedBox(
+                width: 2,
+              ),
+              rowSW(),
+            ],
+          ),
+        ),
+      );
+    } else if (rc.tableString.value
+            .contains(RegExp(r'[^\n\.\d(\n\-||\n\+)]+')) ||
+        listResultString().contains("\u00D7")) {
       return Padding(
         padding: const EdgeInsets.fromLTRB(8, 1, 8, 1),
         child: IntrinsicHeight(
@@ -224,8 +252,8 @@ class TableResult extends StatelessWidget {
       parse: <MatchText>[
         MatchText(
           pattern: r"[/\+\-\u00D7\(\)%]",
-          style: const TextStyle(
-            color: Colors.green,
+          style: TextStyle(
+            color: Get.isDarkMode ? Colors.green : Colors.teal.shade600,
           ),
         ),
         MatchText(

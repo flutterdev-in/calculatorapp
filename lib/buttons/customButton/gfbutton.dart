@@ -75,7 +75,7 @@ class GFButtonC extends StatelessWidget {
                                 ),
                         ),
                 ),
-                // highlightColor: Color(sc.onTapColor.value),
+                highlightColor: Color(sc.onTapColor.value),
                 splashColor: Color(sc.onTapColor.value),
                 radius: 5000,
               )),

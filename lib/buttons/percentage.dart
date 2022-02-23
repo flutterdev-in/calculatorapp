@@ -47,7 +47,9 @@ class Percentage extends StatelessWidget {
           isIcon: false,
           text: "%",
           textColour: Color(sc.operatorsColor.value), // Colors.green,
-          textSize: sc.operatorsIconSize.value.toDouble() - 15,
+          textSize: sc.operatorsIconSize.value.toDouble() - 15> 1
+              ? sc.operatorsIconSize.value.toDouble() - 15
+              : 1,
         ));
   }
 }

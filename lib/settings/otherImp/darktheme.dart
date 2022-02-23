@@ -4,7 +4,6 @@ import 'package:calculator_04/hive_boxes.dart';
 import 'package:calculator_04/settings/settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 
 Rx<bool> isDarkTheme = Get.isDarkMode.obs;
 
@@ -78,6 +77,7 @@ List<int> darkThemeColors = [
   psc(Colors.green),
   psc(Colors.blue),
   psc(Colors.white70),
+  psc(Colors.green),
 ];
 
 List<int> lightThemeColors = [
@@ -95,6 +95,7 @@ List<int> lightThemeColors = [
   psc(Colors.green),
   psc(Colors.blue),
   psc(Colors.black38),
+  psc(Colors.green),
 ];
 
 void selectTheme(List<int> l) {
@@ -129,6 +130,7 @@ void selectTheme(List<int> l) {
   sc.operatorsColor.value = l[11];
   sc.powerValuesColor.value = l[12];
   sc.dividerLineColor.value = l[13];
+  sc.mathSymbolsColor.value = l[14];
 
   sbox.put(bm.isEnterLine, true);
   sbox.put(bm.buttonsRadius, 0);
@@ -157,4 +159,5 @@ void selectTheme(List<int> l) {
   sbox.put(bm.operatorsColor, l[11]);
   sbox.put(bm.powerValuesColor, l[12]);
   sbox.put(bm.dividerLineColor, l[13]);
+  sbox.put(bm.mathSymbolsColor, l[14]);
 }

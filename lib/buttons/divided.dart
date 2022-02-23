@@ -20,7 +20,9 @@ class Divided extends StatelessWidget {
     if (mc.n.value.contains(RegExp(r'(^)dv'))) {
       mc.n.value = mc.n.value.replaceAll("dv", "");
       mc.p.value--;
-    } else if (mc.n.value.contains(RegExp(r'(\d|\)|%|\n)dv'))) {
+    } else if (mc.n.value.contains(RegExp(r'(\d|\)|\n)dv'))) {
+      mc.n.value = mc.n.value.replaceAll("dv", "/");
+    } else if (mc.n.value.contains(RegExp(r'([\u00D7/]|^)\d+(\.\d*)?%dv'))) {
       mc.n.value = mc.n.value.replaceAll("dv", "/");
     } else if (mc.n.value.contains(".dv")) {
       mc.n.value = mc.n.value.replaceAll("dv", "0/");
@@ -59,7 +61,9 @@ class Divided extends StatelessWidget {
           ontap: () => onPressed(),
           isIcon: false,
           text: "/",
-          textSize: sc.operatorsIconSize.value.toDouble() - 10,
+          textSize: sc.operatorsIconSize.value.toDouble() - 10 > 1
+              ? sc.operatorsIconSize.value.toDouble() - 10
+              : 1,
           textColour: Color(sc.operatorsColor.value),
         ));
   }

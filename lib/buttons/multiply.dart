@@ -20,9 +20,11 @@ class Multiply extends StatelessWidget {
     }
 
     if (mc.n.value.contains(RegExp(r'(^)mt'))) {
-      mc.n.value = mc.n.value.replaceAll("dv", "");
+      mc.n.value = mc.n.value.replaceAll("mt", "");
       // b.p.value--;
-    } else if (mc.n.value.contains(RegExp(r'(\d|\)|%|\n)mt'))) {
+    } else if (mc.n.value.contains(RegExp(r'(\d|\)|\n)mt'))) {
+      mc.n.value = mc.n.value.replaceAll("mt", "\u00D7");
+    } else if (mc.n.value.contains(RegExp(r'[\u00D7/]\d+(\.\d*)?%mt'))) {
       mc.n.value = mc.n.value.replaceAll("mt", "\u00D7");
     } else if (mc.n.value.contains(".mt")) {
       mc.n.value = mc.n.value.replaceAll("mt", "0\u00D7");

@@ -1,4 +1,5 @@
 import 'package:calculator_04/controllers/settings_controller.dart';
+import 'package:calculator_04/hive_boxes.dart';
 import 'package:calculator_04/settings/colors/color_picker_custom.dart';
 import 'package:calculator_04/settings/settings_model.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,20 @@ class ColorsScreen extends StatelessWidget {
                     onColorPick: () =>
                         sc.screenBackgroundColor.value = pickedColorInt.value,
                     colorKeyToPut: bm.screenBackgroundColor,
+                  )),
+              Obx(() => ColorPickerWd(
+                    text: "Buttons background color",
+                    colorInt: sc.buttonsBackgroundColor.value,
+                    onColorPick: () =>
+                        sc.buttonsBackgroundColor.value = pickedColorInt.value,
+                    colorKeyToPut: bm.buttonsBackgroundColor,
+                  )),
+              Obx(() => ColorPickerWd(
+                    text: "Button tap color",
+                    colorInt: sc.onTapColor.value,
+                    onColorPick: () =>
+                        sc.onTapColor.value = pickedColorInt.value,
+                    colorKeyToPut: bm.onTapColor,
                   )),
               Obx(() => ColorPickerWd(
                     text: "Divider line color",
@@ -65,9 +80,20 @@ class ColorsScreen extends StatelessWidget {
               Obx(() => ColorPickerWd(
                     text: "Operators color",
                     colorInt: sc.operatorsColor.value,
-                    onColorPick: () =>
-                        sc.operatorsColor.value = pickedColorInt.value,
+                    onColorPick: () {
+                      sc.operatorsColor.value = pickedColorInt.value;
+                      if (sbox.get(bm.mathSymbolsColor) == null) {
+                        sc.mathSymbolsColor.value = sc.operatorsColor.value;
+                      }
+                    },
                     colorKeyToPut: bm.operatorsColor,
+                  )),
+              Obx(() => ColorPickerWd(
+                    text: "Math symbols color",
+                    colorInt: sc.mathSymbolsColor.value,
+                    onColorPick: () =>
+                        sc.mathSymbolsColor.value = pickedColorInt.value,
+                    colorKeyToPut: bm.mathSymbolsColor,
                   )),
               Obx(() => ColorPickerWd(
                     text: "Numbers color",
@@ -89,20 +115,6 @@ class ColorsScreen extends StatelessWidget {
                     onColorPick: () => sc.enterButtonBackgroundColor.value =
                         pickedColorInt.value,
                     colorKeyToPut: bm.enterButtonBackgroundColor,
-                  )),
-              Obx(() => ColorPickerWd(
-                    text: "Buttons background color",
-                    colorInt: sc.buttonsBackgroundColor.value,
-                    onColorPick: () =>
-                        sc.buttonsBackgroundColor.value = pickedColorInt.value,
-                    colorKeyToPut: bm.buttonsBackgroundColor,
-                  )),
-              Obx(() => ColorPickerWd(
-                    text: "Button tap color",
-                    colorInt: sc.onTapColor.value,
-                    onColorPick: () =>
-                        sc.onTapColor.value = pickedColorInt.value,
-                    colorKeyToPut: bm.onTapColor,
                   )),
               Obx(() => ColorPickerWd(
                     text: "Power values color",

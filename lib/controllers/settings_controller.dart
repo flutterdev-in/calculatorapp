@@ -43,6 +43,7 @@ class SettingsController extends GetxController {
   Rx<int> onTapColor = 0xFF880E4F.obs;
   Rx<int> operatorsColor = 0xFF4CAF50.obs;
   Rx<int> powerValuesColor = 0xFF2196F3.obs;
+  Rx<int> mathSymbolsColor = 0xFF4CAF50.obs;
 
   @override
   void onInit() {
@@ -101,6 +102,8 @@ class SettingsController extends GetxController {
     dividerLineColor.value =
         sbox.get(bm.dividerLineColor) ?? pc(Colors.white70, Colors.black38);
     sbox.put(bm.favColors, favColors0);
+    mathSymbolsColor.value =
+        sbox.get(bm.mathSymbolsColor) ?? operatorsColor.value;
   }
 }
 
@@ -123,6 +126,7 @@ List<int> darkThemeColors = [
   psc(Colors.green),
   psc(Colors.blue),
   psc(Colors.white70),
+  psc(Colors.green),
 ];
 
 List<int> lightThemeColors = [
@@ -140,6 +144,7 @@ List<int> lightThemeColors = [
   psc(Colors.green),
   psc(Colors.blue),
   psc(Colors.black38),
+  psc(Colors.green),
 ];
 
 int pc(Color dc, Color lc) {

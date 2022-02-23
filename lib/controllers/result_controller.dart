@@ -36,11 +36,9 @@ class ResultController extends GetxController {
   @override
   void onInit() async {
     await init();
-    
+
     super.onInit();
   }
-
-  
 
   @override
   void onClose() {
@@ -95,7 +93,14 @@ class ResultController extends GetxController {
   }
 
   void grossResult(String nValue) {
-    String newLastNvalue = Modifications().modifications(nValue);
+    String nValue0 = "";
+    if (nValue.contains(RegExp(r'\n(\u00D7|/|\d+(\.\d*)?%)[^\n]*$'))) {
+      nValue0 = sr.value + "\n" + nValue.split("\n").last;
+    } else {
+      nValue0 = nValue;
+    }
+
+    String newLastNvalue = Modifications().modifications(nValue0);
     num resultNum = TryCatches().tc(newLastNvalue);
 
     if (resultNum == 0.1921465) {

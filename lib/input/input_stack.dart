@@ -18,27 +18,21 @@ class InputStack extends StatelessWidget {
         InputW(),
         Align(
           alignment: Alignment.bottomRight,
-          child: Obx(() {
-            if (b.n.value.contains("\n")) {
-              return IconButton(
-                  color: Color(sc.actionButtonsColor.value),
-                  icon: const Icon(
-                    MdiIcons.tableArrowRight,
-                  ),
-                  onPressed: () {
-                    r.tableString.value = b.n.value;
-                    r.tgr.value = r.gr.value;
-                    r.tsr.value = r.sr.value;
-                    Get.to(
-                      TableResult(),
-                      transition: Transition.leftToRightWithFade,
-                      opaque: false,
-                    );
-                  });
-            } else {
-              return const Text("");
-            }
-          }),
+          child: Obx(() => IconButton(
+              color: Color(sc.actionButtonsColor.value),
+              icon: const Icon(
+                MdiIcons.tableArrowRight,
+              ),
+              onPressed: () {
+                r.tableString.value = b.n.value;
+                r.tgr.value = r.gr.value;
+                r.tsr.value = r.sr.value;
+                Get.to(
+                  TableResult(),
+                  transition: Transition.leftToRightWithFade,
+                  opaque: false,
+                );
+              })),
         )
       ],
     );

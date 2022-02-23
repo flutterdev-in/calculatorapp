@@ -135,7 +135,9 @@ class Brackets extends StatelessWidget {
           iconData: Icons.backspace_outlined,
           isIcon: false,
           text: "( )",
-          textSize: sc.operatorsIconSize.value.toDouble() - 15,
+          textSize: sc.operatorsIconSize.value.toDouble() - 15 > 1
+              ? sc.operatorsIconSize.value.toDouble() - 15
+              : 1,
           textColour: Color(sc.operatorsColor.value),
         ));
   }

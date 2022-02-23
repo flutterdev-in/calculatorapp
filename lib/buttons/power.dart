@@ -45,15 +45,20 @@ class Power extends StatelessWidget {
               Icon(
                 MdiIcons.chevronUp,
                 color: Color(sc.operatorsColor.value), // Colors.green,
-                size: sc.operatorsIconSize.value.toDouble() - 15,
+                size: sc.operatorsIconSize.value.toDouble() - 15 > 1
+                    ? sc.operatorsIconSize.value.toDouble() - 15
+                    : 1,
               ),
               Text(
                 "10^",
                 style: TextStyle(
+                  fontWeight: FontWeight.bold,
                   color: Color(
                     sc.operatorsColor.value,
                   ),
-                  fontSize: sc.operatorsIconSize.value.toDouble() - 24,
+                  fontSize: sc.operatorsIconSize.value.toDouble() - 24 > 1
+                      ? sc.operatorsIconSize.value.toDouble() - 24
+                      : 1,
                 ),
               ),
             ],

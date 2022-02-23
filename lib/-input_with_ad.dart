@@ -5,7 +5,6 @@ import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class InputWithAdWidget extends StatelessWidget {
   InputWithAdWidget({Key? key}) : super(key: key);
   final MainController b = Get.put(MainController());

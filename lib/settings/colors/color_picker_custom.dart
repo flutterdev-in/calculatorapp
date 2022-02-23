@@ -1,6 +1,5 @@
 import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/hive_boxes.dart';
-import 'package:calculator_04/settings/settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:get/get.dart';
@@ -62,7 +61,7 @@ class ColorPickerWd extends StatelessWidget {
 
   void colorPicker(BuildContext context) {
     Rx<bool> isFavPick = false.obs;
-
+    int currentColorInt = colorInt;
     showDialog(
       barrierDismissible: false,
       context: context,
@@ -70,13 +69,14 @@ class ColorPickerWd extends StatelessWidget {
         scrollable: true,
         actionsAlignment: MainAxisAlignment.start,
         content: SizedBox(
-          height: 500,
+          height: 550,
           child: Obx(() => Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   isFavPick.value
                       ? BlockPicker(
-                          availableColors: listFavColors(sc.favColors),
+                          availableColors:
+                              listFavColors(sc.favColors).toSet().toList(),
                           pickerColor: Color(colorInt),
                           onColorChanged: (color) {
                             pickedColorInt.value =
@@ -86,7 +86,8 @@ class ColorPickerWd extends StatelessWidget {
                       : ColorPicker(
                           labelTypes: [],
                           paletteType: PaletteType.hueWheel,
-                          pickerColor: Color(colorInt),
+                          hexInputBar: true,
+                          pickerColor: Color(currentColorInt),
                           onColorChanged: (color) {
                             pickedColorInt.value =
                                 int.parse(color.value.toString());
@@ -97,6 +98,7 @@ class ColorPickerWd extends StatelessWidget {
                     children: [
                       ElevatedButton(
                           onPressed: () {
+                            currentColorInt = pickedColorInt.value;
                             isFavPick.value = !isFavPick.value;
                           },
                           child: Text(

@@ -21,17 +21,22 @@ class Comma extends StatelessWidget {
     rc.isPrimaryComma.value = !rc.isPrimaryComma.value;
   }
 
-  Widget icon() {
-    return rc.commaSymbol.value == ","
+  // \uFE50 for comma symbol
+  Widget icon() {  
+    return rc.commaSymbol.value == ","  
         ? Icon(MdiIcons.comma,
-            size: sc.operatorsIconSize.value.toDouble() - 24,
+            size: sc.actionButtonsIconSize.value.toDouble() - 12 < 1
+                ? 1
+                : sc.actionButtonsIconSize.value.toDouble() - 12,
             color: rc.isPrimaryComma.value
                 ? Color(sc.actionButtonsColor.value)
                 : Color(sc.numbersColor.value))
         : Text(
             "'",
             style: TextStyle(
-                fontSize: sc.operatorsIconSize.value.toDouble() - 3,
+                fontSize: sc.actionButtonsIconSize.value.toDouble() - 3 < 1
+                    ? 1
+                    : sc.actionButtonsIconSize.value.toDouble() - 3,
                 color: rc.isPrimaryComma.value
                     ? Color(sc.actionButtonsColor.value)
                     : Color(sc.numbersColor.value)),

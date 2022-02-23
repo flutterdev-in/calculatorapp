@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:calculator_04/buttons/functions/add_symbol.dart';
 import 'package:calculator_04/controllers/result_controller.dart';
 import 'package:calculator_04/controllers/main_controller.dart';
 import 'package:calculator_04/controllers/settings_controller.dart';
@@ -24,11 +25,18 @@ class ResultW extends StatelessWidget {
           size: GFSize.SMALL,
         );
       } else {
-        return AutoSizeText(
-          resultType,
-          minFontSize: 1,
-          style: TextStyle(color: textColour, fontSize: fontSize),
-          maxLines: 1,
+        return InkWell(
+          onTap: () {
+            resultType = resultType.replaceAll(RegExp(r"[\,\'\s]"), "");
+            mc.n.value = AddSymbol().add(resultType, mc.n.value, mc.p.value);
+            mc.p.value = mc.p.value + resultType.split('').length;
+          },
+          child: AutoSizeText(
+            resultType,
+            minFontSize: 1,
+            style: TextStyle(color: textColour, fontSize: fontSize),
+            maxLines: 1,
+          ),
         );
       }
     }

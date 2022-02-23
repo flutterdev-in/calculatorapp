@@ -39,4 +39,5 @@ class BoxModel {
   String onTapColor = "onTapColor";
   String operatorsColor = "operatorColor";
   String powerValuesColor = "powerValuesColor";
+  String mathSymbolsColor = "mathSymbolsColor";
 }

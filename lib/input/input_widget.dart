@@ -18,7 +18,7 @@ class InputW extends StatelessWidget {
           onMatch: (List<String> matches) {},
           patternMatchMap: {
             RegExp(r"[/\+\-\u00D7\(\)%]"):
-                TextStyle(color: Color(sc.operatorsColor.value)),
+                TextStyle(color: Color(sc.mathSymbolsColor.value)),
             RegExp(r"[^\d\./\+\-\u00D7\(\)%]"):
                 TextStyle(color: Color(sc.powerValuesColor.value)),
           },

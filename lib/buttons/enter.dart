@@ -129,7 +129,7 @@ class Enter extends StatelessWidget {
       hb.addItemToHistoryBox(mc.n.value);
     }
 
-    mc.n.value = rc.gr.value.replaceAll(",", "").replaceAll(" ", "");
+    mc.n.value = rc.gr.value.replaceAll(",", "").replaceAll("'", "").replaceAll(" ", "");
     mc.p.value = mc.n.value.length;
   }
 
