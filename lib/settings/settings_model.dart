@@ -2,6 +2,7 @@ final BoxModel bm = BoxModel();
 
 class BoxModel {
   String settings = "settings";
+  String countryCode = "countryCode";
   String stateNvalue = "stateNvalue";
   String statePvalue = "statePvalue";
   String isThemeDark = "isThemeDark";

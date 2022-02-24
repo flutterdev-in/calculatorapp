@@ -19,7 +19,7 @@ Future<void> main() async {
   await Hive.openBox("history");
   await Hive.openBox("settings");
   await Hive.openBox("favhistory");
-  // await Hive.box("settings").clear();
+  await Hive.box("settings").clear();
   runApp(const MyApp());
 }
 

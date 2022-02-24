@@ -24,7 +24,7 @@ class InputStack extends StatelessWidget {
                 return IconButton(
                     color: Color(sc.actionButtonsColor.value),
                     icon: const Icon(
-                      MdiIcons.clipboardTextMultipleOutline,
+                      MdiIcons.clipboardTextOutline,
                     ),
                     onPressed: () {
                       FlutterClipboard.paste().then((value) {

@@ -207,6 +207,7 @@ class ResultController extends GetxController {
         await http.get(Uri.parse('http://ip-api.com/json')).then((value) {
           String countryCode =
               json.decode(value.body)['countryCode'].toString().toUpperCase();
+          sbox.put("countryCode", countryCode);
           if (countryCode.contains(RegExp(r'IN|PK|NP|BD|LK'))) {
             c = 23;
           }

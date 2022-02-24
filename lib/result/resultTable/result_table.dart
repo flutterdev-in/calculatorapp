@@ -7,6 +7,8 @@ import 'package:calculator_04/useful/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_parsed_text/flutter_parsed_text.dart';
 import 'package:get/get.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:share_plus/share_plus.dart';
 
 class TableResult extends StatelessWidget {
   TableResult({Key? key}) : super(key: key);
@@ -22,6 +24,15 @@ class TableResult extends StatelessWidget {
         appBar: AppBar(
           title: Text("Result Table"),
           // backgroundColor: Get.isDarkMode ? Colors.black : Colors.white,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Share.share(rc.tableString.value);
+                },
+                icon: Icon(
+                  MdiIcons.shareOutline,
+                )),
+          ],
         ),
         body: Container(
           color: Get.isDarkMode ? Colors.black : Colors.white,

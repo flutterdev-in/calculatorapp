@@ -69,21 +69,27 @@ class ColorPickerWd extends StatelessWidget {
         scrollable: true,
         actionsAlignment: MainAxisAlignment.start,
         content: SizedBox(
-          height: 550,
+          height: 350,
+          // width: 350,
           child: Obx(() => Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   isFavPick.value
-                      ? BlockPicker(
-                          availableColors:
-                              listFavColors(sc.favColors).toSet().toList(),
-                          pickerColor: Color(colorInt),
-                          onColorChanged: (color) {
-                            pickedColorInt.value =
-                                int.parse(color.value.toString());
-                          },
+                      ? SizedBox(
+                          height: 267,
+                          child: BlockPicker(
+                            availableColors:
+                                listFavColors(sc.favColors).toSet().toList(),
+                            pickerColor: Color(colorInt),
+                            onColorChanged: (color) {
+                              pickedColorInt.value =
+                                  int.parse(color.value.toString());
+                            },
+                          ),
                         )
                       : ColorPicker(
+                          // colorPickerWidth: 350,
+                          pickerAreaHeightPercent: 0.4,
                           labelTypes: [],
                           paletteType: PaletteType.hsv,
                           hexInputBar: true,
@@ -96,14 +102,14 @@ class ColorPickerWd extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ElevatedButton(
+                      TextButton(
                           onPressed: () {
                             currentColorInt = pickedColorInt.value;
                             isFavPick.value = !isFavPick.value;
                           },
                           child: Text(
-                              isFavPick.value ? "Multi Colors" : "My Colors")),
-                      ElevatedButton(
+                              isFavPick.value ? "Disk view" : "My Colors")),
+                      TextButton(
                           onPressed: () {
                             onColorPick();
                             Navigator.of(context).pop();

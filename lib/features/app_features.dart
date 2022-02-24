@@ -3,6 +3,7 @@ import 'package:calculator_04/features/ai_feautures.dart';
 import 'package:calculator_04/features/buttons_response.dart';
 import 'package:calculator_04/features/history_features.dart';
 import 'package:calculator_04/features/multiline_feautures.dart';
+import 'package:calculator_04/features/table_features.dart';
 import 'package:calculator_04/settings/colors/_colors.dart';
 import 'package:calculator_04/settings/fontsizes/_font_sizes.dart';
 import 'package:calculator_04/settings/spacings/_spacings.dart';
@@ -33,6 +34,7 @@ class AppFeatures extends StatelessWidget {
               ButtonsResponseCard(),
               AIfeaturesCard(),
               HistoryFeaturesCard(),
+              TableFeaturesCard(),
             ],
           ),
         ),
