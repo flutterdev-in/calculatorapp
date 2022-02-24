@@ -21,7 +21,7 @@ class FontSizesScreen extends StatelessWidget {
           // backgroundColor: Colors.black38,
         ),
         body: Container(
-           color: Get.isDarkMode ? Colors.black : Colors.white,
+          color: Get.isDarkMode ? Colors.black : Colors.white,
           child: ListView(
             children: [
               TableFontSize(),

@@ -30,7 +30,7 @@ class HistoryButton extends StatelessWidget {
           ontap: () => onPressed(),
           onLongPress: () => longPress(),
           iconData:
-              hc.isHistoryOpen.value ? MdiIcons.tableLarge : MdiIcons.history,
+              hc.isHistoryOpen.value ? MdiIcons.alarmPanel : MdiIcons.history,
           iconColor: Color(sc.actionButtonsColor.value),
           iconSize: sc.actionButtonsIconSize.value.toDouble() + 4,
           // buttonColor: Colors.white12,

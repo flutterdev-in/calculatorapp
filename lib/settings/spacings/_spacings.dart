@@ -1,4 +1,5 @@
 import 'package:calculator_04/controllers/settings_controller.dart';
+import 'package:calculator_04/settings/colors/temp_home_page.dart';
 import 'package:calculator_04/settings/fontsizes/action_buttons_fontsize.dart';
 import 'package:calculator_04/settings/fontsizes/display_fontsize.dart';
 import 'package:calculator_04/settings/fontsizes/main_results_fontsize.dart';
@@ -11,6 +12,7 @@ import 'package:calculator_04/settings/spacings/buttons_radius.dart';
 import 'package:calculator_04/settings/spacings/buttons_spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class SpacingsScreen extends StatelessWidget {
   const SpacingsScreen({Key? key}) : super(key: key);
@@ -48,6 +50,7 @@ class Spacings extends StatelessWidget {
       child: ListTile(
           title: Text("Spacings"),
           onTap: () {
+            
             Get.to(
               SpacingsScreen(),
               transition: Transition.leftToRightWithFade,

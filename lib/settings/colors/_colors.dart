@@ -1,9 +1,12 @@
 import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/hive_boxes.dart';
+import 'package:calculator_04/main.dart';
 import 'package:calculator_04/settings/colors/color_picker_custom.dart';
+import 'package:calculator_04/settings/colors/temp_home_page.dart';
 import 'package:calculator_04/settings/settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class ColorsScreen extends StatelessWidget {
   const ColorsScreen({Key? key}) : super(key: key);
@@ -14,6 +17,7 @@ class ColorsScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Colours"),
+
           // backgroundColor: Colors.black38,
         ),
         body: Container(
@@ -41,6 +45,13 @@ class ColorsScreen extends StatelessWidget {
                     onColorPick: () =>
                         sc.onTapColor.value = pickedColorInt.value,
                     colorKeyToPut: bm.onTapColor,
+                  )),
+              Obx(() => ColorPickerWd(
+                    text: "Math symbols color",
+                    colorInt: sc.mathSymbolsColor.value,
+                    onColorPick: () =>
+                        sc.mathSymbolsColor.value = pickedColorInt.value,
+                    colorKeyToPut: bm.mathSymbolsColor,
                   )),
               Obx(() => ColorPickerWd(
                     text: "Divider line color",
@@ -85,15 +96,12 @@ class ColorsScreen extends StatelessWidget {
                       if (sbox.get(bm.mathSymbolsColor) == null) {
                         sc.mathSymbolsColor.value = sc.operatorsColor.value;
                       }
+                      if (sbox.get(bm.enterButtonBackgroundColor) == null) {
+                        sc.enterButtonBackgroundColor.value =
+                            sc.operatorsColor.value;
+                      }
                     },
                     colorKeyToPut: bm.operatorsColor,
-                  )),
-              Obx(() => ColorPickerWd(
-                    text: "Math symbols color",
-                    colorInt: sc.mathSymbolsColor.value,
-                    onColorPick: () =>
-                        sc.mathSymbolsColor.value = pickedColorInt.value,
-                    colorKeyToPut: bm.mathSymbolsColor,
                   )),
               Obx(() => ColorPickerWd(
                     text: "Numbers color",

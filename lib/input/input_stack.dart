@@ -3,6 +3,7 @@ import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/input/input_widget.dart';
 import 'package:calculator_04/controllers/result_controller.dart';
 import 'package:calculator_04/result/resultTable/result_table.dart';
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -17,23 +18,40 @@ class InputStack extends StatelessWidget {
       children: [
         InputW(),
         Align(
-          alignment: Alignment.bottomRight,
-          child: Obx(() => IconButton(
-              color: Color(sc.actionButtonsColor.value),
-              icon: const Icon(
-                MdiIcons.tableArrowRight,
-              ),
-              onPressed: () {
-                r.tableString.value = b.n.value;
-                r.tgr.value = r.gr.value;
-                r.tsr.value = r.sr.value;
-                Get.to(
-                  TableResult(),
-                  transition: Transition.leftToRightWithFade,
-                  opaque: false,
-                );
-              })),
-        )
+            alignment: Alignment.bottomRight,
+            child: Obx(() {
+              if (b.n.value == "") {
+                return IconButton(
+                    color: Color(sc.actionButtonsColor.value),
+                    icon: const Icon(
+                      MdiIcons.clipboardTextMultipleOutline,
+                    ),
+                    onPressed: () {
+                      FlutterClipboard.paste().then((value) {
+                        b.n.value = value.toString();
+                        b.p.value = b.n.value.length;
+                      });
+                    });
+              } else if (!b.n.value.contains("\n")) {
+                return Text("");
+              } else {
+                return IconButton(
+                    color: Color(sc.actionButtonsColor.value),
+                    icon: const Icon(
+                      MdiIcons.tableArrowRight,
+                    ),
+                    onPressed: () {
+                      r.tableString.value = b.n.value;
+                      r.tgr.value = r.gr.value;
+                      r.tsr.value = r.sr.value;
+                      Get.to(
+                        TableResult(),
+                        transition: Transition.leftToRightWithFade,
+                        opaque: false,
+                      );
+                    });
+              }
+            }))
       ],
     );
   }

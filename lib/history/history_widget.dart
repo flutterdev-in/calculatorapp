@@ -1,3 +1,4 @@
+import 'package:calculator_04/buttons/functions/add_symbol.dart';
 import 'package:calculator_04/controllers/settings_controller.dart';
 import 'package:calculator_04/history/history_box.dart';
 import 'package:calculator_04/controllers/main_controller.dart';
@@ -122,12 +123,11 @@ class HistoryWidget extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(5, 2, 5, 1),
                   child: InkWell(
                     onTap: () {
-                      b.n.value = b.n.value +
-                          m["grValue"]
-                              .replaceAll(",", "")
-                              .replaceAll("'", "")
-                              .replaceAll(" ", "");
-                      b.p.value = b.n.value.length;
+                      String resultValue =
+                          m["grValue"].replaceAll(RegExp(r"[\,\'\s]"), "");
+                      b.n.value =
+                          AddSymbol().add(resultValue, b.n.value, b.p.value);
+                      b.p.value = b.p.value + resultValue.split('').length;
                     },
                     child: Text(m["grValue"] ?? "",
                         textScaleFactor: 1.5,

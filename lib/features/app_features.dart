@@ -1,5 +1,8 @@
 import 'package:calculator_04/controllers/settings_controller.dart';
-import 'package:calculator_04/features/hidden_touch_responses.dart';
+import 'package:calculator_04/features/ai_feautures.dart';
+import 'package:calculator_04/features/buttons_response.dart';
+import 'package:calculator_04/features/history_features.dart';
+import 'package:calculator_04/features/multiline_feautures.dart';
 import 'package:calculator_04/settings/colors/_colors.dart';
 import 'package:calculator_04/settings/fontsizes/_font_sizes.dart';
 import 'package:calculator_04/settings/spacings/_spacings.dart';
@@ -26,7 +29,10 @@ class AppFeatures extends StatelessWidget {
           color: Get.isDarkMode ? Colors.black : Colors.white,
           child: ListView(
             children: [
-              TouchResponseCard(),
+              MultiLineFeaturesCard(),
+              ButtonsResponseCard(),
+              AIfeaturesCard(),
+              HistoryFeaturesCard(),
             ],
           ),
         ),

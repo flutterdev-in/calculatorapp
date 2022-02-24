@@ -101,9 +101,11 @@ class SettingsController extends GetxController {
         sbox.get(bm.powerValuesColor) ?? pc(Colors.blue, Colors.blue);
     dividerLineColor.value =
         sbox.get(bm.dividerLineColor) ?? pc(Colors.white70, Colors.black38);
-    sbox.put(bm.favColors, favColors0);
+    
     mathSymbolsColor.value =
         sbox.get(bm.mathSymbolsColor) ?? operatorsColor.value;
+
+    sbox.put(bm.favColors, favColors0);
   }
 }
 

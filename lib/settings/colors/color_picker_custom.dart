@@ -85,7 +85,7 @@ class ColorPickerWd extends StatelessWidget {
                         )
                       : ColorPicker(
                           labelTypes: [],
-                          paletteType: PaletteType.hueWheel,
+                          paletteType: PaletteType.hsv,
                           hexInputBar: true,
                           pickerColor: Color(currentColorInt),
                           onColorChanged: (color) {
@@ -102,7 +102,7 @@ class ColorPickerWd extends StatelessWidget {
                             isFavPick.value = !isFavPick.value;
                           },
                           child: Text(
-                              isFavPick.value ? "Disk view" : "My Colors")),
+                              isFavPick.value ? "Multi Colors" : "My Colors")),
                       ElevatedButton(
                           onPressed: () {
                             onColorPick();

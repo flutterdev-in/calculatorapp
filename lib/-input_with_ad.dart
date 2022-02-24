@@ -2,6 +2,7 @@ import 'package:calculator_04/ads/banner_ad_widget.dart';
 import 'package:calculator_04/controllers/main_controller.dart';
 import 'package:calculator_04/input/input_stack.dart';
 import 'package:calculator_04/controllers/settings_controller.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +19,9 @@ class InputWithAdWidget extends StatelessWidget {
           (md.height / 8) -
           44 -
           (sc.bottomPadding.value.toDouble());
+      if (kIsWeb) {
+        heightx = heightx + 15;
+      }
       return Container(
         padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
         height: heightx,

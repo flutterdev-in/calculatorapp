@@ -54,7 +54,10 @@ class TableResult extends StatelessWidget {
       if (lastString.contains(RegExp(r'^\n?[\u00D7/]'))) {
         lastString = lastString.replaceAll("\n", " ");
       } else {
-        lastString = lastString.replaceAll("\n", " + ");
+        lastString = lastString
+            .replaceAll("\n+", " + ")
+            .replaceAll("\n-", " - ")
+            .replaceAll("\n", " + ");
       }
       return Column(
         children: [
@@ -239,7 +242,7 @@ class TableResult extends StatelessWidget {
 
   Widget parseText(String txt, {Color txtColor = Colors.white}) {
     double textFactor = 1.2;
-    if (mc.n.value.contains(RegExp(r'[^\n\.\d]+'))) {
+    if (mc.n.value.contains(RegExp(r'[^\n\.\d(\n\-)(\n\+)]+'))) {
       textFactor = 1;
     }
     return ParsedText(
@@ -299,14 +302,15 @@ class TableResult extends StatelessWidget {
 
   void getInputs() {
     String subString = rc.tableString.value
-        .replaceAll(RegExp(r'\n(\u00D7|/|\d+(\.\d*)?%)[^\n]*$'), "")
+        .replaceAll(RegExp(r'\n(\u00D7|/|[\+\-]?\d+(\.\d*)?%)[^\n]*$'), "")
         .replaceAll(RegExp(r'\n[^\d]*$'), "");
     listStrings = subString.split("\n");
 
     if (rc.tableString.value
-        .contains(RegExp(r'\n(\u00D7|/|\d+(\.\d*)?%)[^\n]*$'))) {
+        .contains(RegExp(r'\n(\u00D7|/|[\+\-]?\d+(\.\d*)?%)[^\n]*$'))) {
       lastString = RegEx()
-          .listMatch(r'\n(\u00D7|/|\d+(\.\d*)?%)[^\n]*$', rc.tableString.value)
+          .listMatch(
+              r'\n(\u00D7|/|[\+\-]?\d+(\.\d*)?%)[^\n]*$', rc.tableString.value)
           .first;
     }
   }
