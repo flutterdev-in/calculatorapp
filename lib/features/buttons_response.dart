@@ -26,7 +26,7 @@ class ButtonsResponsePage extends StatelessWidget {
             iconCard(
               iconData: MdiIcons.closeCircleMultipleOutline,
               text:
-                  "On tap : 1) Clear input from display.\n2) save input in 'Recycle bin'.\nLong press : 1) Clear input from display.  2) Save input in 'Favorites'.",
+                  "On tap : 1) Clear input from display.\n2) save input in 'Recycle bin'.\nLong press : 1) Clear input from display.\n2) Save input in 'Favourites'.",
             ),
             iconCard(
               icon: Text(
@@ -38,12 +38,30 @@ class ButtonsResponsePage extends StatelessWidget {
             iconCard(
               iconData: Icons.history,
               text:
-                  "On tap : Opens history of Recycle bin / Favorites.\nLong press : Save input in 'Recycle bin' without clearing input from display.",
+                  "On tap : Opens history of Recycle bin / Favourites.\nLong press : Save input in 'Recycle bin' without clearing input from display.",
             ),
             iconCard(
               iconData: Icons.backspace_outlined,
               text:
                   "On tap : Delete one left letter to the cursor.\nLong press : 1) Clear input from display.\n2) Won't save input in history.",
+            ),
+            iconCard(
+              icon: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    MdiIcons.chevronUp,
+                  ),
+                  Text(
+                    "10^",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              text:
+                  "1) Put ^ for numbers and put x10^ for operators.\n2) Power operations are allowed inside brackets.",
             ),
             iconCard(
               iconData: MdiIcons.playlistPlus,

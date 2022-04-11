@@ -20,7 +20,7 @@ class InputWithAdWidget extends StatelessWidget {
           44 -
           (sc.bottomPadding.value.toDouble());
       if (kIsWeb) {
-        heightx = heightx + 15;
+        heightx = heightx + 50;
       }
       return Container(
         padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),

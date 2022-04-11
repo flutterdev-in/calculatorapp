@@ -18,26 +18,27 @@ class HistoryFeaturesPage extends StatelessWidget {
             iconCard(
               iconData: Icons.history,
               text:
-                  "On tap : Opens history of Recycle bin / Favorites as decided by last item saved.\nLong press : Save input in 'Recycle bin' without clearing input from display.",
+                  "On tap : Opens history of Recycle bin / Favourites as decided by last item saved.\nLong press : Save input in 'Recycle bin' without clearing input from display.",
             ),
             iconCard(
               iconData: Icons.favorite_border_outlined,
               // iconFlex: 2,
-              text: "History of 'Recycle bin'\nMaximum capacity 100.",
+              text:
+                  "'Recycle bin' icon\nIf Recycle bin exceed 100 items, then older entry will be deleted.",
             ),
             iconCard(
               iconData: Icons.favorite,
-              text: "History of 'Favorites'\nUnrestricted.",
+              text: "'Favourites' icon\nUnrestricted.",
             ),
             iconCard(
               iconData: MdiIcons.tableArrowRight,
-              text: "On tap : Show result table of this item.",
+              text: "On tap : Shows result table of the item.",
             ),
             iconCard(
               icon: Text("Swipe\nactions"),
               iconFlex: 2,
               text:
-                  "Swipe right : Move item to 'Favorites' / 'Recycle bin'\nSwipe left : Delete item from 'Favorites' / 'Recycle bin'.",
+                  "Swipe right : Move item to 'Favourites' / 'Recycle bin'\nSwipe left : Delete item from 'Favourites' / 'Recycle bin'.",
             ),
             iconCard(
               icon: Text("On Tap\nactions"),
@@ -54,12 +55,17 @@ class HistoryFeaturesPage extends StatelessWidget {
               icon: Text("Time\nstamp"),
               iconFlex: 2,
               text:
-                  "1) Time stamp of the item will be taken at the time of saving.\n2) Time stamp of the item will not change if you move item to 'Favorites' / 'Recycle bin'",
+                  "1) Time stamp of the item will be taken at the time of saving.\n2) Time stamp of the item will not change if you move item to 'Favourites' / 'Recycle bin'",
             ),
             iconCard(
-              icon: Text("Clear"),
+              icon: Text("Clear recycle bin"),
               iconFlex: 2,
-              text: "Delete all items from 'Recycle Bin' / 'Favorites'",
+              text: "Delete all items from 'Recycle Bin'",
+            ),
+            iconCard(
+              icon: Text("Clear favourites"),
+              iconFlex: 2,
+              text: "Delete all items from 'Favourites'",
             ),
           ],
         ),

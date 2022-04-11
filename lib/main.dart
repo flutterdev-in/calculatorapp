@@ -19,7 +19,7 @@ Future<void> main() async {
   await Hive.openBox("history");
   await Hive.openBox("settings");
   await Hive.openBox("favhistory");
-  await Hive.box("settings").clear();
+
   runApp(const MyApp());
 }
 
@@ -102,6 +102,8 @@ Map<int, Color> colorMap = {
   800: Color.fromRGBO(136, 14, 79, .9),
   900: Color.fromRGBO(136, 14, 79, 1),
 };
+
+  // await Hive.box("settings").clear();
 
 // class MyHomePage0 extends StatelessWidget {
 //   const MyHomePage0({Key? key}) : super(key: key);

@@ -30,7 +30,7 @@ class AboutPage extends StatelessWidget {
               title: Text("aicalculator.contact@gmail.com"),
             ),
             ListTile(
-              title: Text("App version 1.0.0"),
+              title: Text("App version 1.0.1"),
             ),
           ],
         ),

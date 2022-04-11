@@ -34,7 +34,9 @@ class InputStack extends StatelessWidget {
                     });
               } else if (!b.n.value.contains("\n")) {
                 return Text("");
-              } else {
+              }  else if (!b.n.value.contains("\n")) {
+                return Text("");
+              }else {
                 return IconButton(
                     color: Color(sc.actionButtonsColor.value),
                     icon: const Icon(

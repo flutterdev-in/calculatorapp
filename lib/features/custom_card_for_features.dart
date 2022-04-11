@@ -42,7 +42,7 @@ Widget iconCard(
                       parse: <MatchText>[
                         MatchText(
                           pattern:
-                              r"On tap : |\^|x10\^|\s\.\s|0.|x10\u2079|x10\u2077|Swipe right : |100",
+                              r"On tap : |\^|x10\^|0.|x10\u2079|x10\u2077|Swipe right : |100",
                           style: TextStyle(
                             color: Colors.green,
                           ),
@@ -51,6 +51,14 @@ Widget iconCard(
                           pattern: r"Long press : |Swipe left : ",
                           style: TextStyle(
                             color: Colors.red,
+                          ),
+                        ),
+                        MatchText(
+                          pattern: r"\s\.\s",
+                          style: TextStyle(
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
                           ),
                         ),
                       ],

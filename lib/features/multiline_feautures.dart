@@ -18,7 +18,7 @@ class MultiLineFeaturesPage extends StatelessWidget {
             iconCard(
               iconData: MdiIcons.playlistPlus,
               text:
-                  "Press this button to go to next line.\nVery usefult for vertical operations. Example : Adding prices in grocery store, Quatity and rate multiplications for multiple items etc",
+                  "Press this button to go to next line.\nVery usefult for vertical operations.\nExample : Adding prices in grocery store, Quatity and rate multiplications for multiple items etc.",
             ),
             iconCard(
               icon: Text("+"),
@@ -34,13 +34,13 @@ class MultiLineFeaturesPage extends StatelessWidget {
               icon: Text("x /"),
               iconFlex: 1,
               text:
-                  "if you use multiply x or devided / at starting of line then this line it will become your last line. And this line will be operated to the combined result of your previous lines.",
+                  "if you use multiply x or divided / at starting of line then it will become your last line. And that line will be operated to the combined result of your previous lines.",
             ),
             iconCard(
               icon: Text("%"),
               iconFlex: 1,
               text:
-                  "If you use % for starting number of line, then this line it will become your last line. And this line will be operated to the combined result of your previous lines.",
+                  "If you use % for starting number of line, then it will become your last line. And that line will be operated to the combined result of your previous lines.",
             ),
             iconCard(
               icon: Text("No line"),

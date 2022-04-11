@@ -173,6 +173,9 @@ class ResultController extends GetxController {
     String result = '';
     if (precision <= 0) {
       result = rl.first;
+    } else if (rl.length == 1) {
+      String afterDot = "0" * precision.value;
+      result = rl.first + "." + afterDot;
     } else {
       String afterDot = rl.last + "0" * precision.value;
       afterDot = afterDot.substring(0, precision.value);

@@ -11,12 +11,11 @@ class HistoryCleanButton extends StatelessWidget {
   void onPressed() async {
     if (hc.isFavPressed.value) {
       await favhbox.clear();
-      
     } else {
       await hbox.clear();
-    }await Future.delayed(const Duration(milliseconds: 600));
+    }
+    await Future.delayed(const Duration(milliseconds: 600));
     hc.isHistoryEmpty.value = true;
-    
   }
 
   @override
@@ -25,7 +24,7 @@ class HistoryCleanButton extends StatelessWidget {
           ontap: () => onPressed(),
           isIcon: false,
           text: hc.isFavPressed.value
-              ? " Clear\n favorites"
+              ? " Clear\n Favourites"
               : " Clear\n recycle\n bin",
           textSize: 10,
           textColour: Color(sc.actionButtonsColor.value),

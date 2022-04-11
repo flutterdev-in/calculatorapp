@@ -52,12 +52,12 @@ class AIfeaturesPage extends StatelessWidget {
             iconCard(
               iconData: MdiIcons.blockHelper,
               text:
-                  "Won't respond for invalid operations like\n-+, x/, /x, (x, (/, )%, x%, /%, %x etc",
+                  "Won't respond for invalid operations like\n-+, x/, /x, (x, (/, )%, x%, /%, %x etc.",
             ),
             iconCard(
               iconData: MdiIcons.currencyUsd,
               text:
-                  "Auto detech comma seperation as per your country format,\nFor large results\nBillions displayed as x10\u2079 and\nCrores displayed as x10\u2077",
+                  "Auto detect comma seperation as per your country format,\nfor large results\nBillions displayed as x10\u2079 and\nCrores displayed as x10\u2077",
             ),
           ],
         ),

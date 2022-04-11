@@ -32,7 +32,7 @@ class HistoryWidget extends StatelessWidget {
         return Dismissible(
           background: Center(
             child: Text(
-              "Item moved to favorites",
+              "Item moved to Favourites",
               style: TextStyle(color: Color(sc.actionButtonsColor.value)),
             ),
           ),

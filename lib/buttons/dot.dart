@@ -63,8 +63,8 @@ class Dot extends StatelessWidget {
           ontap: () => onPressed(),
           iconData: Icons.circle_rounded,
           iconColor: Color(sc.numbersColor.value),
-          iconSize: sc.numbersFontSize.value.toDouble() - 18> 1
-              ? sc.numbersFontSize.value.toDouble() - 18
+          iconSize: sc.numbersFontSize.value.toDouble() - 20 > 1
+              ? sc.numbersFontSize.value.toDouble() - 20
               : 1,
         ));
   }

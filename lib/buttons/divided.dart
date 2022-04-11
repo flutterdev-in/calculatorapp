@@ -61,8 +61,8 @@ class Divided extends StatelessWidget {
           ontap: () => onPressed(),
           isIcon: false,
           text: "/",
-          textSize: sc.operatorsIconSize.value.toDouble() - 10 > 1
-              ? sc.operatorsIconSize.value.toDouble() - 10
+          textSize: sc.operatorsIconSize.value.toDouble() - 11 > 1
+              ? sc.operatorsIconSize.value.toDouble() - 11
               : 1,
           textColour: Color(sc.operatorsColor.value),
         ));

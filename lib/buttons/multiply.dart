@@ -63,7 +63,7 @@ class Multiply extends StatelessWidget {
           ontap: () => onPressed(),
           iconData: MdiIcons.windowClose,
           iconColor: Color(sc.operatorsColor.value), //  Colors.green,
-          iconSize: sc.operatorsIconSize.value.toDouble(),
+          iconSize: sc.operatorsIconSize.value.toDouble() - 4,
         ));
   }
 }

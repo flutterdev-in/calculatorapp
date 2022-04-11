@@ -11,6 +11,7 @@ import 'package:calculator_04/settings/otherImp/darktheme.dart';
 import 'package:calculator_04/settings/otherImp/default_precision.dart';
 import 'package:calculator_04/settings/otherImp/enter_button_behaviour.dart';
 import 'package:calculator_04/settings/otherImp/main_result_position.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -29,13 +30,15 @@ class SettingsScreen extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () async {
-                  String _url = "https://aicalculator.web.app";
+                  String _url = kIsWeb
+                      ? "https://play.google.com/store/apps/details?id=com.aicalculator"
+                      : "https://aicalculator.web.app";
                   if (await canLaunch(_url)) {
                     await launch(_url);
                   }
                 },
                 icon: Icon(
-                  MdiIcons.web,
+                  kIsWeb ? MdiIcons.googlePlay : MdiIcons.web,
                   size: 20,
                 )),
             IconButton(

@@ -47,7 +47,7 @@ class InputW extends StatelessWidget {
                   mc.p.value = mc.n.value.length;
                 }
               },
-              keyboardType: TextInputType.multiline,
+              keyboardType: TextInputType.none,
               textAlignVertical: TextAlignVertical.top,
               maxLines: null,
               decoration: InputDecoration(
@@ -58,12 +58,22 @@ class InputW extends StatelessWidget {
               style: TextStyle(
                   fontSize: sc.displayFontSize.value.toDouble(),
                   color: Color(sc.displayFontColor.value)),
-              readOnly: true,
+              // readOnly: true,
+
+              toolbarOptions: ToolbarOptions(
+                copy: true,
+                cut: false,
+                paste: true,
+                selectAll: true,
+              ),
               autofocus: true,
               showCursor: true,
               cursorColor:
                   Color(sc.cursorColor.value), // Colors.brown.shade100,
               controller: mc.rtc,
+              onChanged: (value) {
+                mc.n.value = mc.rtc!.text;
+              },
             ),
           ),
         );

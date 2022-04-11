@@ -132,7 +132,6 @@ class Brackets extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() => GFButtonC.all(
           ontap: () => onPressed(),
-          iconData: Icons.backspace_outlined,
           isIcon: false,
           text: "( )",
           textSize: sc.operatorsIconSize.value.toDouble() - 15 > 1
